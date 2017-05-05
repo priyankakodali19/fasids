@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "PostQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .QuestionContent {
+    margin:10px 0;
+    height:200px;
+}
+</style>
+<div class="divide20"></div>
+<div class="divide20"></div>
+
+<form method="post" >
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-xs-10 ">
+            <input id="QuestionSubject" type="text" name="title" placeholder="Question subject" class="form-control"/>
+        </div>
+    </div>
+    <div class="divide20"></div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-xs-10">
+            <div class="QuestionContent"></div>
+        </div>
+    </div>
+    
+    <div class="divide20"></div>
+    <div class="row final-buttons">
+        <div class="col-sm-1"></div>
+       <div class="col-xs-10">
+            <a href="#" class="btn border-black">Save Draft</a>
+            <a href="#" class="btn border-black">Preview</a>
+            <div id="SubmitQuestion" class="btn btn-theme-bg">
+                <btn onclick="SubmitQuestion" Submit> </btn></div>
+        </div>
+    </div>
+</form>
+<div class="divide20"></div>
+
+<script type="text/javascript">
+    $('document').ready(function () {
+        textboxio.replaceAll('.QuestionContent');
+
+        document.getElementById('SubmitQuestion').onclick = function () {
+            // Get the active editor
+            var editor = textboxio.getActiveEditor();
+
+            // Retrieve the contents of the active editor
+            var content = editor.content.get();
+            var string = content.slice(3, content.length - 4);
+            console.log(string);
+           
+            alert(content);
+        };
+    });
+</script>

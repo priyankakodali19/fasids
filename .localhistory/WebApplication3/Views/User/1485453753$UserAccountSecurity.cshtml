@@ -1,0 +1,77 @@
+﻿@model WebApplication3.Models.ViewModel.ResetPassword
+
+@{
+    ViewBag.Title = "UserAccountSecurity";
+
+}
+<div class="panel panel-default">
+    <div class="panel-heading"><h4>Change Your Passsord</h4></div>
+    <div class="panel-body">
+         <form role="form" method="post">
+            @Html.AntiForgeryToken()
+            <span class="alert-success">@ViewBag.Status</span> 
+            <div class="row">
+                <div class="col-xs-3 text-right">
+                    <label for="OldPassword">Old password</label>
+                </div>
+                <div class="col-xs-5">
+                    <input id="OldPassword" type="password" name="OldPassword" class="form-control"  value=@Html.DisplayTextFor(model => model.OldPassword) />
+                    @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "alert-danger" })
+                </div>
+            </div>
+            <div class="divide20"></div>
+            <div class="row">
+                <div class="col-xs-3 text-right">
+                    <label for="NewPassword">New password</label><span class="red">*</span>
+                </div>
+                <div class="col-xs-5">
+                    <input id="NewPassword" type="password" name="NewPassword" class="form-control" value=@Html.DisplayTextFor(model => model.NewPassword)/>
+                    @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "alert-danger" })
+                </div>
+                <div class="divide20"></div>
+            </div>
+            <div class="divide20"></div>
+            <div class="row">
+                <div class="col-xs-3 text-right">
+                    <label for="ConfirmNewPassword">New password again</label><span class="red">* </span>
+                </div>
+                <div class="col-xs-5">
+                    <input id="ConfirmNewPassword" type="password" name="ConfirmNewPassword" required="required" class="form-control"  value=@Html.DisplayTextFor(model => model.ConfirmNewPassword)/>
+                    @Html.ValidationMessageFor(model => model.ConfirmNewPassword, "", new { @class = "alert-danger" })
+                </div>
+            </div>
+            <div class="divide20"></div>
+            <div class="row">
+                <div class="col-xs-2 col-xs-offset-9" style="float:right;">
+                    <button type="submit" value="ResetPassword" class="FasidsBtn btn btn-primary">Update Password</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="divide30"></div>
+<!--
+  <div class="panel panel-default">
+    <div class="panel-heading"><h4>Reset Your Password</h4></div>
+    <div class="panel-body">
+        <form action="undefined/users/account/reset_password" name="reset_password_form" method="post">
+            <div class="row">
+                <div class="col-xs-3 text-right">Security email</div>
+                <div class="col-xs-5">
+                    <input type="text" name="email" disabled="disabled" class="form-control" value=
+                </div>
+
+            </div>
+            <div class="divide20"></div>
+            <div class="row">
+                <div class="col-xs-2 col-xs-offset-9" style="float:right;">
+                    <button type="submit" class="FasidsBtn btn btn-primary">Send Email</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>  
+-->
+
+

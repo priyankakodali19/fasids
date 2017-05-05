@@ -1,0 +1,95 @@
+﻿@using WebApplication3.Helpers;
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" rel="stylesheet" type="text/css" media="screen" />
+
+@*<script type="text/javascript">
+    window.onload = function () {
+        $.ajax({
+            type: "POST",
+            url: '@(Url.Action("UserIconImage", "User"))',
+            success: function (path) {
+                @string img_src = path;
+                alert(path);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                location.alert("jhj" + textStatus);
+            }
+        });
+    };
+    
+</script>*@
+
+
+﻿@if (Request.IsAuthenticated)
+{   
+
+    
+        <li>
+            @*<input id="count" value="1" hidden></input>*@
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle"> <img class="img-circle" width="12 %" src="@ViewBag.path" alt="Image"/> @Context.User.Identity.Name.ToUpper() &#9660;</a>
+            <ul id="index-dropdown-menu" role="menu" class="dropdown-menu">
+                <li><a href="/User/UserDashboard">User Dashboard</a></li>
+                <li><a href="/User/UserAccount">Account</a></li>
+                <li><a href="/User/Logout">Logout</a></li>
+            </ul>
+        </li>
+      
+    
+}
+else
+{
+    @*<input id="count" value="0" hidden></input>*@
+       <li class="@Html.IsActive("User", "SignUp")"><a href="/User/SignUp">SIGN UP</a></li>
+       <li class="@Html.IsActive("User", "SignIn")"><a href="/User/SignIn">	<i class="fa fa-lock"></i> SIGN IN</a></li>
+} 
+@*<div id="sec" class="btn" style="float:right;color:white;padding-top: 1.7%;" >You will be logged out in <span id="spanTimeLeft"></span>&nbsp;seconds!</div>*@
+
+@*<script type="text/javascript">
+    var id = $('#count').val();
+    $('#sec').hide();
+    $(function () {
+        
+        $("body").on('click mousemove keypress scroll', function () {
+            $('#sec').hide();
+                ResetThisSession();
+            });
+        
+    });
+
+    var timeInSecondsAfterSessionOut = 20; // change this to change session time out (in seconds).
+    var secondTick = 0;
+
+    function ResetThisSession() {
+        secondTick = 0;
+    }
+
+    function StartThisSessionTimer() {
+        secondTick++;
+        var timeLeft = ((timeInSecondsAfterSessionOut - secondTick) / 60).toFixed(0); // in minutes
+        timeLeft = timeInSecondsAfterSessionOut - secondTick; // override, we have 30 secs only 
+
+        $("#spanTimeLeft").html(timeLeft);
+        if (timeLeft == 15) {
+            $('#sec').show();
+        }
+       
+
+        if (secondTick > timeInSecondsAfterSessionOut) {
+            clearTimeout(tick);
+            
+            location.href = "/User/Timeout";
+            
+            
+            return;
+        }
+        tick = setTimeout("StartThisSessionTimer()", 1000);
+    }
+
+    if (id == 1) {
+        console.log(document.getElementById('sec'));
+        
+        //document.getElementById('sec').style.display = 'block';
+        StartThisSessionTimer();
+    }
+</script>*@

@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "PostQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PostQuestion</h2>
+
+<form method="post" id="wysihtml-form">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <input type="text" name="title" placeholder="Question subject" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="col-xs-11 col-xs-offset-1">
+        <div class="QuestionContent">
+
+        </div>
+    </div>
+
+
+<div class="divide30"></div>
+
+
+
+<div class="divide20"></div>
+<div class="divide20"></div>
+
+<div class="row final-buttons">
+    <div class="col-xs-11 col-xs-offset-1"><a href="#" class="btn border-black">Save draft</a><a href="#" class="btn border-black">preview</a>
+        <div id="wysihtml-submit" class="btn btn-theme-bg">Submit</div>
+    </div>
+</div>
+</form>
+<div class="divide20"></div>
+
+<script type="text/javascript">
+    $('document').ready(function () {
+        textboxio.replaceAll('.editableDiv');
+
+        document.getElementById('getActiveContent').onclick = function () {
+            // Get the active editor
+            var editor = textboxio.getActiveEditor();
+
+            // Retrieve the contents of the active editor
+            var content = editor.content.get();
+            alert(content);
+        };
+    });
+</script>

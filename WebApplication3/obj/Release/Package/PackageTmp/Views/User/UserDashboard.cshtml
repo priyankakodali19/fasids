@@ -1,0 +1,47 @@
+﻿@model WebApplication3.Models.ViewModel.UserSavedPolygonsView
+@{
+    ViewBag.Title = "UserDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="divide10"></div>
+<h2 class="title text-center">USER DASHBOARD</h2>
+<div class="divide30"></div>
+
+<div class="row">
+    
+    <div class="col-md-3" >
+        @Html.Action("UserImage", "User");
+    </div>
+
+    <div class="col-md-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">Treatment Areas <span class="badge">&nbsp;&nbsp;@Model.UserPolygons.Count()</span></div>
+          <div class="panel-body">
+              @{int count = 0;}
+              @foreach (var i in Model.UserPolygons)
+              {
+                  count++;
+                    <div class="row polygon-row-dashboard" >
+                        <div class="col-xs-3">@count</div>
+                        <div class="col-xs-4">@Html.DisplayFor(m => i.PolygonName)</div>
+                        <div class="col-xs-5 polygon-operations">
+                            @{var id= i.GeoJsonId;
+                              var edit_href = "/InteractiveLandscape/LandscapeManagement/" + id;
+                              var delete_href = "/User/DeleteDashboardPolygon/" + id;
+                              }
+
+                            <a href='@delete_href' > 
+                            <span class="fa fa-remove fa-lg"></span>&nbsp; Delete</a>
+                           
+                             
+                           <a href=@edit_href> <span class="fa fa-map-o fa-lg"></span>&nbsp; Edit</a>
+
+                           
+                      </div>
+                  </div>
+              }
+          </div>
+        </div>
+    </div>
+</div>
+

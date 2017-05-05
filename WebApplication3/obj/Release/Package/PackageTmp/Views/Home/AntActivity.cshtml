@@ -1,0 +1,290 @@
+﻿
+@{
+    ViewBag.Title = "AntActivity";
+}
+<script src="~/scripts/AntActivity/moment.min.js"></script>
+<script src="~/scripts/AntActivity/fullcalendar.min.js"></script>
+<script src="~/scripts/underscore-min.js"></script>
+<link href="~/Content/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+
+<link href="~/Content/AntActivity/antactivity.css" rel="stylesheet" type="text/css" />
+
+<div class="divide10"></div>
+<h2 class="title text-center">FIRE ANT ACTIVITY</h2>
+<div class="divide10"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1 form-element">
+            <div class="input-group">
+                <input type="text" id="query-place-ipt" placeholder="city, state, country, like, college station, tx, us" class="form-control" /><span class="input-group-btn">
+                    <button type="button" id="refresh-btn" class="btn btn-default">Fire Ant Activity Forecast</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="divide30"></div>
+    <div class="row">
+        <div id="calendar" class="col-md-10 col-md-offset-1"></div>
+    </div>
+</div>
+<div class="divide30">
+    <div id="antactivity-low-explain" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" class="modal fade">
+        <div class="modal-dialog modal-lg">
+           
+            <div class="modal-content">
+                <h4>Weather For This day</h4>
+                <div class="weather-container"></div>
+                <div class="divide30"></div>
+                <h4>Low Foraging Activity</h4>
+                <h5><b>Biology:</b></h5> Fire Ants will forage when soil temperatures are above 60°F. When ambient temperatures are less than 70°F ants may forage during the warmest part of the day. Activity may also be affected by the situation of the mound - ants often build mounds under or near structures that aid the regulation of temperatures in the mound (e.g. under pavements, alongside metal structures). Activity levels may also be reduced by high ambient temperatures - i.e. above 90&degF; In this case, foraging activity may be restricted to the morning, evening or at night, and the colony may move further underground.
+                <h5></h5>
+                <h5><b>Management:</b></h5> Bait applications are most effective when ants are active enough to carry the bait to the colony and when the colony is actively developing. To assess the likely efficacy of an application, assess the speciifc conditions of the application area such as soil temperatures, and consider the likelihood of foraging up to 2 days after the application.
+            </div>
+        </div>
+    </div>
+    <div id="antactivity-mddle-explain" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">...</div>
+        </div>
+    </div>
+    <div id="antactivity-high-explain" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <h4>Weather For This day</h4>
+                <div class="weather-container"></div>
+                <div class="divide30"></div>
+                <h4>High Foraging Activity</h4>
+                <h5><b>Biology:</b></h5> Fire Ants will actively forage when soil temperatures are above 60°F. Foraging activity is highest between ambient temperatures of 70°F and 90°F. Despite high activity, ants may not be particularly noticeable. Food items are transported from foraging sites to the nest through a network of tunnels just below the vegetation or soil surface.
+                <h5></h5>
+                <h5><b>Management:</b></h5> Bait applications are most effective when foraging activity is high.
+            </div>
+        </div>
+    </div>
+    <script id="weather-table-template" type="text/template">
+        <table class="weather-table">
+            <tr>
+                <th>Avg. Temp.</th>
+                <th>Humidity</th>
+            </tr>
+            <tr>
+                <td> <%= temp_avg %></td>
+                <td> <%= humidity_avg %></td>
+            </tr>
+        </table>
+    </script>
+
+ <script type="text/javascript">
+     $(document).ready(function () {
+         // following might take time
+         console.log($("#weather-table-template").html().toString());
+         console.log(document.getElementById("weather-table-template").innerHTML);
+
+         $('#calendar').fullCalendar({
+             // put your options and callbacks here
+             eventClick: function (event, jsEvent, view) {
+
+
+                 var target_modal_id = "";
+                 if ($(this).hasClass("activity-text-low")) {
+                     target_modal_id = "#antactivity-low-explain";
+                     $("#antactivity-low-explain").modal("show");
+                 }
+                 if ($(this).hasClass("activity-text-middle")) {
+                     target_modal_id = "#antactivity-middle-explain";
+                     $("#antactivity-middle-explain").modal("show");
+                 }
+                 if ($(this).hasClass("activity-text-high")) {
+                     target_modal_id = "#antactivity-high-explain";
+                     $("#antactivity-high-explain").modal("show");
+                 }
+                 $(target_modal_id).find(".weather-container").html("").prepend(JSON.stringify(forecast4_daysummary[event.index], null, "  "));
+                 $(target_modal_id).find(".weather-container").html("").prepend(helper_util.weather_template_complied({
+                     temp_avg: helper_util.kToF(forecast4_daysummary[event.index].temp_avg),
+                     humidity_avg: forecast4_daysummary[event.index].humidity_avg.toFixed(1) + " %"
+                 }));
+
+             }
+         });
+         var crtDate = new Date();
+         var forecast = {};
+         var current = {};
+         var forecast4_daysummary = []
+         // knowledge snippets: 0 degree C = 273.15K
+         var helper_util = {
+             url: function (mode) {
+                 if (mode === "weather" || mode === "forecast") {
+                     return "http://api.openweathermap.org/data/2.5/" + mode;
+                 }
+                 else throw "mode parameter error";
+             },
+             // get_query is an object will be summitted to forcast url using GET
+             get_query: {
+                 q: "college station,tx,us",
+                 mode: "json",
+                 appid: "64bb5bb6fbdeb48105b321b7c6ddae37"
+             },
+             makeQuery: function (mode) {
+                 var scope = this;
+                 return scope.url(mode) + "?" + $.param(scope.get_query);
+             },
+             avg: function (one_list) {
+                 if (typeof one_list === "undefined" || one_list.length === 0) {
+                     return null;
+                 }
+                 var i = 0;
+                 var sum = 0;
+                 for (i = 0; i < one_list.length; i++) {
+                     sum += one_list[i];
+                 }
+                 sum = sum / one_list.length;
+                 return sum;
+             },
+             // I should have one function  function (TEMPERATURE, HUMIDITY), which return ANT_TIVITY 
+             tell_activity: function (date_summary) {
+                 if (date_summary.temp_avg >= 294.25 && date_summary.temp_avg <= 305.372) {
+                     return "high";
+                 } else {
+                     return "low";
+                 }
+             },
+             map_main: function (date_list, attr) {
+                 if (attr === "temp") {
+                     return _.compact(_.map(date_list, function (period_data) {
+                         var date_at_this_point = new Date(period_data.dt * 1000);
+                         if (date_at_this_point.getHours() >= 9 && date_at_this_point.getHours() <= 15) {
+                             // alert("asd")
+                             return period_data.main[attr];
+                         }
+                     }));
+                 } else {
+                     return _.map(date_list, function (period_data) {
+                         return period_data.main[attr];
+                     });
+                 }
+             },
+             weather_template_complied: _.template($("#weather-table-template").html().toString()),
+             kToF: function (kelvin_temp) {
+                 return ((kelvin_temp - 273.15) * 1.8 + 32).toFixed(1) + " ºF"
+             },
+             refresh: function () {
+                 var scope = this;
+                 $.getJSON(scope.makeQuery("forecast"), function (data) {
+                     if (data.cod) {
+                         if (data.cod === "404") {
+                             alert("Invalid address");
+                             return;
+                         }
+                     }
+                     $('#calendar').fullCalendar('removeEvents');
+                     console.log(JSON.stringify(data, null, "  "));
+                     forecast = data;
+                     var i = 0;
+                     var day_from_today = 0;
+                     var forecast4 = [[], [], [], [], [], []];
+
+                     data.list.forEach(function (element, index, ar) {
+                         var tempDate = new Date(element.dt * 1000);
+                         day_from_today = tempDate.getDate() - crtDate.getDate();  //  At the end of month this could be a bug
+                         if (day_from_today >= 0) {
+                             forecast4[day_from_today].push(element);
+                             i++;
+                         }
+                     });
+
+                     forecast4 = forecast4.slice(0, i);
+                     //prepare forecast4_daysummary
+
+                     var forecast4_length = forecast4.length
+                     for (i = 0; i < forecast4_length; i++) {
+                         var temp_list = helper_util.map_main(forecast4[i], "temp");
+                         var humidity_list = helper_util.map_main(forecast4[i], "humidity");
+                         forecast4_daysummary[i] = {
+                             date: moment().add(i, 'days').format('YYYY-MM-DD'),
+                             temp_avg: helper_util.avg(temp_list),
+                             temp_max: _.max(temp_list),
+                             temp_min: _.min(temp_list),
+                             humidity_avg: helper_util.avg(humidity_list)
+                         };
+                         //console.log( JSON.stringify(forecast4_daysummary[i] ,null,"  "));
+                     }
+                     console.log(JSON.stringify(forecast4_daysummary, null, "  "))
+
+                     // adding event to forecast4_summary
+                     _.each(forecast4_daysummary, function (element, index, array) {
+                         // serves as bg color
+                         if (!element.temp_avg) {
+                             return;
+                         }
+                         // var date_event = {   // this is one event that is used to add background color
+                         //   start: moment().add(index, "days").format(),
+                         //   end: moment().add(index+1, "days").format(),
+                         //   allDay: true,
+                         //   rendering:'background',
+                         // };
+                         var display_text_event = {
+                             start: moment().add(index, "days").format(),
+                             end: moment().add(index + 1, "days").format(),
+                             // color:"#66FF33",
+                             allDay: true,
+                             title: "Ant activity:",
+                             textColor: "#000000",
+                             backgroundColor: "rgba(255, 0, 0, 0.0)", // make this event div background transparent
+                             borderColor: "rgba(255,0,0,0.0)",
+                             className: "activity-text-" + helper_util.tell_activity(element),
+                             index: index
+                         };
+                         if (helper_util.tell_activity(element) === "high") {
+                             // date_event.backgroundColor= "rgba(255, 0, 0, 0.0)";
+                             display_text_event.textColor = "#FF0000";
+                             display_text_event.title += " high";
+                         }
+                         else if (helper_util.tell_activity(element) === "middle") {
+                             // date_event.backgroundColor= "rgba(255, 0, 0, 0.0)";
+                             display_text_event.title += " middle";
+                         }
+                         else {
+                             // date_event.backgroundColor= "rgba(255, 0, 0, 0.0)";
+                             display_text_event.title += " low";
+                         }
+                         // $('#calendar').fullCalendar("renderEvent", date_event , true);
+                         $('#calendar').fullCalendar("renderEvent", display_text_event, true);
+                     });
+                 });
+
+             }
+
+         }; // end of helper_util
+         helper_util.refresh();
+         $("#refresh-btn").click(function refreshBtnClicked() {
+             var $this = $(this);
+             if ($("#query-place-ipt").val() == "") {
+                 helper_util.get_query.q = "college station,tx,us";
+             } else {
+                 var q = $("#query-place-ipt").val().toLowerCase();
+                 helper_util.get_query.q = q;
+             }
+
+             helper_util.refresh();
+             console.log("refresh-btn clicked");
+         });
+         $("#query-place-ipt").keyup(function (event) {
+             var keycode = (event.keyCode ? event.keyCode : event.which);
+             if (keycode === 13) {
+                 if ($("#query-place-ipt").val() == "") {
+                     helper_util.get_query.q = "college station,tx,us";
+                 } else {
+                     var q = $("#query-place-ipt").val().toLowerCase();
+                     helper_util.get_query.q = q;
+                 }
+                 helper_util.refresh();
+             }
+         });
+
+         // $(".activity-text-low,.activity-text-middle,.activity-text-high").click(function (){
+         //   if ($(this).hasClass("activity-text-low")){
+         //     console.log("low");
+         //   }
+         // });
+     });
+
+</script>

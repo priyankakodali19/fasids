@@ -1,0 +1,44 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+    html,
+body {
+   
+   height:100%;
+}
+#container {
+   min-height:100%;
+   position:relative;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+#TAMUlogo {
+    height: 50px;
+    width: 56px;
+}
+
+#KELlogo {
+    width: 80px;
+    height: 40px;
+}
+
+.validation-summary-errors ul { 
+    list-style: none !important;
+    display: inline!important;
+    padding: 0px !important;
+}
+
+
+

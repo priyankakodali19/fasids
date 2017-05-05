@@ -1,0 +1,24 @@
+﻿
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" rel="stylesheet" type="text/css" media="screen" />
+
+﻿@if (Request.IsAuthenticated)
+{
+    
+        <li>
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle"> @Context.User.Identity.Name.ToUpper() &#9660;</a>
+            <ul id="index-dropdown-menu" role="menu" class="dropdown-menu">
+                <li><a href="/User/UserDashboard">User Dashboard</a></li>
+                <li><a href="/User/UserAccount">Account</a></li>
+                <li><a href="/User/Logout">Logout</a></li>
+            </ul>
+        </li>
+      
+    
+}
+else
+{
+    
+       <li><a href="/User/SignUp">SIGN UP</a></li>
+       <li><a href="/User/SignIn">	<i class="fa fa-lock"></i> SIGN IN</a></li>
+} 

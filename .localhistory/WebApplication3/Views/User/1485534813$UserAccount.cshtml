@@ -1,0 +1,157 @@
+﻿@model WebApplication3.Models.ViewModel.UserProfileView
+
+@{
+    ViewBag.Title = "UserAccount";
+
+}
+
+
+
+<div class="divide30"></div>
+
+   
+    <div class="row">
+        <div class="col-xs-2">
+            <ul class="nav nav-pills nav-stacked">
+                <li><h3>ACCOUNT</h3></li>
+                <li id="BasicInfoTab"><a data-toggle="pill" href="#BasicInfo">Basic info</a></li>
+                <li id="SecurityTab"><a data-toggle="pill" href="#Security">Security</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-9 tab-content">
+            <div class="divide30"></div>
+            <div id="BasicInfo" class="tab-pane fade in active">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>BASIC INFO</h4></div>
+                    <div class="panel-body">
+                       <form role="form" method="post">
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.UserId)
+                            <span class="alert-success">@TempData["Message"]</span>  
+                            <div class="row">
+                                <div class="col-xs-3 text-right">
+                                    <label for="FirstName">Email Id</label>
+                                </div>
+                                <div class="col-xs-5">
+                                    <input id="EmailId" type="email" placeholder="Enter Email Id" name="EmailId" required="required" class="form-control" value=@Html.DisplayTextFor(model => model.EmailId)>
+                                </div>
+                            </div>
+                            <div class="divide20"></div>
+                            <div class="row">
+                                <div class="col-xs-3 text-right">
+                                    <label for="FirstName">First Name</label>
+                                </div>
+                                <div class="col-xs-5">
+                                    <input id="FirstName" type="text" placeholder="Enter First Name" name="FirstName" required="required" class="form-control" value=@Html.DisplayFor(model => model.FirstName) >
+                                </div>
+                            </div>
+                            <div class="divide20"></div>
+                            <div class="row">
+                                <div class="col-xs-3 text-right">
+                                    <label for="LastName">Last Name </label>
+                                </div>
+                                <div class="col-xs-5">
+                                    <input id="LastName" type="text" placeholder="Enter Last Name" name="LastName" required="required" class="form-control" value=@Html.DisplayFor(model => model.LastName)>
+                                </div>
+                            </div>
+                            <div class="divide20"></div>
+                            <div class="row">
+                                <div class="col-xs-3 text-right">
+                                    <label for="UserName">User Name </label>
+                                </div>
+                                <div class="col-xs-5">
+                                    <input id="UserName" type="text" placeholder="Enter User Name" name="UserName" required="required" class="form-control" value=@Html.DisplayFor(model => model.UserName)>
+                                </div>
+                            </div>
+                            <div class="divide20"></div>
+                            <div class="row">
+                                <div class="col-xs-3 text-right">
+                                    <label for="usercat">User category</label>
+                                </div>
+                                <div class="col-xs-5">
+                                    <select id="UserCategory" name="UserCategory" required="required" class="form-control" value=@Html.DisplayFor(model => model.UserCategory)>
+                                        <option value="user">User</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-xs-2 col-xs-offset-9" style="float:right">
+                                    <button type="submit" value="Save" class="FasidsBtn btn btn-primary">Update Info</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="Security" class="tab-pane fade ">
+                 <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Change Your Passsord</h4></div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("UserAccountSecurity", "User", FormMethod.Post)){
+                        @Html.AntiForgeryToken()
+                             <div class="row">
+                                <div class="col-xs-3 text-right">
+                                    <label for="OldPassword">Old password</label>
+                                </div>
+                                <div class="col-xs-5">
+                                    @Html.PasswordFor(model => model.OldPassword)
+                    
+                                </div>
+                            </div>
+                            <div class="divide20"></div>
+                            <div class="row">
+                                <div class="col-xs-3 text-right">
+                                    <label for="NewPassword">New password</label><span class="red">*</span>
+                                </div>
+                                <div class="col-xs-5">
+                                        @Html.PasswordFor(model => model.NewPassword)
+                   
+                                </div>
+                                <div class="divide20"></div>
+                            </div>
+                            <div class="divide20"></div>
+                            <div class="row">
+                                <div class="col-xs-3 text-right">
+                                    <label for="ConfirmNewPassword">New password again</label><span class="red">* </span>
+                                </div>
+                                <div class="col-xs-5">
+                                        @Html.PasswordFor(model => model.ConfirmNewPassword)
+                   
+                                </div>
+                            </div>
+                            <div class="divide20"></div>
+                            <div class="row">
+                                <div class="col-xs-2 col-xs-offset-9" style="float:right;">
+                                    <button type="submit" value="ResetPassword" class="FasidsBtn btn btn-primary">Update Password</button>
+                                </div>
+                            </div>
+                      }
+                    </div>
+                </div>
+             
+                </div>
+
+                <div class="divide30"></div>
+       
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+    console.log('@(TempData["Value"])');
+   
+    $('#BasicInfoTab').addClass('active');
+
+    if ('@(TempData["Value"])' == 1) {
+        console.log("not success");
+        $('#BasicInfoTab').removeClass('active');
+        $('#SecurityTab').addClass('active');
+    }
+
+</script>

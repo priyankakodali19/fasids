@@ -1,0 +1,75 @@
+﻿@model WebApplication3.Models.ViewModel.Question
+@{
+    ViewBag.Title = "PostQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .QuestionContent {
+    margin:10px 0;
+    height:200px;
+}
+</style>
+<div class="divide20"></div>
+<div class="divide20"></div>
+
+<form method="post" >
+    <div class="row" data-toggle="validator">
+        <div class="col-sm-1"></div>
+        <div class="form-group col-xs-10 ">
+            <input id="QuestionSubject" type="text" name="title" placeholder="Question subject" class="form-control" required/>
+            <div class="help-block with-errors"></div>
+        </div>
+    </div>
+    <div class="divide20"></div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-xs-10">
+            <div class="QuestionContent"></div>
+        </div>
+    </div>
+    
+    <div class="divide20"></div>
+    <div class="row final-buttons">
+        <div class="col-sm-1"></div>
+       <div class="col-xs-10">
+            <a href="#" class="btn border-black">Save Draft</a>
+            <a href="#" class="btn border-black">Preview</a>
+            <div id="SubmitQuestion" class="btn btn-theme-bg">
+                <btn onclick="SubmitQuestion" >Submit </btn>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="divide20"></div>
+
+<script type="text/javascript">
+    $('document').ready(function () {
+        textboxio.replaceAll('.QuestionContent');
+
+        document.getElementById('SubmitQuestion').onclick = function () {
+            // Get the active editor
+            var editor = textboxio.getActiveEditor();
+            var subject = $('#QuestionSubject').val();
+            console.log(subject);
+            // Retrieve the contents of the active editor
+            var content = editor.content.get();
+            console.log(content);
+            '@Model.QuestionSubject' = subject;
+            '@Model.QuestionContent' = content;
+           
+                $.ajax({
+                    type: "POST",
+                    url: '@(Url.Action("PostQuestion", "QA"))',
+                    data: { Question:'@Model' },
+                success: function (apiResult) {
+                    location.href = "/QA/QAIndex";
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("jhj" + textStatus);
+                }
+                });
+            
+            
+        };
+    });
+</script>

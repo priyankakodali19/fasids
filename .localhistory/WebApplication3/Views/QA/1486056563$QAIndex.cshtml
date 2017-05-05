@@ -1,0 +1,25 @@
+﻿@model WebApplication3.Models.ViewModel.QuestionDataView
+@{
+    ViewBag.Title = "QAIndex";
+}
+
+<div class="divide30"></div>
+
+<div class="container main-qa">
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-3">
+            <a href="/QA/PostQuestion" class="btn btn btn-theme-dark"> <i class="fa fa-plus"></i>&nbsp;NEW QUESTION</a>
+        </div>
+        <div class="col-xs-7 tabs">
+            <ul class="QA nav nav-tabs">
+            <li class="active" role="presentation"><a href="#">NEWEST</a></li>
+            <li role="presentation"><a href="#">FREQUENT</a></li>
+            <li role="presentation"><a href="#">VOTES</a></li>
+            <li role="presentation"><a href="#">ACTIVE</a></li>
+            <li role="presentation"><a href="#">UNANSWERED</a></li>
+            </ul>
+        </div>
+    </div>
+<hr/>
+</div>

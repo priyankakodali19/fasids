@@ -1,0 +1,63 @@
+﻿@model WebApplication3.Models.ViewModel.ProductDataView2
+@{
+    ViewBag.Title = "ProductIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="divide30"></div>
+<div>
+    <table data-toggle="table" class="table table-striped table-bordered table-condensed table-hover">
+        <thead id="ProductsThead">
+            <tr>
+                <th data-field="ProductName" data-sortable="true"><div>Product</div><div>Name</div> </th>
+                <th data-field="ActiveIngredient" data-sortable="true"><div>Active</div><div>Ingredient</div> </th>
+                <th data-field="ProductManufacturer" data-sortable="true"><div>Product</div><div>Manufacturer</div></th>
+                <th data-field="PhysicalForm" data-sortable="false"><div>Physical</div><div>Form</div> </th>
+                <th data-field="IsSynthetic" data-sortable="false"><div>Synthetic</div><div>or Natural</div> </th>
+                <th data-field="TypeOfControlUsage" data-sortable="false"><div>Control &</div><div>Treatment Method</div> </th>
+                <th data-field="TypeOfLand" data-sortable="false"><div>Type of Land</div></th>
+                <th data-field="TypeOfTreatmentSite" data-sortable="false"><div>Treatment Sites</div></th>
+                <th data-field="ProductCoverage" data-sortable="false"><div>Suggested Product</div><div>Use Rate</div></th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var i in Model.Products)
+            {
+   
+                <tr>
+                    <td><a href=@Html.DisplayFor(m => i.ProductUrl) target="_blank"> @Html.DisplayFor(m => i.ProductName)</a></td>
+                    <td> @Html.DisplayFor(m => i.ActiveIngredient)</td>
+                    <td> @Html.DisplayFor(m => i.ProductManufacturer)</td>
+                    <td> @Html.DisplayFor(m => i.PhysicalForm)</td>
+                    <td> @Html.DisplayFor(m => i.IsSynthetic)</td>
+                    <td> @Html.DisplayFor(m => i.ProductControlMethod) & @Html.DisplayFor(m => i.ProductTreatmentMethod)</td>
+                    <td> @Html.DisplayFor(m => i.TypeOfLand)</td>
+                    <td>
+                        <ul>
+                            @foreach (var x in i.TreatmentSites)
+                            {
+                                <li>x.TreatmentSites</li>
+                            }
+                        </ul>
+                    </td>
+                    
+                    <td> @Html.DisplayFor(m => i.TreatmentSites)</td>
+                    @{string use_rate = "";}
+                     @if (i.ProductMinUseRate == 0)
+                    {
+                        use_rate = i.ProductMaxUseRate + " " + i.ProductMeasurementUnit;
+                    }
+                    else
+                    {
+                        use_rate = i.ProductMinUseRate + " - " + i.ProductMaxUseRate + " " + i.ProductMeasurementUnit;
+                    }
+                    
+                    <td>@use_rate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>  
+

@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FASIDSModelStoreContainer" CdmEntityContainer="FASIDSEntities">
+    <EntitySetMapping Name="NewPolygonGeoJsons">
+      <EntityTypeMapping TypeName="FASIDSModel.NewPolygonGeoJson">
+        <MappingFragment StoreEntitySet="NewPolygonGeoJson">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="GeometryType" ColumnName="GeometryType" />
+          <ScalarProperty Name="PolygonName" ColumnName="PolygonName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="TotalArea" ColumnName="TotalArea" />
+          <ScalarProperty Name="MoundDensity" ColumnName="MoundDensity" />
+          <ScalarProperty Name="MoundNumber" ColumnName="MoundNumber" />
+          <ScalarProperty Name="TypeOfLand" ColumnName="TypeOfLand" />
+          <ScalarProperty Name="TypeOfUrban" ColumnName="TypeOfUrban" />
+          <ScalarProperty Name="TypeOfAgri" ColumnName="TypeOfAgri" />
+          <ScalarProperty Name="TypeOfTreatment" ColumnName="TypeOfTreatment" />
+          <ScalarProperty Name="TypeOfControlMethod" ColumnName="TypeOfControlMethod" />
+          <ScalarProperty Name="EnvMapTypeId" ColumnName="EnvMapTypeId" />
+          <ScalarProperty Name="EnvMapTilt" ColumnName="EnvMapTilt" />
+          <ScalarProperty Name="Bounds_SW_Lat" ColumnName="Bounds_SW_Lat" />
+          <ScalarProperty Name="Bounds_SW_Lng" ColumnName="Bounds_SW_Lng" />
+          <ScalarProperty Name="Bounds_NE_Lat" ColumnName="Bounds_NE_Lat" />
+          <ScalarProperty Name="Bounds_NE_Lng" ColumnName="Bounds_NE_Lng" />
+          <ScalarProperty Name="GeoJsonId" ColumnName="GeoJsonId" />
+          <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PolygonGeoJsons">
+      <EntityTypeMapping TypeName="FASIDSModel.PolygonGeoJson">
+        <MappingFragment StoreEntitySet="PolygonGeoJson">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="GeometryType" ColumnName="GeometryType" />
+          <ScalarProperty Name="PolygonName" ColumnName="PolygonName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="TotalArea" ColumnName="TotalArea" />
+          <ScalarProperty Name="MoundDensity" ColumnName="MoundDensity" />
+          <ScalarProperty Name="MoundNumber" ColumnName="MoundNumber" />
+          <ScalarProperty Name="TypeOfUse" ColumnName="TypeOfUse" />
+          <ScalarProperty Name="ControlMethod" ColumnName="ControlMethod" />
+          <ScalarProperty Name="Usage" ColumnName="Usage" />
+          <ScalarProperty Name="IsOutdoor" ColumnName="IsOutdoor" />
+          <ScalarProperty Name="NeedOrganic" ColumnName="NeedOrganic" />
+          <ScalarProperty Name="NeedSafeForPets" ColumnName="NeedSafeForPets" />
+          <ScalarProperty Name="EnvMapTypeId" ColumnName="EnvMapTypeId" />
+          <ScalarProperty Name="EnvMapTilt" ColumnName="EnvMapTilt" />
+          <ScalarProperty Name="Bounds_SW_Lat" ColumnName="Bounds_SW_Lat" />
+          <ScalarProperty Name="Bounds_SW_Lng" ColumnName="Bounds_SW_Lng" />
+          <ScalarProperty Name="Bounds_NE_Lat" ColumnName="Bounds_NE_Lat" />
+          <ScalarProperty Name="Bounds_NE_Lng" ColumnName="Bounds_NE_Lng" />
+          <ScalarProperty Name="GeoJsonId" ColumnName="GeoJsonId" />
+          <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostAnswers">
+      <EntityTypeMapping TypeName="FASIDSModel.PostAnswer">
+        <MappingFragment StoreEntitySet="PostAnswers">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+          <ScalarProperty Name="AnswerContent" ColumnName="AnswerContent" />
+          <ScalarProperty Name="AnswerAuthor" ColumnName="AnswerAuthor" />
+          <ScalarProperty Name="AnswerPostDate" ColumnName="AnswerPostDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostQuestions">
+      <EntityTypeMapping TypeName="FASIDSModel.PostQuestion">
+        <MappingFragment StoreEntitySet="PostQuestion">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="QuestionSubject" ColumnName="QuestionSubject" />
+          <ScalarProperty Name="QuestionContent" ColumnName="QuestionContent" />
+          <ScalarProperty Name="QuestionAuthor" ColumnName="QuestionAuthor" />
+          <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_list">
+      <EntityTypeMapping TypeName="FASIDSModel.Product_list">
+        <MappingFragment StoreEntitySet="Product_list">
+          <ScalarProperty Name="ActiveIngredient" ColumnName="ActiveIngredient" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Manufacturer_" ColumnName="Manufacturer " />
+          <ScalarProperty Name="PesticideClassification" ColumnName="PesticideClassification" />
+          <ScalarProperty Name="PhysicalForm" ColumnName="PhysicalForm" />
+          <ScalarProperty Name="IsSynthetic_" ColumnName="IsSynthetic " />
+          <ScalarProperty Name="ControlMethod" ColumnName="ControlMethod" />
+          <ScalarProperty Name="IsBroadcast" ColumnName="IsBroadcast" />
+          <ScalarProperty Name="IsMound" ColumnName="IsMound" />
+          <ScalarProperty Name="Broadcast_MinUseRate" ColumnName="Broadcast_MinUseRate" />
+          <ScalarProperty Name="Broadcast_MaxUseRate" ColumnName="Broadcast_MaxUseRate" />
+          <ScalarProperty Name="Broadcast_MeasurementUnit" ColumnName="Broadcast_MeasurementUnit" />
+          <ScalarProperty Name="Mound_MinUseRate" ColumnName="Mound_MinUseRate" />
+          <ScalarProperty Name="Mound_MaxUseRate" ColumnName="Mound_MaxUseRate" />
+          <ScalarProperty Name="Mound_MeasurementUnit" ColumnName="Mound_MeasurementUnit" />
+          <ScalarProperty Name="IsUrbanLand" ColumnName="IsUrbanLand" />
+          <ScalarProperty Name="IsUrbanHome_Broadcast" ColumnName="IsUrbanHome_Broadcast" />
+          <ScalarProperty Name="IsUrbanHome_Mound" ColumnName="IsUrbanHome_Mound" />
+          <ScalarProperty Name="IsUrbanPerimeter_P" ColumnName="IsUrbanPerimeter_P" />
+          <ScalarProperty Name="IsUrbanRecArea_Broadcast" ColumnName="IsUrbanRecArea_Broadcast" />
+          <ScalarProperty Name="IsUrbanRecArea_Mound" ColumnName="IsUrbanRecArea_Mound" />
+          <ScalarProperty Name="IsUrbanRightOfWay_Broadcast" ColumnName="IsUrbanRightOfWay_Broadcast" />
+          <ScalarProperty Name="IsUrbanRightOfWay_Mound" ColumnName="IsUrbanRightOfWay_Mound" />
+          <ScalarProperty Name="IsAgricultureLand" ColumnName="IsAgricultureLand" />
+          <ScalarProperty Name="IsAgriPasture_Broadcast" ColumnName="IsAgriPasture_Broadcast" />
+          <ScalarProperty Name="IsAgriPasture_Mound" ColumnName="IsAgriPasture_Mound" />
+          <ScalarProperty Name="IsAgriPoultry_Broadcast" ColumnName="IsAgriPoultry_Broadcast" />
+          <ScalarProperty Name="IsAgriPoultry_Mound" ColumnName="IsAgriPoultry_Mound" />
+          <ScalarProperty Name="IsAgriCropAreas_Broadcast" ColumnName="IsAgriCropAreas_Broadcast" />
+          <ScalarProperty Name="IsAgriCropAreas_Mound" ColumnName="IsAgriCropAreas_Mound" />
+          <ScalarProperty Name="IsAgriOthers_Broadcast" ColumnName="IsAgriOthers_Broadcast" />
+          <ScalarProperty Name="IsAgriOthers_Mound" ColumnName="IsAgriOthers_Mound" />
+          <ScalarProperty Name="IsAgriSod_Broadcast" ColumnName="IsAgriSod_Broadcast" />
+          <ScalarProperty Name="IsAgriSod_Mound" ColumnName="IsAgriSod_Mound" />
+          <ScalarProperty Name="IsAgriNurseryContainer_Broadcast" ColumnName="IsAgriNurseryContainer_Broadcast" />
+          <ScalarProperty Name="IsAgriNurseryContainer_Mound" ColumnName="IsAgriNurseryContainer_Mound" />
+          <ScalarProperty Name="IsAgriNurseryBB_Broadcast" ColumnName="IsAgriNurseryBB_Broadcast" />
+          <ScalarProperty Name="IsAgriNurseryBB_Mound" ColumnName="IsAgriNurseryBB_Mound" />
+          <ScalarProperty Name="IsAgri_FoodProducing" ColumnName="IsAgri_FoodProducing" />
+          <ScalarProperty Name="IsAgri_NonFoodProducing" ColumnName="IsAgri_NonFoodProducing" />
+          <ScalarProperty Name="AgriFoodProducingSites" ColumnName="AgriFoodProducingSites" />
+          <ScalarProperty Name="AgriNonFoodProducingSites" ColumnName="AgriNonFoodProducingSites" />
+          <ScalarProperty Name="MaunfacturerUrl" ColumnName="MaunfacturerUrl" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductDatas">
+      <EntityTypeMapping TypeName="FASIDSModel.ProductData">
+        <MappingFragment StoreEntitySet="ProductData">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductManufacturer" ColumnName="ProductManufacturer" />
+          <ScalarProperty Name="PhysicalForm" ColumnName="PhysicalForm" />
+          <ScalarProperty Name="IsOutDoor" ColumnName="IsOutDoor" />
+          <ScalarProperty Name="IsOrganic" ColumnName="IsOrganic" />
+          <ScalarProperty Name="IsSafeForPets" ColumnName="IsSafeForPets" />
+          <ScalarProperty Name="ProductControlMethod" ColumnName="ProductControlMethod" />
+          <ScalarProperty Name="ProductUsage" ColumnName="ProductUsage" />
+          <ScalarProperty Name="ProductCoverage" ColumnName="ProductCoverage" />
+          <ScalarProperty Name="ProductUrl" ColumnName="ProductUrl" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductList_new">
+      <EntityTypeMapping TypeName="FASIDSModel.ProductList_new">
+        <MappingFragment StoreEntitySet="ProductList_new">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ActiveIngredient" ColumnName="ActiveIngredient" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Manufacturer_" ColumnName="Manufacturer " />
+          <ScalarProperty Name="PesticideClassification" ColumnName="PesticideClassification" />
+          <ScalarProperty Name="PhysicalForm" ColumnName="PhysicalForm" />
+          <ScalarProperty Name="IsSynthetic_" ColumnName="IsSynthetic " />
+          <ScalarProperty Name="ControlMethod" ColumnName="ControlMethod" />
+          <ScalarProperty Name="TreatmentMethod" ColumnName="TreatmentMethod" />
+          <ScalarProperty Name="Broadcast_MinUseRate" ColumnName="Broadcast_MinUseRate" />
+          <ScalarProperty Name="Broadcast_MaxUseRate" ColumnName="Broadcast_MaxUseRate" />
+          <ScalarProperty Name="Broadcast_MeasurementUnit" ColumnName="Broadcast_MeasurementUnit" />
+          <ScalarProperty Name="Mound_MinUseRate" ColumnName="Mound_MinUseRate" />
+          <ScalarProperty Name="Mound_MaxUseRate" ColumnName="Mound_MaxUseRate" />
+          <ScalarProperty Name="Mound_MeasurementUnit" ColumnName="Mound_MeasurementUnit" />
+          <ScalarProperty Name="LandType" ColumnName="LandType" />
+          <ScalarProperty Name="UrbanBroadcastSites" ColumnName="UrbanBroadcastSites" />
+          <ScalarProperty Name="UrbanMoundSites" ColumnName="UrbanMoundSites" />
+          <ScalarProperty Name="AgriBroadcastSites" ColumnName="AgriBroadcastSites" />
+          <ScalarProperty Name="AgriMoundSites" ColumnName="AgriMoundSites" />
+          <ScalarProperty Name="AgriFoodProducingType" ColumnName="AgriFoodProducingType" />
+          <ScalarProperty Name="AgriFoodProducingSites" ColumnName="AgriFoodProducingSites" />
+          <ScalarProperty Name="AgriNonFoodProducingSites" ColumnName="AgriNonFoodProducingSites" />
+          <ScalarProperty Name="MaunfacturerUrl" ColumnName="MaunfacturerUrl" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TreatmentSiteCodes">
+      <EntityTypeMapping TypeName="FASIDSModel.TreatmentSiteCode">
+        <MappingFragment StoreEntitySet="TreatmentSiteCodes">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="SiteType" ColumnName="SiteType" />
+          <ScalarProperty Name="TreatmentType" ColumnName="TreatmentType" />
+          <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDatas">
+      <EntityTypeMapping TypeName="FASIDSModel.UserData">
+        <MappingFragment StoreEntitySet="UserData">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="UserCategory" ColumnName="UserCategory" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserImages">
+      <EntityTypeMapping TypeName="FASIDSModel.UserImage">
+        <MappingFragment StoreEntitySet="UserImage">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

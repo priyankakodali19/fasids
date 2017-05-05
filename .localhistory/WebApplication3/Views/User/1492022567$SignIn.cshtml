@@ -1,0 +1,71 @@
+﻿@model WebApplication3.Models.ViewModel.UserSignIn
+@{
+    ViewBag.Title = "SignIn";
+}
+
+
+<div class="divide30"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+            @Html.AntiForgeryToken()
+            <div class="login-form">
+                <h3>Sign In</h3>
+                <div class="divide30"></div>
+                @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count() > 0)
+                {
+                    <div style="padding:8px" class="alert alert-danger alert-dismissible">
+                        <a class="close" data-dismiss="alert">×</a> 
+                        @Html.ValidationSummary(true)
+                    </div>
+                } 
+                <p>@(TempData["Value"])</p>
+                <form role="form" data-toggle="validator" method="post">
+                    <div class="form-group">
+                        <label for="EmailId">User Email Id<span>*</span></label>
+                        <input id="EmailId" type="text" name="EmailId" placeholder="Enter User Email Id" class="form-control" required/>
+                        <div class="help-block with-errors"></div>
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "alert-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="Password" class="control-label">Password<span>*</span></label>
+                        <input id="Password" type="Password" name="Password" placeholder="Enter Password" class="form-control" required/>
+                        <div class="help-block with-errors"></div>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "alert-danger" })
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember" /> Remember Me
+                        </label>
+                    </div>
+                    <button type="submit" value="Login" class="FasidsBtn btn btn-default">Sign In</button>
+                    &nbsp;&nbsp;<a href="/User/ForgotPassword" class="FasidsBtn btn btn-theme-bg">Forgot Password</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="divide30"></div>
+<div id="signin-required-modal" tabindex="-1" role="dialog" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title"><b>Session Expired</b> </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Your session timed out due to inactivity. Please <b>sign in</b> again.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script>
+    if ('@ViewBag.message' == 1) {
+        //alert("yu");
+        $('#signin-required-modal').modal("show");
+    }
+</script>

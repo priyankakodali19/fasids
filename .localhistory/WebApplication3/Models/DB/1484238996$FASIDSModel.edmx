@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FASIDSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="FASIDSModelStoreContainer">
+          <EntitySet Name="PolygonGeoJson" EntityType="FASIDSModel.Store.PolygonGeoJson" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductData" EntityType="FASIDSModel.Store.ProductData" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserData" EntityType="FASIDSModel.Store.UserData" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__PolygonGe__UserI__2A4B4B5E" Association="FASIDSModel.Store.FK__PolygonGe__UserI__2A4B4B5E">
+            <End Role="UserData" EntitySet="UserData" />
+            <End Role="PolygonGeoJson" EntitySet="PolygonGeoJson" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PolygonGeoJson">
+          <Key>
+            <PropertyRef Name="GeoJsonId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="GeometryType" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="PolygonName" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="Notes" Type="varchar" MaxLength="250" />
+          <Property Name="TotalArea" Type="decimal" Nullable="false" />
+          <Property Name="MoundDensity" Type="decimal" />
+          <Property Name="MoundNumber" Type="int" />
+          <Property Name="TypeOfUse" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="ControlMethod" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Usage" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="IsOutdoor" Type="bit" />
+          <Property Name="NeedOrganic" Type="bit" />
+          <Property Name="NeedSafeForPets" Type="bit" />
+          <Property Name="EnvMapTypeId" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="EnvMapTilt" Type="int" Nullable="false" />
+          <Property Name="Bounds_SW_Lat" Type="decimal" Nullable="false" Precision="9" Scale="6" />
+          <Property Name="Bounds_SW_Lng" Type="decimal" Nullable="false" Precision="9" Scale="6" />
+          <Property Name="Bounds_NE_Lat" Type="decimal" Nullable="false" Precision="9" Scale="6" />
+          <Property Name="Bounds_NE_Lng" Type="decimal" Nullable="false" Precision="9" Scale="6" />
+          <Property Name="GeoJsonId" Type="varchar" Nullable="false" MaxLength="12" />
+          <Property Name="Coordinates" Type="geometry" />
+        </EntityType>
+        <EntityType Name="ProductData">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProductManufacturer" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="PhysicalForm" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="IsOutDoor" Type="bit" Nullable="false" />
+          <Property Name="IsOrganic" Type="bit" Nullable="false" />
+          <Property Name="IsSafeForPets" Type="bit" Nullable="false" />
+          <Property Name="ProductControlMethod" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProductUsage" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProductCoverage" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProductUrl" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="UserData">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="EmailId" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="UserCategory" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__PolygonGe__UserI__2A4B4B5E">
+          <End Role="UserData" Type="FASIDSModel.Store.UserData" Multiplicity="1" />
+          <End Role="PolygonGeoJson" Type="FASIDSModel.Store.PolygonGeoJson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserData">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PolygonGeoJson">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FASIDSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FASIDSEntities3" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="PolygonGeoJsons" EntityType="FASIDSModel.PolygonGeoJson" />
+          <EntitySet Name="ProductDatas" EntityType="FASIDSModel.ProductData" />
+          <EntitySet Name="UserDatas" EntityType="FASIDSModel.UserData" />
+          <AssociationSet Name="FK__PolygonGe__UserI__2A4B4B5E" Association="FASIDSModel.FK__PolygonGe__UserI__2A4B4B5E">
+            <End Role="UserData" EntitySet="UserDatas" />
+            <End Role="PolygonGeoJson" EntitySet="PolygonGeoJsons" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PolygonGeoJson">
+          <Key>
+            <PropertyRef Name="GeoJsonId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="GeometryType" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="PolygonName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Notes" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="TotalArea" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="MoundDensity" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MoundNumber" Type="Int32" />
+          <Property Name="TypeOfUse" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="ControlMethod" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Usage" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="IsOutdoor" Type="Boolean" />
+          <Property Name="NeedOrganic" Type="Boolean" />
+          <Property Name="NeedSafeForPets" Type="Boolean" />
+          <Property Name="EnvMapTypeId" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="EnvMapTilt" Type="Int32" Nullable="false" />
+          <Property Name="Bounds_SW_Lat" Type="Decimal" Nullable="false" Precision="9" Scale="6" />
+          <Property Name="Bounds_SW_Lng" Type="Decimal" Nullable="false" Precision="9" Scale="6" />
+          <Property Name="Bounds_NE_Lat" Type="Decimal" Nullable="false" Precision="9" Scale="6" />
+          <Property Name="Bounds_NE_Lng" Type="Decimal" Nullable="false" Precision="9" Scale="6" />
+          <Property Name="GeoJsonId" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="Coordinates" Type="Geometry" />
+          <NavigationProperty Name="UserData" Relationship="FASIDSModel.FK__PolygonGe__UserI__2A4B4B5E" FromRole="PolygonGeoJson" ToRole="UserData" />
+        </EntityType>
+        <EntityType Name="ProductData">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ProductManufacturer" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="PhysicalForm" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="IsOutDoor" Type="Boolean" Nullable="false" />
+          <Property Name="IsOrganic" Type="Boolean" Nullable="false" />
+          <Property Name="IsSafeForPets" Type="Boolean" Nullable="false" />
+          <Property Name="ProductControlMethod" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ProductUsage" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ProductCoverage" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ProductUrl" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserData">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="UserCategory" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="PolygonGeoJsons" Relationship="FASIDSModel.FK__PolygonGe__UserI__2A4B4B5E" FromRole="UserData" ToRole="PolygonGeoJson" />
+        </EntityType>
+        <Association Name="FK__PolygonGe__UserI__2A4B4B5E">
+          <End Role="UserData" Type="FASIDSModel.UserData" Multiplicity="1" />
+          <End Role="PolygonGeoJson" Type="FASIDSModel.PolygonGeoJson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserData">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PolygonGeoJson">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FASIDSModelStoreContainer" CdmEntityContainer="FASIDSEntities3">
+          <EntitySetMapping Name="PolygonGeoJsons">
+            <EntityTypeMapping TypeName="FASIDSModel.PolygonGeoJson">
+              <MappingFragment StoreEntitySet="PolygonGeoJson">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="GeometryType" ColumnName="GeometryType" />
+                <ScalarProperty Name="PolygonName" ColumnName="PolygonName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="TotalArea" ColumnName="TotalArea" />
+                <ScalarProperty Name="MoundDensity" ColumnName="MoundDensity" />
+                <ScalarProperty Name="MoundNumber" ColumnName="MoundNumber" />
+                <ScalarProperty Name="TypeOfUse" ColumnName="TypeOfUse" />
+                <ScalarProperty Name="ControlMethod" ColumnName="ControlMethod" />
+                <ScalarProperty Name="Usage" ColumnName="Usage" />
+                <ScalarProperty Name="IsOutdoor" ColumnName="IsOutdoor" />
+                <ScalarProperty Name="NeedOrganic" ColumnName="NeedOrganic" />
+                <ScalarProperty Name="NeedSafeForPets" ColumnName="NeedSafeForPets" />
+                <ScalarProperty Name="EnvMapTypeId" ColumnName="EnvMapTypeId" />
+                <ScalarProperty Name="EnvMapTilt" ColumnName="EnvMapTilt" />
+                <ScalarProperty Name="Bounds_SW_Lat" ColumnName="Bounds_SW_Lat" />
+                <ScalarProperty Name="Bounds_SW_Lng" ColumnName="Bounds_SW_Lng" />
+                <ScalarProperty Name="Bounds_NE_Lat" ColumnName="Bounds_NE_Lat" />
+                <ScalarProperty Name="Bounds_NE_Lng" ColumnName="Bounds_NE_Lng" />
+                <ScalarProperty Name="GeoJsonId" ColumnName="GeoJsonId" />
+                <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDatas">
+            <EntityTypeMapping TypeName="FASIDSModel.ProductData">
+              <MappingFragment StoreEntitySet="ProductData">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductManufacturer" ColumnName="ProductManufacturer" />
+                <ScalarProperty Name="PhysicalForm" ColumnName="PhysicalForm" />
+                <ScalarProperty Name="IsOutDoor" ColumnName="IsOutDoor" />
+                <ScalarProperty Name="IsOrganic" ColumnName="IsOrganic" />
+                <ScalarProperty Name="IsSafeForPets" ColumnName="IsSafeForPets" />
+                <ScalarProperty Name="ProductControlMethod" ColumnName="ProductControlMethod" />
+                <ScalarProperty Name="ProductUsage" ColumnName="ProductUsage" />
+                <ScalarProperty Name="ProductCoverage" ColumnName="ProductCoverage" />
+                <ScalarProperty Name="ProductUrl" ColumnName="ProductUrl" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDatas">
+            <EntityTypeMapping TypeName="FASIDSModel.UserData">
+              <MappingFragment StoreEntitySet="UserData">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="UserCategory" ColumnName="UserCategory" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

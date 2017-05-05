@@ -1,0 +1,49 @@
+.real-100-width {
+  margin: 0px;
+  padding: 0px;
+}
+.at-bottom-right {
+  bottom: 0;
+  right: 0;
+}
+.fc-event-container {
+  height: 90px;
+}
+/*Bowei: I have to change here so view template could load this css instead of antactivity.css*/
+.fc-event-container .activity-text-low {
+  background-image: url("/node/fasids/img/RIFA_Icons/lowforaging.png");
+}
+.fc-event-container .activity-text-middle {
+  background-image: url("/node/fasids/img/RIFA_Icons/middleforaging.png");
+}
+.fc-event-container .activity-text-high {
+  background-image: url("/node/fasids/img/RIFA_Icons/highforaging.png");
+}
+.fc-event-container .activity-text-high,
+.fc-event-container .activity-text-middle,
+.fc-event-container .activity-text-low {
+  height: 100%;
+  background-repeat: no-repeat;
+  border-style: none;
+  background-color: transparent;
+  background-size: 90px 90px;
+  background-position: center;
+  cursor: pointer;
+}
+.fc-event-container .activity-text-high .fc-content,
+.fc-event-container .activity-text-middle .fc-content,
+.fc-event-container .activity-text-low .fc-content {
+  color: rgba(0, 0, 0, 0);
+}
+.modal-content {
+  padding: 20px;
+}
+.modal-content .weather-table,
+.modal-content .weather-table td,
+.modal-content .weather-table th {
+  border: 1px solid black;
+}
+.modal-content .weather-table td,
+.modal-content .weather-table th {
+  padding: 5px;
+}

@@ -1,0 +1,175 @@
+﻿@model WebApplication3.Models.ViewModel.QuestionAnswer
+@{
+    ViewBag.Title = "PostAnswer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+   @* $(document).ready(function () {
+        console.log('@(TempData["Value"])');
+
+        if ('@(TempData["Value"])' == 1) {
+            console.log("error");
+            $('#signin-required-modal').modal("show");
+        }
+    });*@
+
+
+
+</script>
+@*<div class="divide30"></div>
+*@
+<div class="divide10"></div>
+<h2 class="title text-center">POST ANSWERS</h2>
+<div class="col-xs-2" style="float:right">
+            <a href="/QA/QAIndex" class="btn btn btn-theme-dark"> <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;&nbsp;BACK</a>
+</div>
+<div class="divide30"></div>
+<div class="container">
+    <h4>Question</h4>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 answer-quest">
+           <div class="row ">
+               <div class="col-sm-1">
+                   <div class="answers-number">@Model.Answers.Count()</div> 
+                   <div class="answers-text">Answers</div>
+               </div>
+                <div class="col-sm-7">
+                    <div class="row ans-title">@Model.Subject</div>
+                    <div class="row ">@Html.Raw(Server.HtmlDecode(Model.Content))</div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            @*[ICON]*@
+                        </div>
+                        <div class="col-sm-9 ans-details">
+                            <div class="col-sm-12">
+                                   Asked by: @Model.QuestionAuthor
+                            </div>
+                            <div class="col-sm-12">
+                                    Posted on: @Model.PostedDate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>    
+    </div>
+    <hr />
+    <h4>Answers</h4>
+    
+    @foreach (var i in Model.Answers)
+    {
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 answers">
+                <div class="row ">
+                    <div class="col-sm-8">
+                        <div class="row ans-content"> @Html.Raw(Server.HtmlDecode(i.Content))</div>
+                    </div>
+                    <div class="col-sm-4">
+                            <div class="row">
+                            <div class="col-sm-3">
+                                [ICON]
+                            </div>
+                            <div class="col-sm-9 ans-details">
+                                <div class="col-sm-12">
+                                        Answered by: @Html.DisplayFor(m => i.AnswerAuthor)
+                                </div>
+                                <div class="col-sm-12">
+                                        Posted on: @Html.DisplayFor(m => i.PostedDate)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <hr />
+    
+    <h4>Post Answer</h4>
+    <form method="post" >
+        <div class="divide20"></div>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-xs-10">
+                <div class="AnswerContent"></div>
+            </div>
+        </div>
+    
+        <div class="divide20"></div>
+        <div class="row final-buttons">
+            <div class="col-sm-1"></div>
+           <div class="col-xs-10">
+               <div id="SubmitAnswer" class="btn btn-theme-bg">
+                    <btn onclick="SubmitAnswer" >Submit </btn>
+                </div>
+                <a href="/QA/QAIndex" class="btn border-black">Cancel</a>
+             </div>
+        </div>  
+    </form>
+</div>
+
+<div class="divide30"></div>
+<div id="signin-required-modal" tabindex="-1" role="dialog" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Sign in needed </h4>
+                </div>
+                <div class="modal-body">
+                    <p>Please <a href="~/User/SignIn"> <b>sign in&nbsp;</b></a>at right-top corner before using landscape management. If you are first-time user, please check <a href="~/InteractiveLandscape/Instructions" target="_blank"> <b>instructions </b></a>for help.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    $('document').ready(function () {
+        textboxio.replaceAll('.AnswerContent');
+
+        document.getElementById('SubmitAnswer').onclick = function () {
+            console.log('@(TempData["Value"])');
+
+            if ('@(TempData["Value"])' == 1) {
+                console.log("error");
+                $('#signin-required-modal').modal("show");
+            }
+            else {
+                // Get the active editor
+                var editor = textboxio.getActiveEditor();
+                // Retrieve the contents of the active editor
+                var content = editor.content.get();
+                var x = '@Model.QuestionId';
+            console.log(x);
+            var qa_data = { 'content': content, 'qid': x };
+
+            $.ajax({
+                type: "POST",
+                url: '@(Url.Action("PostAnswerToDb", "QA"))',
+                    data: { qa_content: content, q_id: x },
+                    success: function (apiResult) {
+                        console.log(apiResult);
+                        // qid = parseInt(apiResult);
+
+                        location.href = '@(Url.Action("PostAnswer", "QA",new {Qid=@Model.QuestionId}))';
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("jhj" + textStatus);
+                    }
+                });
+            }
+            
+            
+            
+        }
+    });
+</script>

@@ -1,0 +1,33 @@
+﻿@model WebApplication3.Models.ViewModel.UserImageModel
+@{
+    ViewBag.Title = "UserImage";
+}
+
+<div class="panel panel-default">
+    <div class="row">
+        <div class="col-xs-12">
+@*            <a href="#" class="thumbnail"><img data-src="holder.js/100%x180" alt="100%x180" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTUwZGRhZTY1MDkgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNTBkZGFlNjUwOSI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NjI1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" data-holder-rendered="true" style="height: 180px; width: 110%; display: block;"/></a>*@
+        @using (Html.BeginForm("UserImage", "User", FormMethod.Post, 
+                              new { enctype = "multipart/form-data" })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend style="text-align:center;">@Context.User.Identity.Name.ToUpper()</legend>
+        <img class="img-thumbnail" width="304" height="236" src="@ViewBag.path" alt="Image"/>
+        <div class="editor-label">
+            Upload image
+        </div>
+        <div class="editor-field">
+            <input id="ImagePath" type="file" name="file" />
+        </div>
+        <p><input class="btn btn-theme-bg" type="submit" value="Upload" /></p>
+    </fieldset>
+}
+        </div>
+    </div>
+    
+    
+        
+    
+    
+</div>

@@ -1,0 +1,38 @@
+﻿.login-form {
+    padding: 20px;
+    background-color: #f5f5f8;
+}
+
+input, button, select, textarea, label {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+
+.nav-pills li {
+    text-align:center;
+    color:white;
+    border-radius: 5px;
+   
+}
+
+.nav-pills li.active a {
+    color:#fff!important;
+    background-color: rgba(29, 0, 0, 0.9)!important;
+}
+
+.FasidsBtn {
+    border-color: #500000;
+    color: #fff;
+    background-color: #500000;
+}
+
+.FasidsBtn.disabled {
+    border-color: #500000;
+    color: #fff;
+    background-color: #500000;
+    pointer-events: visiblestroke;
+
+}

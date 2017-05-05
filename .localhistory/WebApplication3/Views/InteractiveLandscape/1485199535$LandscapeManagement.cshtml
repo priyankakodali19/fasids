@@ -1,0 +1,407 @@
+﻿@model WebApplication3.Models.ViewModel.DisplayUserPolygon
+@{
+    ViewBag.Title = "LandscapeManagement";
+}
+
+
+<script src="~/scripts/underscore-min.js"></script>
+<script src="~/scripts/backbone-min.js"></script>
+
+<script src="~/scripts/mapcover.js"></script>
+
+<link href="~/Content/InteractiveLandscape.css" rel="stylesheet" />
+<!-- This is used to indicate current page status, such as whether user logged in or not-->
+<meta name="page_status" content="#{JSON.stringify(page_status)}" />
+<!-- This is used to retrieve target polygon, when user click their polygon in their user profile-->
+<meta id="target_polygon" name="target_polygon" content="#{JSON.stringify(target_polygon)}" />
+
+
+<script type="text/javascript">
+    var AuthenticatedResult = false;
+    @if (User.Identity.IsAuthenticated){
+         AuthenticatedResult = true;
+    }
+    else{
+         AuthenticatedResult = false;
+    }
+ @*var AuthenticatedResult = function () {
+        var tmp = null;
+        $.ajax({
+            url: '@(Url.Action("CheckUserLogIn", "InteractiveLandscape"))',
+            success: function (data) {
+                alert(data);
+                    tmp = data;
+                    }
+        });
+        return tmp;
+    }();*@
+    alert("resuklt=" + AuthenticatedResult);
+  
+
+    var host = window.location.pathname;
+    var path2 = host.substring(0,host.lastIndexOf("/"));
+    var path = path2.substring(path2.lastIndexOf("/") + 1);
+    var polygon_id=host.substring(host.lastIndexOf("/")+1);
+
+    if (path == "LandscapeManagement") {
+        var abc = { model_op: "patch", isAuthenticated: AuthenticatedResult };
+        var coordinates_array=[], temp=[], temp2=[];
+        var coordinates = '@Model.coordinates_str';
+        coordinates = coordinates.substr(10, coordinates.length-2);
+        coordinates = coordinates.substr(0, coordinates.length - 2);
+        var points = coordinates.substr(0, coordinates.length - 2).split(", ");
+       
+        coordinates_array = points.map(function (pointString) {
+            var latlon = pointString.split(" ");
+            //console.log(pointString);
+            //console.log(latlon)
+            temp.push([parseFloat(latlon[0]), parseFloat(latlon[1])]);
+            return latlon;
+            });
+
+        temp2.push(temp);
+        
+        var temp_properties = {
+            address: '@Model.Address',
+            bounds: {
+                ne: { lat: parseFloat('@Model.Bounds_NE_Lat'), lng: parseFloat('@Model.Bounds_NE_Lng') },
+                sw: { lat: parseFloat('@Model.Bounds_SW_Lat'), lng: parseFloat('@Model.Bounds_SW_Lng') }
+            },
+            control_method: '@Model.ControlMethod',
+            enivronment_map: {
+                MapTypeId: '@Model.EnvMapTypeId',
+                tilt: '@Model.EnvMapTilt'
+            },
+            is_outdoor: '@Model.IsOutdoor',
+            mound_density: '@Model.MoundDensity',
+            mound_number: '@Model.MoundNumber',
+            need_organic: '@Model.NeedOrganic',
+            need_safe_for_pets: '@Model.NeedSafeForPets',
+            notes: '@Model.Notes',
+            owner: '@Model.UserId',
+            polygon_name: '@Model.PolygonName',
+            total_area: '@Model.TotalArea',
+            type_of_use: '@Model.TypeOfUse',
+            usage: '@Model.Usage'
+        }
+
+        var TempPolygon = {
+            id: '@Model.GeoJsonId', 
+            geometry: { coordinates: temp2, type: '@Model.GeometryType' },
+            properties: temp_properties,
+            type: '@Model.Type'
+        };
+       
+        //document.getElementById("target_polygon").setAttribute("content", "#{JSON.stringify(TempPolygon)}");
+        //  console.log(JSON.parse($("meta[name=target_polygon]").attr("content")));
+
+        
+      
+    }
+    else {
+        var abc = { model_op: "create", isAuthenticated: AuthenticatedResult };
+        var TempPolygon = { };
+    }
+
+</script>
+
+<div ng-app="polygonManagerApp" ng-controller="pmaDefaultCtrl">
+    <div id="mapcover" class="mapcover">
+        <div id="mapcover-map" ng-non-bindable="ng-non-bindable" class="mapcover-map"></div>
+        <div id="map-geosearch" class="mc-static2mapcontainer panel">
+            <div class="row search-row">
+                <div class="col-xs-12">
+                    <div class="input-group">
+                        <input id="map-input-geosearch" type="text" placeholder="Search using address, zipcode..." class="form-control" /><span class="input-group-btn">
+                            <button id="map-input-geosearch-btn" class="btn"><span class="fa fa-search"></span></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-xs-12 errormessage-container hidden">
+                    <div class="alert-danger alert">
+                        <button type="button" data-dismiss="alert" class="close">×</button>Error Message.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="map-tools-box" ng-controller="pmaToolPanelCtrl" class="mc-static2mapcontainer panel ng-cloak">
+            <div class="row">
+                <div class="col-xs-12"><span class="btn btn-default"> <a href="/InteractiveLandscape/Instructions">Instructions</a></span></div>
+            </div>
+            <div ng-if="pmaConstants.page_status.model_op === 'create'" class="row">
+                <div class="col-xs-12"> <span tool-button="tool-button" target-status="polygondrawing" class="btn btn-default">Draw Polygon</span></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12"> <span tool-button="tool-button" target-status="arearemoving" class="btn btn-default">Remove Area</span></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12"><span tool-button="tool-button" target-status="shapeediting" class="btn btn-default">Edit shape</span></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12"><span tool-button="tool-button" target-status="treatmentsetting" class="btn btn-default">Set Treatment</span></div>
+            </div>
+            <div ng-if="pmaConstants.page_status.model_op === 'patch'" class="row">
+                <div class="col-xs-12"><span tool-button="tool-button" target-status="productlisting" class="btn btn-default">Product List</span></div>
+            </div>
+            <div ng-if="pmaConstants.page_status.model_op === 'create'" class="row">
+                <div class="col-xs-12"><span tool-button="tool-button" target-status="resetting" class="btn btn-default">Cancel</span></div>
+            </div>
+            <div ng-if="pmaConstants.page_status.model_op === 'patch'" class="row">
+                <div class="col-xs-12"><span ng-click="deleteGeojsonInPatchMode()" class="btn btn-default">Delete</span></div>
+            </div>
+        </div>
+    </div>
+    <div ng-controller="pmaModalsCtrl" class="modal-container">
+        <div id="treatment-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="modal treatmentModal">
+            <div role="document" class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" aria-label="Close" ng-click="mergeTreatmentAndRender()" class="close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Edit treatment properties</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form novalidate="novalidate" name="treatmentForm" class="form-horizontal treatmentForm">
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label text-right">
+                                    Type of Use of the land<span>*</span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <select ng-model="treatment.type_of_use" ng-options="typeOfUseOption.value as typeOfUseOption.optionText for typeOfUseOption in optionsForTypeOfUse" required="required" name="tyoeOfUse" class="form-control">
+                                        <option value="">(Pick One Type of Use)</option>
+                                    </select>
+                                </div><span ng-show="treatmentForm.tyoeOfUse.$touched &amp;&amp; treatmentForm.tyoeOfUse.$invalid">Please select type of use</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label text-right">Control Strategy<span>*</span></label>
+                                <div class="col-sm-4">
+                                    <select ng-model="treatment.control_method" ng-options="optionOfControl.value as optionOfControl.optionText for optionOfControl in optionsForControlMethod" required="required" name="controlMethod" class="form-control">
+                                        <option value="">(Pick One Control Strategy)</option>
+                                    </select>
+                                </div><span ng-show="treatmentForm.controlMethod.$touched &amp;&amp; treatmentForm.controlMethod.$invalid">Please select control strategy</span>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label text-right">
+                                    Treatment strategy<span>*</span>
+                                </label>
+                                <div class="col-sm-4">
+                                    <select ng-model="treatment.usage" ng-options="optionOfUsage.value as optionOfUsage.optionText for optionOfUsage in optionsForUsage" required="required" name="treatmentStrategy" class="form-control">
+                                        <option value="">(Pick One Product Usagge)</option>
+                                    </select>
+                                </div><span ng-show="treatmentForm.treatmentStrategy.$touched &amp;&amp; treatmentForm.treatmentStrategy.$invalid">Please set treatment strategy</span>
+                            </div>
+                            <div ng-show="treatmentForm.moundNumber.$touched" class="row">
+                                <div ng-show="treatmentForm.moundNumber.$error.required || treatmentForm.moundNumber.$error.pattern" class="col-sm-9 col-sm-offset-3">Please Estimate Positive Mound Number</div>
+                            </div>
+                            <div ng-if="treatment.usage === 'imt'" class="form-group row">
+                                <label for="moundNumber" class="col-sm-3 control-label text-right">
+                                    Mound Number<span>*</span>
+                                </label>
+                                <div class="col-sm-9">
+                                    <input id="moundNumber" type="number" placeholder="Mound Number" ng-model="treatment.mound_number" required="treatment.usage === 'imt'" name="moundNumber" ng-pattern="/^[0-9]{1,10}$/" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label text-right">Additional Things</label>
+                                <div class="col-sm-9">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="treatment.is_outdoor" />Outdoor-use only product (might be unsafe for indoor use)
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="treatment.need_organic" />Organic product
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="treatment.need_safe_for_pets" />Safe-for-pet product
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="treatmentForm.polygonName.$touched" class="row">
+                                <div ng-show="treatmentForm.polygonName.$error.required" class="col-sm-9 col-sm-offset-3">Please Name your polygon</div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="polygonName" class="col-sm-3 control-label text-right">
+                                    Name your polygon<span>*</span>
+                                </label>
+                                <div class="col-sm-9">
+                                    <input id="polygonName" type="text" placeholder="Name of this polygon" ng-model="treatment.polygon_name" name="polygonName" required="required" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="polygonAddress" class="col-sm-3 control-label text-right">Address</label>
+                                <div class="col-sm-9">
+                                    <input id="polygonAddress" type="text" placeholder="Address of this polygon" ng-model="treatment.address" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="polygonNotes" class="col-sm-3 control-label text-right">Notes</label>
+                                <div class="col-sm-9">
+                                    <textarea id="polygonNotes" rows="5" ng-model="treatment.notes" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" ng-click="mergeTreatmentAndRender()" class="btn btn-default">Close</button>
+                        <button type="button" ng-click="saveTreatmentAndPolygonToServer($event)" ng-disabled="!treatmentForm.$valid" class="btn btn-primary">Save Treatment to Server</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="signin-required-modal" tabindex="-1" role="dialog" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Sign in needed </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please <a href="undefined/users/signin?referral_url=undefined/landscape/homeownermng"> <b>sign in&nbsp;</b></a>at right-top corner before using landscape management. If you are first-time user, please check <a href="undefined/landscape/instructions" target="_blank"> <b>instructions </b></a>for help.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+</div>
+
+    
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+        
+       
+       // var glblprefix = $("#homeownermng-src").data("glblprefix");
+        (function settingMapContainerHeight() {
+            // The reason might because the nav bar gives padding 70,
+            $("#mapcover").height($(window).height() - 1 * $(".navbar").height());
+        })();
+
+        google.maps.Polygon.prototype.my_getBounds = function () {
+            var bounds = new google.maps.LatLngBounds();
+            this.getPath().forEach(function (element, index) {
+                // console.log("DEBUGG:" + element.toString());
+                bounds.extend(element);
+            })
+            if (bounds.isEmpty()) { alert("bounds should not be empty") }
+            return bounds;
+        }
+        var abc = { model_op: "create", isAuthenticated: false };
+        var page_status =abc;
+
+        // map_tool_register state updated by map tool panel buttons 
+        $("#map-tools-box .btn:not(:last)").click(function mapToolOpUpdating() {
+            var target_property = $(this).attr("data-operation");
+            if (target_property === "tutorial") {
+               // console.log(glblprefix);
+                window.open("~/InteractiveLandscape/Instructions" );
+                return;
+            }
+            if (page_status.isAuthenticated === false) {
+                $('#signin-required-modal').modal("show"); // if user has not signed, he cannot use these function
+                return;
+            }
+
+            if (target_property !== "tutorial") {
+                if (map_tool_register.get(target_property) === true) {
+                    map_tool_register.set(target_property, false);
+                } else {
+                    map_tool_register.clearAllStatus();
+                    map_tool_register.set(target_property, true);
+                }
+            }
+        });
+        $("#map-tool-cancel").click(function mapToolCanceling() {
+            map_tool_register.clearAllStatus();
+            drawingPath.setPath([]);
+            for (var i = 0; i < polygons.length; i++) {
+                polygons[i].setMap(null);
+            }
+            polygons = [];
+        });
+
+        /*beginning of normal file */
+        var mapcover = initMapCover('mapcover', 'mapcover-map', {
+            draggingCursor: "move",
+            draggableCursor: "auto",
+            center: { lat: 30.62060000, lng: -96.32621 },
+            zoom: 14,
+            zoomControl: false,    //left side
+            panControl: false,     //left top corner: 
+            tilt: 0,
+            // mapTypeControl:false  //right top corner: "map|satellite"
+            mapTypeControlOptions: {
+                // style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                position: google.maps.ControlPosition.TOP_RIGHT
+            }
+        });
+
+        SavePolygonFunction = function (obj) {
+            alert("wohoooooo");
+            console.log(obj)
+            $.ajax({
+                type: "POST",
+                url: '@(Url.Action("SavePolygon", "InteractiveLandscape"))',
+                data: { UserPolygonJson:JSON.stringify(obj) },
+                success: function (result) {
+                    
+                    var TempPolygon = { id: result, geometry: obj.geometry, properties: obj.properties, type: obj.type };
+                    console.log(TempPolygon)
+                    alert(result);
+                  
+                    location.href = "/InteractiveLandscape/LandscapeManagement/"+result;
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // myfunction();
+                    alert("jg" + errorThrown);
+                }
+            });
+        }
+
+        DeletePolygonFunction = function () {
+            
+            alert(polygon_id);
+            $.ajax({
+                type: "POST",
+                url: '@(Url.Action("DeletePolygon", "InteractiveLandscape"))',
+                data: { PolygonId: polygon_id },
+                success: function (apiResult) {
+                    location.href = "/InteractiveLandscape/LandscapeManagement";
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    location.alert("jhj" + textStatus);
+                }
+            });
+        }
+
+        
+       
+        var gmap = mapcover.model.get("map");
+        var geocoder = new google.maps.Geocoder();
+        var temp_startmarker = new google.maps.Marker({  // used to mark head of path drawing
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 3,
+                strokeColor: '#FF0000'
+            }
+        });
+       
+    });
+
+
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="~/Javascript/DeleteMenu.js"></script>
+<script src="~/Javascript/polygonManagerApp.js"></script>
+<script src="~/Javascript/pmaService.js"> </script>

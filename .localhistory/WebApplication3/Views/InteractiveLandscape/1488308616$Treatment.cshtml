@@ -1,0 +1,72 @@
+﻿@model WebApplication3.Models.ViewModel.ProductTreatmentDataView2
+@{
+    ViewBag.Title = "Treatment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    @Html.Action("PolygonDisplayPartial","InteractiveLandscape")
+    
+    <hr/>
+    <div class="row situation-summary">
+        <p id="selected_usage" style="display:none" >@ViewBag.Usage</p>
+        <h4 id="selected_treatment"></h4>
+        <p>Type of use of the land: @ViewBag.TypeOfUse</p>
+        <p>Control method / control strategy: @ViewBag.ControlMethod</p>
+        <p>The total area is @ViewBag.TotalArea ft<sup>2</sup></p>
+    @*    <div ng-if="geoJson.properties.is_outdoor || geoJson.properties.need_organic || geoJson.properties.need_safe_for_pets"><span ng-show="geoJson.properties.is_outdoor" class="label label-default margin-right-10"> Outdoor land</span><span ng-show="geoJson.properties.need_organic" class="label label-default margin-right-10"> Organic product</span><span ng-show="geoJson.properties.need_safe_for_pets" class="label label-default margin-right-10"> Safe for pets</span></div>*@
+    </div>
+    <hr/>
+
+    <div>
+        <table data-toggle="table" class="table table-striped table-bordered table-condensed table-hover">
+            <thead id="ProductsThead">
+                <tr>
+                    <th data-field="ManufacturerUrl" data-sortable="false">Product Page</th>
+                    <th data-field="ProductName" data-sortable="true">Product Name</th>
+                    <th data-field="ActiveIngredient" data-sortable="true">Active Ingredient</th>
+                    <th data-field="ProductManufacturer" data-sortable="true">Manufacturer</th>
+                    <th data-field="PesticideClassification" data-sortable="true">Pesticide Classification</th>
+                    <th data-field="PhysicalForm" data-sortable="false">Physical Form</th>
+                    <th data-field="IsSynthetic" data-sortable="false">Synthetic / Natural</th>
+                    <th data-field="ProductCoverage" data-sortable="false">Product Use Rate</th>
+                    <th data-field="Amount" data-sortable="false">Total Use Rate Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model.Products)
+                {
+                    <tr>
+                    <td><a href=@Html.DisplayFor(m => i.ProductUrl) target="_blank"><img src=@Html.DisplayFor(m => i.ImageUrl) alt="product_img" class="img-thumbnail" /></a></td>
+                    <td> @Html.DisplayFor(m => i.ProductName)</td>
+                    <td> @Html.DisplayFor(m => i.ProductManufacturer)</td>
+                    <td> @Html.DisplayFor(m => i.ProductUsage)</td>
+                    <td> @Html.DisplayFor(m => i.ProductControlMethod)</td>
+                    @if (i.ProductUsage.Equals("imt"))
+                    {
+                        <td> @Html.DisplayFor(m => i.ProductCoverage) mnds</td>
+                    }
+                    else
+                    {
+                        <td> @Html.DisplayFor(m => i.ProductCoverage) <span>m<sup>2</sup></span></td>
+                    }
+                    <td> @Html.DisplayFor(m => i.Amount)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+ 
+<script type="text/javascript">
+    var x = document.getElementById("selected_usage").innerHTML;
+    if (x == "imt")
+    {
+        $("#selected_treatment").append('Selected <a href="http://fireant.tamu.edu/controlmethods/twostep/" target="_blank">Individual Mound Treatment </a>Method');
+    }
+    else
+    {
+        $("#selected_treatment").append('Selected <a href="http://fireant.tamu.edu/controlmethods/twostep/" target="_blank">Broadcast </a>Method');
+    }
+
+</script>
+

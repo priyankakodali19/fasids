@@ -1,0 +1,49 @@
+﻿@model WebApplication3.Models.ViewModel.UserImageModel
+@{
+    ViewBag.Title = "UserImage";
+}
+<style>
+    input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+</style>
+
+<div class="panel panel-default">
+    <div class="row">
+        <div class="col-xs-12">
+
+        @using (Html.BeginForm("UserImage", "User", FormMethod.Post, 
+                              new { enctype = "multipart/form-data" })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend style="text-align:center;">@Context.User.Identity.Name.ToUpper()</legend>
+        <img class="img-thumbnail" width="100%" src="@ViewBag.path" alt="Image"/>
+        <div class="editor-label">
+           <h5 style="text-align:center;">Upload Profile Image </h5> 
+        </div>
+        @*<div class="editor-field">
+            <input id="ImagePath" type="file" name="file" />
+        </div>*@
+        <div style="padding-left:22%;">
+        <label for="file-upload" class="btn btn-theme-bg"><i class="fa fa-search"></i>&nbsp;&nbsp;Browse
+        </label>
+        <input id="file-upload" type="file" name="file"/>
+        <p style="padding:0px 4px" class="btn btn-theme-bg" ><i class="fa fa-cloud-upload"></i><input class="btn btn-theme-bg" type="submit" value="Upload" /></p>
+    </div>
+            </fieldset>
+}
+        </div>
+    </div>
+    
+    
+        
+    
+    
+</div>

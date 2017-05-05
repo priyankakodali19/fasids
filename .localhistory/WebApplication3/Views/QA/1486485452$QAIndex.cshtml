@@ -1,0 +1,139 @@
+﻿@model WebApplication3.Models.ViewModel.QuestionDataView
+@{
+    ViewBag.Title = "QAIndex";
+}
+<script type="text/javascript">
+    console.log(@ViewBag.Message);
+  
+    if ('@ViewBag.Message' == "Error") {
+        $('#signin-required-modal').modal("show");
+    }
+        
+   
+</script>
+<div class="divide30"></div>
+
+<div class="container main-qa">
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-4">
+            <h4>QUESTIONS & ANSWERS</h4>
+        </div>
+        <div class="col-xs-3" style="float:right">
+            <a href="/QA/PostQuestion" class="btn btn btn-theme-dark"> <i class="fa fa-plus"></i>&nbsp;NEW QUESTION</a>
+        </div>
+       @* <div class="col-xs-7 tabs">
+            <ul class="QA nav nav-tabs">
+            <li class="active" role="presentation"><a href="#">NEWEST</a></li>
+            <li role="presentation"><a href="#">FREQUENT</a></li>
+            <li role="presentation"><a href="#">VOTES</a></li>
+            <li role="presentation"><a href="#">ACTIVE</a></li>
+            <li role="presentation"><a href="#">UNANSWERED</a></li>
+            </ul>
+        </div>*@
+    </div>
+    <hr/>
+    <div class="divide30"></div>
+
+    @{int index = 0;}
+    <div class="qa-post-titles">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+             @foreach (var i in Model.Questions)
+             {
+                if(index % 2==0)
+                {
+                    <div class="row">
+                        <div class="col-sm-1 answer-count">
+                            <div class="answers-number">@Html.DisplayFor(m => i.AnswersCount)</div> 
+                            <div class="answers-text">Answers</div>
+                        </div>
+                         <div class="col-sm-7 ">
+                            <div class="row">
+                                 <div class="col-sm-12 qa-title">
+                                    @{int QA_id=i.QuestionId;}
+                                  <a href="#" onclick="location.href='@Url.Action("PostAnswer","QA",new {Qid=QA_id})'">@Html.DisplayFor(m => i.Subject)</a>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-12 qa-content">
+                                    @Html.Raw(Server.HtmlDecode(i.Content))
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 qa-details">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    [ICON]
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="col-sm-12">
+                                         @Html.DisplayFor(m => i.QuestionAuthor)
+                                    </div>
+                                    <div class="col-sm-12">
+                                         posted on @Html.DisplayFor(m => i.PostedDate)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                }
+                else{
+                    <div class="row" style="background-color: #eef2f4;">
+                        <div class="col-sm-1 answer-count">
+                            <div class="answers-number">@Html.DisplayFor(m => i.AnswersCount)</div> 
+                            <div class="answers-text">Answers</div>
+                        </div>
+                        <div class="col-sm-7 ">
+                            <div class="row">
+                                 <div class="col-sm-12 qa-title">
+                                     @{int QA_id=i.QuestionId;}
+                                  <a href="#" onclick="location.href='@Url.Action("PostAnswer","QA",new {Qid=QA_id})'" >@Html.DisplayFor(m => i.Subject)</a>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-12 qa-content">
+                                    @Html.Raw(Server.HtmlDecode(i.Content))
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 qa-details">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    [ICON]
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="col-sm-12">
+                                         @Html.DisplayFor(m => i.QuestionAuthor)
+                                    </div>
+                                    <div class="col-sm-12">
+                                         posted on @Html.DisplayFor(m => i.PostedDate)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                }
+                index++;
+            }
+        </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div id="signin-required-modal" tabindex="-1" role="dialog" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Sign in needed </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please <a href="~/User/SignIn"> <b>sign in&nbsp;</b></a>at right-top corner before using landscape management. If you are first-time user, please check <a href="~/InteractiveLandscape/Instructions" target="_blank"> <b>instructions </b></a>for help.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+

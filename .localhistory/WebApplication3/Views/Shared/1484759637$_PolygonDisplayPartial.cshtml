@@ -1,0 +1,66 @@
+﻿@model WebApplication3.Models.ViewModel.DisplayUserPolygon
+@{
+    ViewBag.Title = "PolygonDisplayPartial";
+}
+<script src="~/scripts/underscore-min.js"></script>
+<script src="~/scripts/backbone-min.js"></script>
+
+<script src="~/scripts/mapcover.js"></script>
+
+<link href="~/Content/InteractiveLandscape.css" rel="stylesheet" />
+<!-- This is used to indicate current page status, such as whether user logged in or not-->
+<meta name="page_status" content="#{JSON.stringify(page_status)}" />
+<!-- This is used to retrieve target polygon, when user click their polygon in their user profile-->
+<meta id="target_polygon" name="target_polygon" content="#{JSON.stringify(target_polygon)}" />
+
+<script type="text/javascript">
+     var abc = { model_op: "patch", isAuthenticated: true };
+        var coordinates_array=[], temp=[], temp2=[];
+        var coordinates = '@Model.coordinates_str';
+        coordinates = coordinates.substr(10, coordinates.length-2);
+        coordinates = coordinates.substr(0, coordinates.length - 2);
+        var points = coordinates.substr(0, coordinates.length - 2).split(", ");
+       
+        coordinates_array = points.map(function (pointString) {
+            var latlon = pointString.split(" ");
+            //console.log(pointString);
+            //console.log(latlon)
+            temp.push([parseFloat(latlon[0]), parseFloat(latlon[1])]);
+            return latlon;
+            });
+
+        temp2.push(temp);
+        
+        var temp_properties = {
+            address: '@Model.Address',
+            bounds: {
+                ne: { lat: parseFloat('@Model.Bounds_NE_Lat'), lng: parseFloat('@Model.Bounds_NE_Lng') },
+                sw: { lat: parseFloat('@Model.Bounds_SW_Lat'), lng: parseFloat('@Model.Bounds_SW_Lng') }
+            },
+            control_method: '@Model.ControlMethod',
+            enivronment_map: {
+                MapTypeId: '@Model.EnvMapTypeId',
+                tilt: '@Model.EnvMapTilt'
+            },
+            is_outdoor: '@Model.IsOutdoor',
+            mound_density: '@Model.MoundDensity',
+            mound_number: '@Model.MoundNumber',
+            need_organic: '@Model.NeedOrganic',
+            need_safe_for_pets: '@Model.NeedSafeForPets',
+            notes: '@Model.Notes',
+            owner: '@Model.UserId',
+            polygon_name: '@Model.PolygonName',
+            total_area: '@Model.TotalArea',
+            type_of_use: '@Model.TypeOfUse',
+            usage: '@Model.Usage'
+        }
+
+        var TempPolygon = {
+            id: '@Model.GeoJsonId', 
+            geometry: { coordinates: temp2, type: '@Model.GeometryType' },
+            properties: temp_properties,
+            type: '@Model.Type'
+        };
+       
+</script>
+

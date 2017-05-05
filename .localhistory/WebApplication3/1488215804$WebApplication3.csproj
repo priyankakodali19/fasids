@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4DCD76EC-8276-47FD-9827-C1C1E2AE56A8}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebApplication3</RootNamespace>
+    <AssemblyName>WebApplication3</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
+    <Compile Include="Controllers\InteractiveLandscapeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\QAController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\HtmlHelpers.cs" />
+    <Compile Include="Models\DB\FASIDSModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FASIDSModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\FASIDSModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FASIDSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\FASIDSModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FASIDSModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\PolygonGeoJson.cs">
+      <DependentUpon>FASIDSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\PolygonGeoJson2.cs">
+      <DependentUpon>FASIDSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\PostAnswer.cs">
+      <DependentUpon>FASIDSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\PostQuestion.cs">
+      <DependentUpon>FASIDSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\ProductData.cs">
+      <DependentUpon>FASIDSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\UserData.cs">
+      <DependentUpon>FASIDSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\UserImage.cs">
+      <DependentUpon>FASIDSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityManager\InteractiveLandscapeManager.cs" />
+    <Compile Include="Models\EntityManager\ProductManager.cs" />
+    <Compile Include="Models\EntityManager\QAManager.cs" />
+    <Compile Include="Models\EntityManager\UserManager.cs" />
+    <Compile Include="Models\ViewModel\InteractiveLandscapeModel.cs" />
+    <Compile Include="Models\ViewModel\ProductModel.cs" />
+    <Compile Include="Models\ViewModel\QAModel.cs" />
+    <Compile Include="Models\ViewModel\UserModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\AuthorizeRolesAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\AntActivity\antactivity.css" />
+    <Content Include="Content\AntActivity\antactivity_iisnode_compatible.css" />
+    <Content Include="Content\AntDistribution\AntDistribution.css" />
+    <Content Include="Content\ant_distribution.txt" />
+    <Content Include="Content\Blog\img-9.jpg" />
+    <Content Include="Content\bootstrap-table.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CarouselImages\activity.JPG" />
+    <Content Include="Content\CarouselImages\blog.JPG" />
+    <Content Include="Content\CarouselImages\distb.JPG" />
+    <Content Include="Content\CarouselImages\landscape.JPG" />
+    <Content Include="Content\CarouselImages\products.JPG" />
+    <Content Include="Content\CarouselImages\qa.JPG" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fullcalendar.min.css" />
+    <Content Include="Content\genus_species.txt" />
+    <Content Include="Content\images\ant_distribution.png" />
+    <Content Include="Content\images\draw_area.jpg" />
+    <Content Include="Content\images\fasids_bg1.jpg" />
+    <Content Include="Content\images\highforaging.png" />
+    <Content Include="Content\images\info_sharing.jpg" />
+    <Content Include="Content\images\KELlogo_sm.jpg" />
+    <Content Include="Content\images\knowledge_base.JPG" />
+    <Content Include="Content\images\lowforaging.png" />
+    <Content Include="Content\images\middleforaging.png" />
+    <Content Include="Content\images\QAindex.png" />
+    <Content Include="Content\images\statewide_data.JPG" />
+    <Content Include="Content\images\TAM-Logo-white.png" />
+    <Content Include="Content\index.css" />
+    <Content Include="Content\InstructionImages\aftersettingtreatment.jpg" />
+    <Content Include="Content\InstructionImages\drawpolygon.jpg" />
+    <Content Include="Content\InstructionImages\editshape.jpg" />
+    <Content Include="Content\InstructionImages\polygonInDashboard.jpg" />
+    <Content Include="Content\InstructionImages\productresult.jpg" />
+    <Content Include="Content\InstructionImages\productresult2.jpg" />
+    <Content Include="Content\InstructionImages\signup.jpg" />
+    <Content Include="Content\InstructionImages\removearea.jpg" />
+    <Content Include="Content\InstructionImages\settreatment.jpg" />
+    <Content Include="Content\InstructionImages\signin.jpg" />
+    <Content Include="Content\InstructionImages\userdashboard.png" />
+    <Content Include="Content\InteractiveLandscape.css" />
+    <Content Include="Content\mapcover.css" />
+    <Content Include="Content\pace_loadingbar.css" />
+    <Content Include="Content\QA\QA.css" />
+    <Content Include="Content\SignIn.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\tx_counties.txt" />
+    <Content Include="fonts\font-awesome.min.css" />
+    <Content Include="fonts\fonts-awesome\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="JavaScript\DeleteMenu.js" />
+    <Content Include="JavaScript\pmaService.js" />
+    <Content Include="JavaScript\polygonManagerApp.js" />
+    <Content Include="Models\DB\FASIDSModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FASIDSModel.edmx</DependentUpon>
+      <LastGenOutput>FASIDSModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB\FASIDSModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FASIDSModel.edmx</DependentUpon>
+      <LastGenOutput>FASIDSModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\AntActivity\fullcalendar.min.js" />
+    <Content Include="Scripts\AntActivity\moment.min.js" />
+    <Content Include="Scripts\backbone-min.js" />
+    <Content Include="Scripts\bootstrap-table.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\DB\FASIDSModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FASIDSModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DB\FASIDSModel.edmx.diagram">
+      <DependentUpon>FASIDSModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="fonts\fonts-awesome\fontawesome-webfont.eot" />
+    <Content Include="fonts\fonts-awesome\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fonts-awesome\fontawesome-webfont.woff" />
+    <Content Include="fonts\fonts-awesome\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fonts-awesome\FontAwesome.otf" />
+    <None Include="Scripts\jquery-1.11.3.intellisense.js" />
+    <Content Include="Scripts\jquery-1.11.3.js" />
+    <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.simpleWeather.min.js" />
+    <Content Include="Scripts\mapcover.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\pace.min.js" />
+    <Content Include="Scripts\parallax.min.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\css\codemirror.css" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\css\content.css" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\css\textboxio.css" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\flash\textboxpaste.swf" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_ar.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_ca.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_cs.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_da.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_de.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_el.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_en.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_es.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_fa.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_fi.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_fr.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_he.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_hr.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_hu.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_it.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_ja.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_kk.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_ko.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_nb.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_nl.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_pl.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_pt.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_pt_pt.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_ro.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_ru.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_sk.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_sl.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_sv.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_th.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_tr.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_uk.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_zh.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\help_zh_tw.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\html\textbox-licenses.html" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_ar.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_ca.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_cs.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_da.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_de.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_el.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_en.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_es.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_fa.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_fi.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_fr.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_he.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_hr.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_hu.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_it.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_ja.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_kk.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_ko.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_nb.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_nl.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_pl.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_pt.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_pt_pt.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_ro.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_ru.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_sk.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_sl.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_sv.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_th.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_tr.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_uk.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_zh.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\i18n\tbio_zh_tw.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\js\codeview.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\resources\js\wordimport.js" />
+    <Content Include="Scripts\textboxio-client\textboxio\textboxio.js" />
+    <Content Include="Scripts\textboxio.js" />
+    <Content Include="Scripts\underscore-min.js" />
+    <Content Include="UserImages\atm.jpg" />
+    <Content Include="UserImages\bg_home.jpg" />
+    <Content Include="UserImages\crop_wide %282%29.jpg" />
+    <Content Include="UserImages\growing-flower.jpg" />
+    <Content Include="UserImages\homepage.jpg" />
+    <Content Include="UserImages\profile_image.png" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\AntActivity.cshtml" />
+    <Content Include="Views\Home\AntDistribution.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\OfficialBlog.cshtml" />
+    <Content Include="Views\QA\QAIndex.cshtml" />
+    <Content Include="Views\InteractiveLandscape\LandscapeManagement.cshtml" />
+    <Content Include="Views\InteractiveLandscape\Instructions.cshtml" />
+    <Content Include="Views\InteractiveLandscape\Treatment.cshtml" />
+    <Content Include="Views\Product\ProductIndex.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\User\GetUserBasicInfo.cshtml" />
+    <Content Include="Views\User\SignIn.cshtml" />
+    <Content Include="Views\User\SignUp.cshtml" />
+    <Content Include="Views\User\UserAccount.cshtml" />
+    <Content Include="Views\User\View.cshtml" />
+    <Content Include="Views\Shared\_PolygonDisplayPartial.cshtml" />
+    <Content Include="Views\InteractiveLandscape\PolygonDisplayPartial.cshtml" />
+    <Content Include="Views\User\AdminOnly.cshtml" />
+    <Content Include="Views\User\UnAuthorized.cshtml" />
+    <Content Include="Views\InteractiveLandscape\UnAuthorized.cshtml" />
+    <Content Include="Views\User\UserDashboard.cshtml" />
+    <Content Include="Views\User\ForgotPassword.cshtml" />
+    <Content Include="Views\User\ProcessRequest.cshtml" />
+    <Content Include="Views\User\ResetForgotPassword.cshtml" />
+    <Content Include="Views\QA\PostQuestion.cshtml" />
+    <Content Include="Views\QA\PostAnswer.cshtml" />
+    <Content Include="Views\User\UserImage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-1.11.3.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49941/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

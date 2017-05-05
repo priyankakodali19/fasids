@@ -1,0 +1,115 @@
+﻿@model WebApplication3.Models.ViewModel.QuestionAnswer
+@{
+    ViewBag.Title = "PostAnswer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PostAnswer</h2>
+<div class="divide30"></div>
+
+
+<div class="container">
+    <h4>Question</h4>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 answer-quest">
+            <div class="col-sm-10">
+                <div class="row ">
+                    <div class="col-sm-1">vote</div>
+                    <div class="col-sm-8">
+                        <div class="row ">@Model.Subject</div>
+                        <div class="row qa-content">@Model.Content</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                [ICON]
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="col-sm-12">
+                                        @Model.QuestionAuthor
+                                </div>
+                                <div class="col-sm-12">
+                                        posted on @Model.PostedDate
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>    
+    </div>
+    <hr />
+    <h4>Answers</h4>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 answers">
+            <div class="col-sm-10">
+                <div class="row ">
+                    <div class="col-sm-1">vote</div>
+                    <div class="col-sm-8">
+                        <div class="row">answer title</div>
+                        <div class="row">answer content</div>
+                    </div>
+                    <div class="col-sm-3">answer details</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>    
+    </div>
+
+    <hr />
+    
+    <h4>Post Answer</h4>
+    <form method="post" >
+        <div class="divide20"></div>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-xs-10">
+                <div class="AnswerContent"></div>
+            </div>
+        </div>
+    
+        <div class="divide20"></div>
+        <div class="row final-buttons">
+            <div class="col-sm-1"></div>
+           <div class="col-xs-10">
+                <a href="#" class="btn border-black">Preview</a>
+                <div id="SubmitAnswer" class="btn btn-theme-bg">
+                    <btn onclick="SubmitAnswer" >Submit </btn>
+                </div>
+            </div>
+        </div>  
+    </form>
+</div>
+
+<div class="divide30"></div>
+
+<script type="text/javascript">
+    $('document').ready(function () {
+        textboxio.replaceAll('.AnswerContent');
+
+        document.getElementById('SubmitAnswer').onclick = function () {
+            // Get the active editor
+            var editor = textboxio.getActiveEditor();
+            // Retrieve the contents of the active editor
+            var content = editor.content.get();
+            console.log(content);
+
+                $.ajax({
+                    type: "POST",
+                    url: '@(Url.Action("PostAnswertoDb", "QA"))',
+                    data: {'qa_content': content, 'qa_id':'@Model.QuestionId' },
+                success: function (apiResult) {
+                    location.href = "/QA/PostAnswer";
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("jhj" + textStatus);
+                }
+                });
+            
+            
+        };
+    });
+</script>

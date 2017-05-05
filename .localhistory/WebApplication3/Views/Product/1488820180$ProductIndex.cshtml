@@ -1,0 +1,48 @@
+﻿@model WebApplication3.Models.ViewModel.ProductDataView
+@{
+    ViewBag.Title = "ProductIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="divide30"></div>
+ <btn style="float:left" input type="submit" class="btn btn-theme-bg" onclick="SubmitQuestion">Products</btn>
+<div>
+    <table data-toggle="table" class="table table-striped table-bordered table-condensed table-hover">
+        <thead id="ProductsThead">
+            <tr>
+                <th data-field="ImageUrl" data-sortable="false">Product Page</th>
+                <th data-field="ProductName" data-sortable="true">Product Name</th>
+                <th data-field="ProductManufacturer" data-sortable="true">Brand</th>
+                <th data-field="ProductUsage" data-sortable="false">Usage</th>
+                <th data-field="ProductControlMethod" data-sortable="false">Control Method</th>
+                <th data-field="ProductCoverage" data-sortable="false">Coverage</th>
+                <th data-field="ProductModify" data-sortable="false">Modify Product</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var i in Model.Products)
+            {
+   
+                <tr>
+                    <td><a href=@Html.DisplayFor(m => i.ProductUrl) target="_blank"><img src=@Html.DisplayFor(m => i.ImageUrl) alt="product_img" class="img-thumbnail" /></a></td>
+                    <td> @Html.DisplayFor(m => i.ProductName)</td>
+                    <td> @Html.DisplayFor(m => i.ProductManufacturer)</td>
+                    <td> @Html.DisplayFor(m => i.ProductUsage)</td>
+                    <td> @Html.DisplayFor(m => i.ProductControlMethod)</td>
+                    @if (i.ProductUsage.Equals("imt"))
+                    {
+                        <td> @Html.DisplayFor(m => i.ProductCoverage) mnds</td>
+                    }
+                    else
+                    {
+                        <td> @Html.DisplayFor(m => i.ProductCoverage) <span>m<sup>2</sup></span></td>
+                    }
+                    <td ><a href="#">Edit</a>&nbsp; &nbsp;<a href="#">Delete</a></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>  
+

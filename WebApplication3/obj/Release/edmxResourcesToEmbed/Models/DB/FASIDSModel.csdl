@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FASIDSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FASIDSEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="NewPolygonGeoJsons" EntityType="FASIDSModel.NewPolygonGeoJson" />
+    <EntitySet Name="PolygonGeoJsons" EntityType="FASIDSModel.PolygonGeoJson" />
+    <EntitySet Name="PostAnswers" EntityType="FASIDSModel.PostAnswer" />
+    <EntitySet Name="PostQuestions" EntityType="FASIDSModel.PostQuestion" />
+    <EntitySet Name="Product_list" EntityType="FASIDSModel.Product_list" />
+    <EntitySet Name="ProductDatas" EntityType="FASIDSModel.ProductData" />
+    <EntitySet Name="UserDatas" EntityType="FASIDSModel.UserData" />
+    <EntitySet Name="UserImages" EntityType="FASIDSModel.UserImage" />
+    <AssociationSet Name="FK__NewPolygo__UserI__72C60C4A" Association="FASIDSModel.FK__NewPolygo__UserI__72C60C4A">
+      <End Role="UserData" EntitySet="UserDatas" />
+      <End Role="NewPolygonGeoJson" EntitySet="NewPolygonGeoJsons" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PolygonGe__UserI__2A4B4B5E" Association="FASIDSModel.FK__PolygonGe__UserI__2A4B4B5E">
+      <End Role="UserData" EntitySet="UserDatas" />
+      <End Role="PolygonGeoJson" EntitySet="PolygonGeoJsons" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostAnswe__Quest__412EB0B6" Association="FASIDSModel.FK__PostAnswe__Quest__412EB0B6">
+      <End Role="PostQuestion" EntitySet="PostQuestions" />
+      <End Role="PostAnswers" EntitySet="PostAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostAnswe__UserI__403A8C7D" Association="FASIDSModel.FK__PostAnswe__UserI__403A8C7D">
+      <End Role="UserData" EntitySet="UserDatas" />
+      <End Role="PostAnswers" EntitySet="PostAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostQuest__UserI__3D5E1FD2" Association="FASIDSModel.FK__PostQuest__UserI__3D5E1FD2">
+      <End Role="UserData" EntitySet="UserDatas" />
+      <End Role="PostQuestion" EntitySet="PostQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserImage__UserI__3A81B327" Association="FASIDSModel.FK__UserImage__UserI__3A81B327">
+      <End Role="UserData" EntitySet="UserDatas" />
+      <End Role="UserImage" EntitySet="UserImages" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="NewPolygonGeoJson">
+    <Key>
+      <PropertyRef Name="GeoJsonId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="GeometryType" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="PolygonName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="TotalArea" Type="Double" />
+    <Property Name="MoundDensity" Type="Double" />
+    <Property Name="MoundNumber" Type="Int32" />
+    <Property Name="TypeOfLand" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TypeOfUrban" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TypeOfAgri" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TypeOfTreatment" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="TypeOfControlMethod" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="EnvMapTypeId" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="EnvMapTilt" Type="Int32" Nullable="false" />
+    <Property Name="Bounds_SW_Lat" Type="Double" />
+    <Property Name="Bounds_SW_Lng" Type="Double" />
+    <Property Name="Bounds_NE_Lat" Type="Double" />
+    <Property Name="Bounds_NE_Lng" Type="Double" />
+    <Property Name="GeoJsonId" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="Coordinates" Type="Geometry" />
+    <NavigationProperty Name="UserData" Relationship="FASIDSModel.FK__NewPolygo__UserI__72C60C4A" FromRole="NewPolygonGeoJson" ToRole="UserData" />
+  </EntityType>
+  <EntityType Name="PolygonGeoJson">
+    <Key>
+      <PropertyRef Name="GeoJsonId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="GeometryType" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="PolygonName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Notes" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="TotalArea" Type="Double" />
+    <Property Name="MoundDensity" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MoundNumber" Type="Int32" />
+    <Property Name="TypeOfUse" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="ControlMethod" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Usage" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="IsOutdoor" Type="Boolean" />
+    <Property Name="NeedOrganic" Type="Boolean" />
+    <Property Name="NeedSafeForPets" Type="Boolean" />
+    <Property Name="EnvMapTypeId" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="EnvMapTilt" Type="Int32" Nullable="false" />
+    <Property Name="Bounds_SW_Lat" Type="Double" />
+    <Property Name="Bounds_SW_Lng" Type="Double" />
+    <Property Name="Bounds_NE_Lat" Type="Double" />
+    <Property Name="Bounds_NE_Lng" Type="Double" />
+    <Property Name="GeoJsonId" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="Coordinates" Type="Geometry" />
+    <NavigationProperty Name="UserData" Relationship="FASIDSModel.FK__PolygonGe__UserI__2A4B4B5E" FromRole="PolygonGeoJson" ToRole="UserData" />
+  </EntityType>
+  <EntityType Name="PostAnswer">
+    <Key>
+      <PropertyRef Name="AnswerId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="QuestionId" Type="Int32" Nullable="false" />
+    <Property Name="AnswerId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="AnswerContent" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="AnswerAuthor" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="AnswerPostDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="PostQuestion" Relationship="FASIDSModel.FK__PostAnswe__Quest__412EB0B6" FromRole="PostAnswers" ToRole="PostQuestion" />
+    <NavigationProperty Name="UserData" Relationship="FASIDSModel.FK__PostAnswe__UserI__403A8C7D" FromRole="PostAnswers" ToRole="UserData" />
+  </EntityType>
+  <EntityType Name="PostQuestion">
+    <Key>
+      <PropertyRef Name="QuestionId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="QuestionId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionSubject" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="QuestionContent" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="QuestionAuthor" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="PostAnswers" Relationship="FASIDSModel.FK__PostAnswe__Quest__412EB0B6" FromRole="PostQuestion" ToRole="PostAnswers" />
+    <NavigationProperty Name="UserData" Relationship="FASIDSModel.FK__PostQuest__UserI__3D5E1FD2" FromRole="PostQuestion" ToRole="UserData" />
+  </EntityType>
+  <EntityType Name="Product_list">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ActiveIngredient" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="Manufacturer_" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="PesticideClassification" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="PhysicalForm" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="IsSynthetic_" Type="Boolean" Nullable="false" />
+    <Property Name="ControlMethod" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="IsBroadcast" Type="Boolean" Nullable="false" />
+    <Property Name="IsMound" Type="Boolean" Nullable="false" />
+    <Property Name="Broadcast_MinUseRate" Type="Double" />
+    <Property Name="Broadcast_MaxUseRate" Type="Double" />
+    <Property Name="Broadcast_MeasurementUnit" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="Mound_MinUseRate" Type="Double" />
+    <Property Name="Mound_MaxUseRate" Type="Double" />
+    <Property Name="Mound_MeasurementUnit" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="IsUrbanLand" Type="Boolean" Nullable="false" />
+    <Property Name="IsUrbanHome_Broadcast" Type="Boolean" Nullable="false" />
+    <Property Name="IsUrbanHome_Mound" Type="Boolean" Nullable="false" />
+    <Property Name="IsUrbanPerimeter_P" Type="Boolean" Nullable="false" />
+    <Property Name="IsUrbanRecArea_Broadcast" Type="Boolean" Nullable="false" />
+    <Property Name="IsUrbanRecArea_Mound" Type="Boolean" Nullable="false" />
+    <Property Name="IsUrbanRightOfWay_Broadcast" Type="Boolean" Nullable="false" />
+    <Property Name="IsUrbanRightOfWay_Mound" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgricultureLand" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriPasture_Broadcast" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriPasture_Mound" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriPoultry_Broadcast" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriPoultry_Mound" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriCropAreas_Broadcast" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriCropAreas_Mound" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriOthers_Broadcast" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriOthers_Mound" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriSod_Broadcast" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriSod_Mound" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriNurseryContainer_Broadcast" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriNurseryContainer_Mound" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriNurseryBB_Broadcast" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgriNurseryBB_Mound" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgri_FoodProducing" Type="Boolean" Nullable="false" />
+    <Property Name="IsAgri_NonFoodProducing" Type="Boolean" Nullable="false" />
+    <Property Name="AgriFoodProducingSites" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="AgriNonFoodProducingSites" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="MaunfacturerUrl" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="Note" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="ProductData">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="ProductManufacturer" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="PhysicalForm" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="IsOutDoor" Type="Boolean" Nullable="false" />
+    <Property Name="IsOrganic" Type="Boolean" Nullable="false" />
+    <Property Name="IsSafeForPets" Type="Boolean" Nullable="false" />
+    <Property Name="ProductControlMethod" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="ProductUsage" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="ProductCoverage" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="ProductUrl" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserData">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="EmailId" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="UserCategory" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="NewPolygonGeoJsons" Relationship="FASIDSModel.FK__NewPolygo__UserI__72C60C4A" FromRole="UserData" ToRole="NewPolygonGeoJson" />
+    <NavigationProperty Name="PolygonGeoJsons" Relationship="FASIDSModel.FK__PolygonGe__UserI__2A4B4B5E" FromRole="UserData" ToRole="PolygonGeoJson" />
+    <NavigationProperty Name="PostAnswers" Relationship="FASIDSModel.FK__PostAnswe__UserI__403A8C7D" FromRole="UserData" ToRole="PostAnswers" />
+    <NavigationProperty Name="PostQuestions" Relationship="FASIDSModel.FK__PostQuest__UserI__3D5E1FD2" FromRole="UserData" ToRole="PostQuestion" />
+    <NavigationProperty Name="UserImages" Relationship="FASIDSModel.FK__UserImage__UserI__3A81B327" FromRole="UserData" ToRole="UserImage" />
+  </EntityType>
+  <EntityType Name="UserImage">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="ImageId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="UserData" Relationship="FASIDSModel.FK__UserImage__UserI__3A81B327" FromRole="UserImage" ToRole="UserData" />
+  </EntityType>
+  <Association Name="FK__NewPolygo__UserI__72C60C4A">
+    <End Role="UserData" Type="FASIDSModel.UserData" Multiplicity="1" />
+    <End Role="NewPolygonGeoJson" Type="FASIDSModel.NewPolygonGeoJson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserData">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="NewPolygonGeoJson">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PolygonGe__UserI__2A4B4B5E">
+    <End Role="UserData" Type="FASIDSModel.UserData" Multiplicity="1" />
+    <End Role="PolygonGeoJson" Type="FASIDSModel.PolygonGeoJson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserData">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PolygonGeoJson">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostAnswe__Quest__412EB0B6">
+    <End Role="PostQuestion" Type="FASIDSModel.PostQuestion" Multiplicity="1" />
+    <End Role="PostAnswers" Type="FASIDSModel.PostAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PostQuestion">
+        <PropertyRef Name="QuestionId" />
+      </Principal>
+      <Dependent Role="PostAnswers">
+        <PropertyRef Name="QuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostAnswe__UserI__403A8C7D">
+    <End Role="UserData" Type="FASIDSModel.UserData" Multiplicity="1" />
+    <End Role="PostAnswers" Type="FASIDSModel.PostAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserData">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PostAnswers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostQuest__UserI__3D5E1FD2">
+    <End Role="UserData" Type="FASIDSModel.UserData" Multiplicity="1" />
+    <End Role="PostQuestion" Type="FASIDSModel.PostQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserData">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="PostQuestion">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserImage__UserI__3A81B327">
+    <End Role="UserData" Type="FASIDSModel.UserData" Multiplicity="1" />
+    <End Role="UserImage" Type="FASIDSModel.UserImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserData">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserImage">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

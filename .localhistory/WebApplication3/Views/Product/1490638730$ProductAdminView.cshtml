@@ -1,0 +1,1079 @@
+﻿@model WebApplication3.Models.ViewModel.ProductDataView2
+@{
+    ViewBag.Title = "ProductAdminView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<style>
+    ul {
+        padding-left: 15%;
+    }
+    .disclaimer {
+    background:  none repeat scroll 0 0;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    width: 100%;
+}
+.disclaimer h3 {
+    color: #b94a48;
+    
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 10px 0;
+}
+.disclaimer h4 {
+    color: #b94a48;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 10px 0;
+}
+   
+</style>
+<script type="text/javascript">
+    $('document').ready(function () {
+        if ('@(TempData["Value"])' == 1) {
+            $('#product_sucess').toggle();
+        }
+        
+    });
+</script>
+ 
+<div class="divide10"></div>
+<section class="disclaimer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-1">
+                    <h3>Disclaimer :</h3>
+                </div>
+                <div class="col-sm-11">
+                    <marquee id="scroll_news">
+                        <div onmouseout="document.getElementById('scroll_news').start();" onmouseover="document.getElementById('scroll_news').stop();">
+                            <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</h4>
+                        </div>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+    </section>
+<h2 class="title text-center">FIRE ANT PRODUCTS</h2>
+
+<div ng-app="productManagerApp" ng-controller="productDefaultCtrl">
+
+   
+
+
+
+    <div >
+    <div id="product_sucess" style="float: left; padding: 0.5%; margin-bottom:1%!important; display:none;" class="alert alert-success fade in" >
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Success!</strong> New product is added!.
+    </div>
+    <btn style="float:right; margin-bottom:1%;" id="AddProduct" input type="submit" class="btn btn-theme-bg" ng-click="AddProduct()"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Add Product </btn>
+</div>
+<div>
+    <table id="ProductsList" data-toggle="table" class="table table-striped table-bordered table-condensed table-hover">
+        <thead id="ProductsThead">
+            <tr>
+                <th data-field="ActiveIngredient" data-sortable="true"><div>Active</div><div>Ingredient</div> </th>
+                <th data-field="ProductName" data-sortable="true"><div>Product</div><div>Name</div> </th>
+                <th data-field="ProductManufacturer" data-sortable="true"><div>Product</div><div>Manufacturer</div></th>
+                <th data-field="PhysicalForm" data-sortable="false"><div>Physical</div><div>Form</div> </th>
+                <th data-field="IsSynthetic" data-sortable="false"><div>Synthetic</div><div>or Natural</div> </th>
+                <th data-field="TypeOfControlUsage" data-sortable="false"><div>Control</div><div>Method</div> </th>
+                <th data-field="TypeOfTreatmentUsage" data-sortable="false"><div>Treatment</div><div> Method</div> </th>
+                <th data-field="TypeOfLand" data-sortable="false"><div>Type of Land</div></th>
+                <th data-field="TypeOfTreatmentSite" data-sortable="false"><div>Treatment Sites</div></th>
+                <th data-field="ProductCoverage" data-sortable="false"><div>Suggested Product</div><div>Use Rate</div></th>
+                <th data-field="ModifyProduct" data-sortable="false"><div>Modify</div><div>Product</div></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var i in Model.Products)
+            {
+   
+                <tr>
+                    <td> @Html.DisplayFor(m => i.ActiveIngredient)</td>
+                    <td><a href=@Html.DisplayFor(m => i.ProductUrl) target="_blank"> @Html.DisplayFor(m => i.ProductName)</a></td>
+                    <td> @Html.DisplayFor(m => i.ProductManufacturer)</td>
+                    <td> @Html.DisplayFor(m => i.PhysicalForm)</td>
+                    <td> @Html.DisplayFor(m => i.IsSynthetic)</td>
+                    <td> @Html.DisplayFor(m => i.ProductControlMethod)</td>
+                    <td>
+                        <ul>
+                            @for (int x = 0; x < i.ProductTreatmentMethod.Count; x++)
+                            {
+                                <li>@Html.DisplayFor(m => i.ProductTreatmentMethod[x])</li>
+                            }
+                        </ul>
+                    </td>
+                    <td> 
+                        @if(i.TypeOfLand2.Count==2)
+                        {
+                            <ul>
+                                @for (int x = 0; x < i.TypeOfLand2.Count; x++)
+                                {
+                                    <li>@Html.DisplayFor(m => i.TypeOfLand2[x])</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(m => i.TypeOfLand)
+                        }
+                    </td>
+                    <td>
+                        <ul>
+                            @for (int x = 0; x < i.TreatmentSites.Count;x++  )
+                            {
+                                <li>@Html.DisplayFor(m => i.TreatmentSites[x])</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            @for (int x = 0; x < i.ProductMeasurementUnit2.Count; x++)
+                            {
+                                <li>@Html.DisplayFor(m => i.ProductMeasurementUnit2[x])</li>
+                            }
+                        </ul>   
+                    </td>
+                    <td>
+                         @{
+                             
+                             
+                             int product_id = i.ProductId;
+                             if (i.ProductName.Equals("Maria's ants"))
+                             {
+                                 var ProductName2 = i.ProductName.Replace("\'","");
+                                 var x = ProductName2;
+                             }
+                             var ProductName = i.ProductName.Replace("\'", "");
+                            var ActiveIngredient= i.ActiveIngredient;
+                            var ProductManufacturer=i.ProductManufacturer;
+                             var ProductUrl=i.ProductUrl;
+                            var PhysicalForm = i.PhysicalForm;
+                             var IsSynthetic = i.IsSynthetic;
+                            var PesticideClassification= "UnRestricted";
+                            var TypeOfLand2 = "";
+                            var TypeOfLand = "";
+                            var AgriTreatmentSites = "";
+                            var UrbanTreatmentSites = "";
+                           var  ProductTreatmentMethod = "";
+                            if (i.TypeOfLand2.Count == 2)
+                            {
+                                TypeOfLand2 = "Urban, Agriculture";
+                            }
+                            else
+                            {
+                                TypeOfLand = i.TypeOfLand;
+                                
+                            }
+                            if (i.ProductTreatmentMethod.Count == 2)
+                            {
+                                ProductTreatmentMethod = "BroadcastMound";
+                            }
+                            else
+                            {
+                                ProductTreatmentMethod = string.Join(", ", i.ProductTreatmentMethod); 
+                            }
+                            if (i.AgriTreatmentSites != null)
+                            {
+                                AgriTreatmentSites = string.Join(", ", i.AgriTreatmentSites);
+                               //AgriTreatmentSites = i.AgriTreatmentSites2;
+                            }
+                            if (i.UrbanTreatmentSites != null)
+                            {
+                                UrbanTreatmentSites = string.Join(", ", i.UrbanTreatmentSites);
+                            }
+                            var ProductControlMethod= i.ProductControlMethod;
+                             var B_ProductMinUseRate= i.B_ProductMinUseRate;
+                             var B_ProductMaxUseRate= i.B_ProductMaxUseRate;
+                             var B_ProductMeasurementUnit= i.B_ProductMeasurementUnit;
+                             var M_ProductMinUseRate= i.M_ProductMinUseRate;
+                             var M_ProductMaxUseRate= i.M_ProductMaxUseRate;
+                             var M_ProductMeasurementUnit = i.M_ProductMeasurementUnit;
+                             
+                            
+                        }
+                         <a style="cursor: pointer;" ng-click="EditProduct(@product_id,'@ProductName','@ActiveIngredient','@ProductManufacturer','@ProductUrl','@PhysicalForm','@PesticideClassification',
+                             '@ProductControlMethod','@IsSynthetic','@TypeOfLand2','@TypeOfLand','@ProductTreatmentMethod','@UrbanTreatmentSites','@AgriTreatmentSites',@B_ProductMinUseRate,@B_ProductMaxUseRate,'@B_ProductMeasurementUnit',
+                             @M_ProductMinUseRate,@M_ProductMaxUseRate,'@M_ProductMeasurementUnit')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Edit</a>
+                       <a style="cursor: pointer;" ng-click="DeleteProduct(@product_id)"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>  
+
+<div id="add-product-modal" tabindex="-1" role="dialog" class="modal fade" >
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <div  ng-if="isedit==false">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Add Product Details </h4></div>
+                <div  ng-if="isedit==true">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Edit Product Details </h4></div>
+               
+            </div>
+            
+            <div class="modal-body">
+                <form novalidate="novalidate" name="productForm" class="form-horizontal productForm">
+                    <div class="form-group row">
+                        <label for="productName" class="col-sm-5 control-label text-right">
+                            Product Name<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <input id="productName" type="text" placeholder="Enter product name" ng-model="product_details.ProductName" name="productName" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="activeIngredient" class="col-sm-5 control-label text-right">
+                            Active Ingredient<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <input id="activeIngredient" type="text" placeholder="Enter Active Ingredient" ng-model="product_details.ActiveIngredient" name="activeIngredient" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="manufacturer" class="col-sm-5 control-label text-right">
+                            Product Manufacturer<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <input id="manufacturer" type="text" placeholder="Enter Product Manufacturer" ng-model="product_details.ProductManufacturer" name="manufacturer" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="manu_url" class="col-sm-5 control-label text-right">
+                            Manufacturer Url<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <input id="manu_url" type="text" placeholder="Enter Manufacturer Url" ng-model="product_details.ProductUrl" name="manu_url" required="required" class="form-control" />
+                        </div>
+                    </div>
+                   @* <div class="form-group row">
+                        <label for="physicalform" class="col-sm-5 control-label text-right">
+                            Physical Form<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <input id="physicalform" type="text" placeholder="Enter Physical Form" ng-model="product_details.PhysicalForm" name="physicalform" required="required" class="form-control" />
+                        </div>
+                    </div>*@
+                    <div class="form-group row">
+                        <label class="col-sm-5 control-label text-right">
+                             Physical Form<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <select ng-model="product_details.PhysicalForm" ng-options="PhysicalFormOption.value as PhysicalFormOption.optionText for PhysicalFormOption in PhysicalForm" required="required" name="PhysicalForm" class="form-control">
+                                <option value="">(Pick One Type)</option>
+                            </select>
+                        </div><span ng-show="productForm.PhysicalForm.$touched &amp;&amp; productForm.PhysicalForm.$invalid">Please select type of use</span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 control-label text-right">
+                            Synthetic/Natural<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <select ng-model="product_details.IsSynthetic" ng-options="SyntheticOption.value as SyntheticOption.optionText for SyntheticOption in SyntheticNatural" required="required" name="synthetic" class="form-control">
+                                <option value="">(Pick One Type)</option>
+                            </select>
+                        </div><span ng-show="productForm.synthetic.$touched &amp;&amp; productForm.synthetic.$invalid">Please select type of use</span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 control-label text-right">
+                           Pesticide Classification<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <select ng-model="product_details.PesticideClassification" ng-options="PestClassOption.value as PestClassOption.optionText for PestClassOption in TypeOfPestClass" required="required" name="typeOfPestClass" class="form-control">
+                                <option value="">(Pick One Type Of Classification)</option>
+                            </select>
+                        </div><span ng-show="productForm.typeOfPestClass.$touched &amp;&amp; productForm.typeOfPestClass.$invalid">Please select type of use</span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 control-label text-right">
+                            Type of use of land<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <label style="display: block" ng-repeat="object in TypeOfLand">
+                                <input type="checkbox" name="{{object.value}}" id="{{object.value}}" ng-model="object.checked" ng-change="selectedTypeOfLand()">
+                                <label for="{{object.value}}">{{object.optionText}}</label>
+                            </label>
+                        </div>
+                        <span ng-show="productForm.tyeOfUse.$touched &amp;&amp; productForm.tyoeOfUse.$invalid">Please select type of use</span>
+                    </div>
+                     <div ng-show="land_value" class="form-group row">
+                        <div class="form-group row">
+                            <label class="col-sm-5 control-label text-right">
+                                Type of Urban Treatment Site<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <label style="display: block" ng-repeat="object in TypeOfUrbanTreatmentSite">
+                                    <input type="checkbox" name="{{object.value}}" id="{{object.value}}" ng-model="object.checked" ng-change="selectedUrbanSites()">
+                                    <label for="{{object.value}}">{{object.optionText}}</label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 control-label text-right">
+                                Type of Agricultural Treatment Site<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <label style="display: block" ng-repeat="object in TypeOfAgricultureTreatmentSite">
+                                    <input type="checkbox" name="{{object.value}}" id="{{object.value}}" ng-model="object.checked" ng-change="selectedAgriSites()">
+                                    <label for="{{object.value}}">{{object.optionText}}</label>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="isurban" class="form-group row">
+                        <label class="col-sm-5 control-label text-right">
+                            Type of Urban Treatment Site<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <label style="display: block" ng-repeat="object in TypeOfUrbanTreatmentSite">
+                                <input type="checkbox" name="{{object.value}}" id="{{object.value}}" ng-model="object.checked" ng-change="selectedUrbanSites()">
+                                <label for="{{object.value}}">{{object.optionText}}</label>
+                            </label>
+                        </div>
+                        
+                    </div>
+                    <div ng-show="isagri" class="form-group row">
+                        <label class="col-sm-5 control-label text-right">
+                            Type of Agricultural Treatment Site<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <label style="display: block" ng-repeat="object in TypeOfAgricultureTreatmentSite">
+                                <input type="checkbox" name="{{object.value}}" id="{{object.value}}" ng-model="object.checked" ng-change="selectedAgriSites()">
+                                <label for="{{object.value}}">{{object.optionText}}</label>
+                            </label>
+                        </div>
+
+                        @*<div class="form-group row">
+                            <label class="col-sm-5 control-label text-right">
+                                Type of Agricultre Land<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <select ng-model="product_details.TypeOfAgri" ng-options="typeOfAgriOption.value as typeOfAgriOption.optionText for typeOfAgriOption in TypeOfAgriLand" required="required" name="typeOfAgri" class="form-control">
+                                    <option value="">(Pick One Type of Land)</option>
+                                </select>
+                            </div><span ng-show="productForm.typeOfAgri.$touched &amp;&amp; productForm.typeOfAgri.$invalid">Please select type of use</span>
+                        </div>*@
+                        <span ng-show="productForm.typeOfAgri.$touched &amp;&amp; productForm.typeOfAgri.$invalid">Please select type of use</span>
+                    </div>
+
+                            
+                    <div class="form-group row">
+                        <label class="col-sm-5 control-label text-right">Type of Control Method<span>*</span></label>
+                        <div class="col-sm-7">
+                            <select ng-model="product_details.ProductControlMethod" ng-options="optionOfControl.value as optionOfControl.optionText for optionOfControl in TypeOfControlMethod" required="required" name="controlMethod" class="form-control">
+                                <option value="">(Pick One Control Method)</option>
+                            </select>
+                        </div><span ng-show="productForm.controlMethod.$touched &amp;&amp; productForm.controlMethod.$invalid">Please select control Method</span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 control-label text-right">
+                            Type of Treatment Method<span>*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <label style="display: block" ng-repeat="object in TypeOfTreatmentMethod">
+                                <input type="checkbox" name="{{object.value}}" id="{{object.value}}" ng-model="object.checked" ng-change="selectedTreatmentMethod()">
+                                <label for="{{object.value}}">{{object.optionText}}</label>
+                            </label>
+                        </div>
+                        
+                        <span ng-show="productForm.treatmentStrategy.$touched &amp;&amp; productForm.treatmentStrategy.$invalid">Please select treatment method</span>
+                    </div>
+                    <div ng-show="isbroadcast" class="form-group row">
+                        <div class="form-group row">
+                            <label for="b_minUseRate" class="col-sm-5 control-label text-right">
+                                Broadcast Minimum Use Rate<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input id="b_minUseRate" type="number" placeholder="Enter Minimum Use Rate" ng-model="product_details.B_ProductMinUseRate" required="treatment2 == 1" name="b_minUseRate" ng-pattern="/^[0-9]{1,10}$/" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="b_maxUseRate" class="col-sm-5 control-label text-right">
+                                Broadcast Maximum Use Rate<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input id="b_maxUseRate" type="number" placeholder="Enter Maximum Use Rate" ng-model="product_details.B_ProductMaxUseRate" required="treatment2 == 1" name="b_maxUseRate" ng-pattern="/^[0-9]{1,10}$/" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="b_measurementUnitValue" class="col-sm-5 control-label text-right">
+                                Broascast Measurement Unit<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <select ng-model="product_details.B_ProductMeasurementUnit" ng-options="measurementUnit.value as measurementUnit.optionText for measurementUnit in B_TypeOfMeasurementUnit" required="required" name="b_measurementUnitValue" class="form-control">
+                                    <option value="">(Pick One Type of Measurement Unit)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="ismound" class="form-group row">
+                        <div class="form-group row">
+                            <label for="m_minUseRate" class="col-sm-5 control-label text-right">
+                                Mound Minimum Use Rate<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input id="m_minUseRate" type="number" placeholder="Enter Minimum Use Rate" ng-model="product_details.M_ProductMinUseRate" required="treatment2 == 1" name="m_minUseRate" ng-pattern="/^[0-9]{1,10}$/" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="m_maxUseRate" class="col-sm-5 control-label text-right">
+                                Mound Maximum Use Rate<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input id="m_maxUseRate" type="number" placeholder="Enter Maximum Use Rate" ng-model="product_details.M_ProductMaxUseRate" required="treatment2 == 1" name="m_maxUseRate" ng-pattern="/^[0-9]{1,10}$/" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="m_measurementUnitValue" class="col-sm-5 control-label text-right">
+                                Mound Measurement Unit<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <select ng-model="product_details.M_ProductMeasurementUnit" ng-options="measurementUnit.value as measurementUnit.optionText for measurementUnit in M_TypeOfMeasurementUnit" required="required" name="m_measurementUnitValue" class="form-control">
+                                    <option value="">(Pick One Type of Measurement Unit)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="treatment2" class="form-group row">
+                        <div class="form-group row">
+                            <label for="b_minUseRate" class="col-sm-5 control-label text-right">
+                                Broadcast Minimum Use Rate<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input id="b_minUseRate" type="number" placeholder="Enter Minimum Use Rate" ng-model="product_details.B_ProductMinUseRate" required="treatment2 == 1" name="b_minUseRate" ng-pattern="/^[0-9]{1,10}$/" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="b_maxUseRate" class="col-sm-5 control-label text-right">
+                                Broadcast Maximum Use Rate<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input id="b_maxUseRate" type="number" placeholder="Enter Maximum Use Rate" ng-model="product_details.B_ProductMaxUseRate" required="treatment2 == 1" name="b_maxUseRate" ng-pattern="/^[0-9]{1,10}$/" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="b_measurementUnitValue" class="col-sm-5 control-label text-right">
+                                Broascast Measurement Unit<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <select id="B_ProductMeasurementUnit" ng-model="product_details.B_ProductMeasurementUnit" ng-options="measurementUnit.value as measurementUnit.optionText for measurementUnit in B_TypeOfMeasurementUnit" required="required" name="b_measurementUnitValue" class="form-control">
+                                    <option value="">(Pick One Type of Measurement Unit)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="m_minUseRate" class="col-sm-5 control-label text-right">
+                                Mound Minimum Use Rate<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input id="m_minUseRate" type="number" placeholder="Enter Minimum Use Rate" ng-model="product_details.M_ProductMinUseRate" required="treatment2 == 1" name="m_minUseRate" ng-pattern="/^[0-9]{1,10}$/" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="m_maxUseRate" class="col-sm-5 control-label text-right">
+                                Mound Maximum Use Rate<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input id="m_maxUseRate" type="number" placeholder="Enter Maximum Use Rate" ng-model="product_details.M_ProductMaxUseRate" required="treatment2 == 1" name="m_maxUseRate" ng-pattern="/^[0-9]{1,10}$/" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="m_measurementUnitValue" class="col-sm-5 control-label text-right">
+                                Mound Measurement Unit<span>*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <select ng-model="product_details.M_ProductMeasurementUnit" ng-options="measurementUnit.value as measurementUnit.optionText for measurementUnit in M_TypeOfMeasurementUnit" required="required" name="m_measurementUnitValue" class="form-control">
+                                    <option value="">(Pick One Type of Measurement Unit)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                <div style="float:right; padding-left: 2%;">
+                     <button  type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                </div>
+               
+                <div style="float:right" ng-if="isedit==false" >
+                    <button  id="SubmitProduct" input type="submit" class="btn btn-theme-bg" ng-click="SubmitProduct()">Add Product </button>
+                </div>
+                <div style="float:right" ng-if="isedit==true">
+                    <button  id="SubmitProduct" input type="submit" class="btn btn-theme-bg" ng-click="EditProductFinal()">Edit Product </button>
+                </div></div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $('document').ready(function () {
+        @*if ('@(TempData["Value"])' == 1) {
+            $('#product_sucess').toggle();
+        }*@
+        
+
+        $('#ProductsList').each(function () {
+            var Column_number_to_Merge = 1;
+
+            // Previous_TD holds the first instance of same td. Initially first TD=null.
+            var Previous_TD = null;
+            var i = 1;
+            $("tbody", this).find('tr').each(function () {
+                // find the correct td of the correct column
+                // we are considering the table column 1, You can apply on any table column
+                var Current_td = $(this).find('td:nth-child(' + Column_number_to_Merge + ')');
+
+                if (Previous_TD == null) {
+                    // for first row
+                    Previous_TD = Current_td;
+                    i = 1;
+                }
+                else if (Current_td.text().toUpperCase() == Previous_TD.text().toUpperCase()) {
+                    // the current td is identical to the previous row td
+                    // remove the current td
+                    Current_td.remove();
+                    // increment the rowspan attribute of the first row td instance
+                    Previous_TD.attr('rowspan', i + 1);
+                    i = i + 1;
+                }
+                else {
+                    // means new value found in current td. So initialize counter variable i
+                    Previous_TD = Current_td;
+                    i = 1;
+                }
+            });
+        });
+
+    });
+
+    var polygonManagerApp = angular.module("productManagerApp", []);
+   
+    console.log("inside productmaanager");
+   
+    polygonManagerApp.controller("productDefaultCtrl", function ($scope,$filter) {
+        var $productModal = $("#add-product-modal");
+        $scope.isedit = false;
+        $scope.AddProduct = function () {
+            $scope.isedit = false;
+            $scope.land_value = false;
+            $scope.isagri = false;
+            $scope.isurban = false;
+            $scope.ismound = false;
+            $scope.isbroadcast = false;
+            $scope.treatment2 = false;
+            //$('#add-product-modal').find("input,textarea,select")
+            //                       .val('')
+            //                       .end()
+            //                        .find("input[type=checkbox], input[type=radio]")
+            //                       .prop("checked", "")
+            //                       .end();
+            $('#add-product-modal').find("input[type=checkbox], input[type=radio]")
+                                    .prop("checked", "")
+                                    .end();
+            $scope.refreshForm();
+            console.log($scope.isbroadcast);
+            
+            $('#add-product-modal').modal("show");
+        }
+        $scope.refreshForm = function () {
+            $scope.product_details = {
+                ProductId: 0,
+                ProductName: "",
+                ProductManufacturer: "",
+                PhysicalForm: "",
+                PesticideClassification: "",
+                ProductControlMethod: "",
+                ProductTreatmentMethod: [],
+                ActiveIngredient: "",
+                B_ProductMinUseRate: "",
+                B_ProductMaxUseRate: "",
+                B_ProductMeasurementUnit: "",
+                M_ProductMinUseRate: "",
+                M_ProductMaxUseRate: "",
+                M_ProductMeasurementUnit: "",
+                ProductUrl: "",
+                IsSynthetic: "",
+                IsSyntheticValue: false,
+                UrbanTreatmentSites: [],
+                AgriTreatmentSites: [],
+                TypeOfLand: [],
+                MoundNumber: 0,
+                Notes: "",
+                TypeOfAgri: ""
+            };
+            $scope.TypeOfLand = [
+             { value: "urban", optionText: "Urban Land" },
+             { value: "agricultural", optionText: "Agricultural Land" }
+            ];
+            $scope.TypeOfAgriLand = [
+             { value: "food", optionText: "Food Producing Land" },
+             { value: "nonfood", optionText: "Non Food Producing Land" }
+            ];
+
+
+            $scope.TypeOfUrbanTreatmentSite = [
+            { value: "home_lawns", optionText: "Home Lawns / Ornamentals" },
+            { value: "perimeter", optionText: "Perimeter" },
+            { value: "rec", optionText: "Recreational Areas" },
+            { value: "right_of_way", optionText: "Right of Way" }
+            ];
+
+            $scope.B_TypeOfMeasurementUnit = [
+            { value: "lb/acre", optionText: "lb/acre" },
+            { value: "sq ft", optionText: "sq ft" }
+            ];
+
+            $scope.M_TypeOfMeasurementUnit = [
+           { value: "TBSP/mound", optionText: "TBSP/mound" },
+           { value: "TSP/mound", optionText: "TSP/mound" }
+            ];
+
+            $scope.TypeOfAgricultureTreatmentSite = [
+           { value: "pasture", optionText: "Pasture Land" },
+           { value: "poultry", optionText: "Poultry Houses" },
+           { value: "crop", optionText: "Crop Areas" },
+           { value: "sod", optionText: "Sod / Turf" },
+           { value: "nursery_container", optionText: "Nursery Container" },
+           { value: "nursery_bb", optionText: "Nursery B & B (Ball & Burlap)" },
+           { value: "other", optionText: "Other ( Fences / Rows / Ditches / Out Buildings)" }
+            ];
+
+            $scope.TypeOfControlMethod = [
+              { value: "bait", optionText: "Bait and Sterilize Queen", explaination: "worker ants send product to queen. Queen eats and then unable to give birth to new ants" },
+              { value: "contact", optionText: "Kill by Direct Contact", explaination: "When fire ants have been in contact with the ingredients of products, they are killed" },
+            ];
+
+            $scope.SyntheticNatural = [
+              { value: "synthetic", optionText: "Synthetic", explaination: "worker ants send product to queen. Queen eats and then unable to give birth to new ants" },
+              { value: "natural", optionText: "Natural", explaination: "When fire ants have been in contact with the ingredients of products, they are killed" },
+            ];
+
+            $scope.TypeOfPestClass = [
+              { value: "unrestricted", optionText: "Unrestricted", explaination: "worker ants send product to queen. Queen eats and then unable to give birth to new ants" },
+              { value: "restricted", optionText: "Restricted", explaination: "When fire ants have been in contact with the ingredients of products, they are killed" },
+            ];
+            $scope.TypeOfTreatmentMethod = [
+              { value: "broadcast", optionText: "Broadcast Treatment", explaination: "worker ants send product to queen. Queen eats and then unable to give birth to new ants" },
+              { value: "imt", optionText: "Individual Mound Treatment", explaination: "When fire ants have been in contact with the ingredients of products, they are killed" },
+            ];
+
+            $scope.PhysicalForm = [
+          { value: "Granular", optionText: "Granular" },
+          { value: "Dust", optionText: "Dust" },
+          { value: "Liquid", optionText: "Liquid" }
+            ];
+        }
+     
+        $scope.selectedUrbanSites = function () {
+            $scope.product_details.UrbanTreatmentSites = $filter('filter')($scope.TypeOfUrbanTreatmentSite, { checked: true });
+            console.log($scope.product_details.UrbanTreatmentSites);
+        }
+
+        $scope.selectedAgriSites = function () {
+            $scope.product_details.AgriTreatmentSites = $filter('filter')($scope.TypeOfAgricultureTreatmentSite, { checked: true });
+            console.log($scope.product_details.AgriTreatmentSites);
+        }
+
+        $scope.selectedTypeOfLand = function () {
+            console.log($scope.TypeOfLand);
+            $scope.land_value = false; $scope.isagri = false; $scope.isurban = false;
+            $scope.product_details.TypeOfLand = $filter('filter')($scope.TypeOfLand, { checked: true });
+            console.log($scope.product_details.TypeOfLand);
+            var i=0;
+            if($scope.product_details.TypeOfLand.length==2){
+                $scope.land_value=true;
+            }
+            else
+            {
+                if ($scope.product_details.TypeOfLand.length != 0) {
+                    console.log($scope.product_details.TypeOfLand[0].value);
+                    if ($scope.product_details.TypeOfLand[0].value.trim() == "urban") {
+                        $scope.isurban = true;
+                    }
+                    else if ($scope.product_details.TypeOfLand[0].value.trim() == "agricultural") {
+
+                        $scope.isagri = true;
+                    }
+                }
+            }
+
+        }
+        $scope.selectedTreatmentMethod = function () {
+            $scope.treatment2 = false;
+            $scope.isbroadcast = false;
+            $scope.ismound = false;
+            $scope.product_details.ProductTreatmentMethod = $filter('filter')($scope.TypeOfTreatmentMethod, { checked: true });
+            console.log($scope.product_details.ProductTreatmentMethod);
+            var i=0;
+            if($scope.product_details.ProductTreatmentMethod.length==2){
+                $scope.treatment2=true;
+            }
+            else
+            {
+                console.log($scope.product_details.ProductTreatmentMethod[0]);
+                if ($scope.product_details.ProductTreatmentMethod.length != 0) {   //console.log($scope.product_details.ProductTreatmentMethod[0].value);
+                    if ($scope.product_details.ProductTreatmentMethod[0].value == "broadcast") {
+                        $scope.isbroadcast = true;
+                    }
+                    else if ($scope.product_details.ProductTreatmentMethod[0].value == "imt") {
+                        
+                        $scope.ismound = true;
+                    }
+                }
+            } 
+        }
+
+        $scope.SubmitProduct = function () {
+            $scope.isedit = false;
+            if ($scope.product_details.IsSynthetic == "synthetic") {
+                $scope.product_details.IsSyntheticValue=true;
+            }
+            console.log(typeof (JSON.stringify($scope.product_details)));
+            console.log($scope.product_details);
+
+            $.ajax({
+                type: "POST",
+                url: '@(Url.Action("AddProduct", "Product"))',
+                data: { ProductDetails: JSON.stringify($scope.product_details)},
+                success: function (result) {
+                    location.href = "/Product/ProductIndex";
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // myfunction();
+                    alert("jg" + errorThrown);
+                }
+             });
+        }
+        
+        $scope.EditProductFinal = function () {
+            $scope.isedit = true;
+            console.log($scope.product_details);
+            console.log(typeof (JSON.stringify($scope.product_details)));
+            
+            alert("hello");
+            $.ajax({
+                type: "POST",
+                url: '@(Url.Action("EditProduct", "Product"))',
+                data: { ProductDetails: JSON.stringify($scope.product_details) },
+                success: function (result) {
+
+                    location.href = "/Product/ProductIndex";
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // myfunction();
+                    alert("jg" + errorThrown);
+                }
+            });
+        }
+
+        $scope.GetUrbanTreatmentSites = function (urban_string) {
+            $scope.product_details.UrbanTreatmentSites = [];
+            $scope.TypeOfUrbanTreatmentSite = [];
+            $scope.TypeOfUrbanTreatmentSite.push({ value: "home_lawns", optionText: "Home Lawns / Ornamentals", checked: false });
+            $scope.TypeOfUrbanTreatmentSite.push({ value: "perimeter", optionText: "Perimeter", checked: false });
+            $scope.TypeOfUrbanTreatmentSite.push({ value: "rec", optionText: "Recreational Areas", checked: false });
+            $scope.TypeOfUrbanTreatmentSite.push({ value: "right_of_way", optionText: "Right of Way", checked: false });
+            var urban = urban_string.split(",");
+
+            if (urban_string.length != 0) {
+
+                for (var i = 0; i < urban.length; i++) {
+                    if (urban[i].trim() == "Home Lawns / Ornamentals") {
+                        $scope.product_details.UrbanTreatmentSites.push({ value: "home_lawns", checked: true });
+                        $scope.TypeOfUrbanTreatmentSite[0].checked = true;
+                    }
+                    else if (urban[i].trim() == "Perimeter") {
+                        $scope.product_details.UrbanTreatmentSites.push({ value: "perimeter", optionText: "Perimeter", checked: true });
+                        $scope.TypeOfUrbanTreatmentSite[1].checked = true;
+                    }
+                    else if (urban[i].trim() == "Recreational Areas") {
+                        $scope.product_details.UrbanTreatmentSites.push({ value: "rec", optionText: "Recreational Areas", checked: true });
+                        $scope.TypeOfUrbanTreatmentSite[2].checked = true;
+                    }
+                    else {
+                        $scope.product_details.UrbanTreatmentSites.push({ value: "right_of_way", optionText: "Right of Way", checked: true });
+                        $scope.TypeOfUrbanTreatmentSite[3].checked = true;
+                    }
+                }
+            }
+            return;
+        }
+
+        $scope.GetAgriTreatmentSites = function (agri_string) {
+            $scope.product_details.AgriTreatmentSites = [];
+            $scope.TypeOfAgricultureTreatmentSite = [];
+            $scope.TypeOfAgricultureTreatmentSite = [
+               { value: "pasture", optionText: "Pasture Land", checked: false },
+               { value: "poultry", optionText: "Poultry Houses", checked: false },
+               { value: "crop", optionText: "Crop Areas", checked: false },
+               { value: "sod", optionText: "Sod / Turf", checked: false },
+               { value: "nursery_container", optionText: "Nursery Container", checked: false },
+               { value: "nursery_bb", optionText: "Nursery B & B (Ball & Burlap)", checked: false },
+               { value: "other", optionText: "Other ( Fences / Rows / Ditches / Out Buildings)", checked: false }
+            ];
+            var agri = agri_string.split(",");
+
+            if (agri_string.length != 0) {
+
+                for (var i = 0; i < agri.length; i++) {
+                    if (agri[i].trim() == "Pasture Land") {
+                        $scope.product_details.AgriTreatmentSites.push({ value: "pasture", checked: true });
+                        $scope.TypeOfAgricultureTreatmentSite[0].checked = true;
+                    }
+                    else if (agri[i].trim() == "Poultry Houses") {
+                       $scope.product_details.AgriTreatmentSites.push({ value: "poultry", optionText: "Poultry Houses", checked: true });
+                       $scope.TypeOfAgricultureTreatmentSite[1].checked = true;
+                    }
+                    else if (agri[i].trim() == "Crop Areas") {
+                        $scope.product_details.AgriTreatmentSites.push({ value: "crop", optionText: "Crop Areas", checked: true });
+                        $scope.TypeOfAgricultureTreatmentSite[2].checked = true;
+                    }
+                    else if (agri[i].trim() == "Sod / Turf") {
+                        $scope.product_details.AgriTreatmentSites.push({ value: "sod", optionText: "Sod / Turf", checked: true });
+                        $scope.TypeOfAgricultureTreatmentSite[3].checked = true;
+                    }
+                    else if (agri[i].trim() == "Nursery Container") {
+                        $scope.product_details.AgriTreatmentSites.push({ value: "nursery_container", optionText: "Nursery Container", checked: true });
+                        $scope.TypeOfAgricultureTreatmentSite[4].checked = true;
+                    }
+                    else if (agri[i].trim() == "Nursery B & B (Ball & Burlap)") {
+                        $scope.product_details.AgriTreatmentSites.push({ value: "nursery_bb", optionText: "Nursery B & B (Ball & Burlap)", checked: true });
+                        $scope.TypeOfAgricultureTreatmentSite[5].checked = true;
+                    }
+                    else {
+                        $scope.product_details.AgriTreatmentSites.push({ value: "other", optionText: "Other ( Fences / Rows / Ditches / Out Buildings)", checked: true });
+                        $scope.TypeOfAgricultureTreatmentSite[6].checked = true;
+                    }
+                }
+            }
+            return;
+        }
+        $scope.EditProduct=function(product_id,ProductName,ActiveIngredient,ProductManufacturer,ProductUrl,PhysicalForm,PesticideClassification,
+                             ProductControlMethod, IsSynthetic, TypeOfLand2, TypeOfLand, ProductTreatmentMethod,UrbanTreatmentSites,AgriTreatmentSites, B_ProductMinUseRate, B_ProductMaxUseRate, B_ProductMeasurementUnit,
+                             M_ProductMinUseRate, M_ProductMaxUseRate, M_ProductMeasurementUnit) {
+
+            if (product_id == 53) {
+                console.log("found maria");
+                console.log(M_ProductMeasurementUnit);
+            }
+
+            $scope.isedit = 1;
+            $scope.product_details = {
+                ProductId: 0,
+                ProductName: "",
+                ProductManufacturer: "",
+                PhysicalForm: "",
+                PesticideClassification: "",
+                ProductControlMethod: "",
+                ProductTreatmentMethod: [],
+                ActiveIngredient: "",
+                B_ProductMinUseRate: "",
+                B_ProductMaxUseRate: "",
+                B_ProductMeasurementUnit: "",
+                M_ProductMinUseRate: "",
+                M_ProductMaxUseRate: "",
+                M_ProductMeasurementUnit: "",
+                ProductUrl: "",
+                IsSynthetic: "",
+                IsSyntheticValue: false,
+                UrbanTreatmentSites: [],
+                AgriTreatmentSites: [],
+                TypeOfLand: [],
+                MoundNumber: 0,
+                Notes: "",
+                TypeOfAgri: ""
+            };
+            $scope.TypeOfLand = []; $scope.TypeOfTreatmentMethod = [];
+            document.getElementById("broadcast").checked = false;
+            document.getElementById("imt").checked = false;
+           
+            $scope.treatment2 = false; $scope.isbroadcast = false; $scope.ismound = false;
+            $scope.land_value = false; $scope.isagri = false; $scope.isurban = false;
+
+            $scope.product_details.ProductId = product_id;
+            $scope.product_details.ProductName = ProductName;
+            $scope.product_details.ActiveIngredient = ActiveIngredient;
+            $scope.product_details.ProductManufacturer = ProductManufacturer;
+            $scope.product_details.ProductUrl = ProductUrl;
+            //$scope.product_details.PhysicalForm = PhysicalForm;
+            
+            if (PesticideClassification == "UnRestricted") {
+                $scope.product_details.PesticideClassification = "unrestricted";
+            }
+            else {
+                $scope.product_details.PesticideClassification = "restricted";
+            }
+
+            if (PhysicalForm.toLowerCase().trim() == "granular") {
+                $scope.product_details.PhysicalForm = "Granular";
+            }
+            else if (PhysicalForm.toLowerCase().trim() == "dust") {
+                $scope.product_details.PhysicalForm = "Dust";
+            }
+            else {
+                $scope.product_details.PhysicalForm = "Liquid";
+            }
+            console.log(ProductControlMethod);
+            if (ProductControlMethod.toLowerCase().trim() == "bait") {
+                $scope.product_details.ProductControlMethod="bait"
+            }
+            else {
+                $scope.product_details.ProductControlMethod = "bait";
+            }
+            
+            if (IsSynthetic == "Synthetic") {
+                $scope.product_details.IsSyntheticValue = true;
+                $scope.product_details.IsSynthetic="synthetic"
+            }
+            else {
+                $scope.product_details.IsSyntheticValue = false;
+                $scope.product_details.IsSynthetic = "natural"
+            }
+          
+            if (TypeOfLand2 != "") {
+               
+                $scope.product_details.TypeOfLand.push({ value: "urban"});
+                $scope.product_details.TypeOfLand.push({ value: "agricultural", checked: true });
+                $scope.TypeOfLand.push({ value: "urban", optionText: "Urban Land",checked:true });
+                $scope.TypeOfLand.push({ value: "agricultural", optionText: "Agricultural Land" ,checked:true });
+                $scope.GetUrbanTreatmentSites(UrbanTreatmentSites);
+                $scope.GetAgriTreatmentSites(AgriTreatmentSites)
+                $scope.land_value = true;
+            }
+            else {
+                
+                if (TypeOfLand == "Urban") {
+                    $scope.product_details.TypeOfLand.push({ value: "urban", checked: true });
+                    $scope.TypeOfLand.push({ value: "urban", optionText: "Urban Land", checked: true });
+                    $scope.TypeOfLand.push({ value: "agricultural", optionText: "Agricultural Land", checked: false });
+                    document.getElementById("urban").checked = true;
+                    $scope.isurban = true;
+                    $scope.GetUrbanTreatmentSites(UrbanTreatmentSites);
+                }
+                else {
+                    $scope.product_details.TypeOfLand.push({ value: "agricultural", checked: true });
+                    $scope.TypeOfLand.push({ value: "urban", optionText: "Urban Land", checked: false });
+                    $scope.TypeOfLand.push({ value: "agricultural", optionText: "Agricultural Land", checked: true });
+                    document.getElementById("agricultural").checked = true;
+                    $scope.GetAgriTreatmentSites(AgriTreatmentSites);
+                    $scope.isagri = true;
+                }
+            }
+            console.log("here++" + ProductTreatmentMethod + typeof (ProductTreatmentMethod) + M_ProductMeasurementUnit.substring(0, 4));
+            if (ProductTreatmentMethod == "BroadcastMound") {
+                console.log(M_ProductMeasurementUnit);
+                $scope.product_details.ProductTreatmentMethod = []; $scope.TypeOfTreatmentMethod = []; $scope.product_details.B_ProductMeasurementUnit = "";
+
+                console.log(M_ProductMinUseRate, M_ProductMaxUseRate, M_ProductMeasurementUnit, B_ProductMeasurementUnit);
+                $scope.product_details.ProductTreatmentMethod.push({ value: "broadcast", checked: true });
+                $scope.product_details.ProductTreatmentMethod.push({ value: "imt", checked: true });
+                $scope.TypeOfTreatmentMethod.push( { value: "broadcast", optionText: "Broadcast Treatment", explaination: "worker ants send product to queen. Queen eats and then unable to give birth to new ants", checked:true });
+                $scope.TypeOfTreatmentMethod.push({ value: "imt", optionText: "Individual Mound Treatment", explaination: "When fire ants have been in contact with the ingredients of products, they are killed", checked: true });
+                $scope.product_details.B_ProductMinUseRate=B_ProductMinUseRate;
+                $scope.product_details.B_ProductMaxUseRate = B_ProductMaxUseRate;
+               
+               if (B_ProductMeasurementUnit.trim() == "lb/acre") {
+                   $scope.product_details.B_ProductMeasurementUnit = "lb/acre";
+                }
+                else {
+                    $scope.product_details.B_ProductMeasurementUnit = "sq ft";
+                }
+                $scope.product_details.M_ProductMinUseRate = M_ProductMinUseRate;
+                $scope.product_details.M_ProductMaxUseRate = M_ProductMaxUseRate;
+              
+                if (M_ProductMeasurementUnit.substring(0,4).toUpperCase().trim() == "TBSP") {
+                     $scope.product_details.M_ProductMeasurementUnit = "TBSP/mound";
+                }
+                else{
+                    $scope.product_details.M_ProductMeasurementUnit = "TSP/mound";
+                }
+                $scope.treatment2 = true;
+                
+            }
+               
+            else {
+                console.log(M_ProductMeasurementUnit.toUpperCase());
+                if (ProductTreatmentMethod.toLowerCase().trim() == "mound") {
+                    console.log("measurement unit:"+M_ProductMeasurementUnit)
+                    $scope.product_details.ProductTreatmentMethod.push({ value: "imt", checked: true });
+                    $scope.TypeOfTreatmentMethod.push({ value: "broadcast", optionText: "Broadcast Treatment", explaination: "worker ants send product to queen. Queen eats and then unable to give birth to new ants", checked: false });
+                    $scope.TypeOfTreatmentMethod.push({ value: "imt", optionText: "Individual Mound Treatment", explaination: "When fire ants have been in contact with the ingredients of products, they are killed", checked: true });
+                    $scope.product_details.M_ProductMinUseRate = M_ProductMinUseRate;
+                    $scope.product_details.M_ProductMaxUseRate = M_ProductMaxUseRate;
+                    if (M_ProductMeasurementUnit.substring(0,4).toUpperCase().trim() == "TBSP") {
+                        $scope.product_details.B_ProductMeasurementUnit = "TBSP/mound";
+                    }
+                    else {
+                        $scope.product_details.B_ProductMeasurementUnit = "TSP/mound";
+                    }
+                    $scope.product_details.M_ProductMeasurementUnit = M_ProductMeasurementUnit;
+                    $scope.ismound = true;
+                }
+                else {
+                    $scope.product_details.ProductTreatmentMethod.push({ value: "broadcast", checked: true });
+                    $scope.TypeOfTreatmentMethod.push({ value: "broadcast", optionText: "Broadcast Treatment", explaination: "worker ants send product to queen. Queen eats and then unable to give birth to new ants", checked: true });
+                    $scope.TypeOfTreatmentMethod.push({ value: "imt", optionText: "Individual Mound Treatment", explaination: "When fire ants have been in contact with the ingredients of products, they are killed", checked: false });
+                    $scope.product_details.B_ProductMinUseRate = B_ProductMinUseRate;
+                    $scope.product_details.B_ProductMaxUseRate = B_ProductMaxUseRate;
+                    if (B_ProductMeasurementUnit.trim() == "lb/acre") {
+                        $scope.product_details.B_ProductMeasurementUnit = "lb/acre";
+                    }
+                    else if (B_ProductMeasurementUnit.trim() == "sq ft") {
+                        $scope.product_details.B_ProductMeasurementUnit = "sq ft";
+                    }
+                    $scope.isbroadcast = true;
+                }
+            }
+            console.log($scope.product_details);
+            setTimeout(function () { $('#add-product-modal').modal("show"); }, 100);
+         }
+
+        $scope.DeleteProduct = function (product_id) {
+            $.ajax({
+                type: "POST",
+                url: '@(Url.Action("DeleteProduct", "Product"))',
+                data: { ProductId:product_id },
+                success: function (result) {
+
+                    //var TempPolygon = { id: result, geometry: obj.geometry, properties: obj.properties, type: obj.type };
+                    //console.log(TempPolygon)
+                    //alert(result);
+
+                    //var x = document.getElementById('product_sucess');
+                    //console.log(x.style.display);
+                    //alert("uh");
+                    ////if (x.style.display === 'none') {
+                    ////    x.style.display = 'block';
+                    ////} else {
+                    ////    x.style.display = 'none';
+                    ////}
+
+                    location.href = "/Product/ProductIndex";
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // myfunction();
+                    alert("jg" + errorThrown);
+                }
+            });
+        }
+    });
+</script>
+
+

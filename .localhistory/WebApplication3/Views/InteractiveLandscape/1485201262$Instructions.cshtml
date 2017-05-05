@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Instructions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="divide50"></div>
+    <div class="row">
+        <nav id="myScrollspy" class="col-sm-3">
+            <ul data-spy="affix" data-offset-top="0" class="nav nav-pills nav-stacked">
+                <li><a href="#instruction-signup">Sign Up</a></li>
+                <li><a href="#instruction-signin">Sign In</a></li>
+                <li><a href="#instruction-drawpolygon">Draw Polygon</a></li>
+                <li><a href="#instruction-removearea">Remove Area</a></li>
+                <li><a href="#instruction-editshape">Edit Shape</a></li>
+                <li><a href="#instruction-settreatmeent">Set Treatment</a></li>
+                <li><a href="#instruction-productresult">Products Result</a></li>
+            </ul>
+        </nav>
+        <div class="col-xs-9">
+            <h3>Instructions on How to Use Landscape Management</h3>
+            <p>Here we will go through the process from creating one account to saving a polygon on map</p>
+            <p id="instruction-signup">If you have not created one account with FASIDS, first thing is a simple<a href="/User/SignUp" >&nbsp;registration.<img src="~/Content/InstructionImages/signup.jpg" alt="registration" class="img-responsive" /></a>
+            <div class="divide50"></div>
+            <p id="instruction-signin"> After you having an account. Please<a href="/User/SignIn" target="_blank">&nbsp; sign yourself in.<img src="~/Content/InstructionImages/signin.jpg" alt="signin" class="img-responsive" /></a>
+            <div class="divide50"></div>
+            <p id="instruction-drawpolygon"> Go to landscape section, click "Draw Polygon" on map.</p><img src="~/Content/InstructionImages/drawpolygon.jpg" alt="draw polygon" class="img-responsive" />
+            <div class="divide50"></div>
+            <p id="instruction-removearea"> You can remove some area from the marked area by using "Remove Area"</p><img src="~/Content/InstructionImages/removearea.jpg" alt="remove area" class="img-responsive" />
+            <div class="divide50"></div>
+            <p id="instruction-editshape"> You can also adjust the area, by clicking "Edit Shape" button. For example, you might move some vertice or cancel entire subroute.</p><img src="~/Content/InstructionImages/editshape.jpg" alt="edit shape" class="img-responsive" />
+            <div class="divide50"></div>
+            <p id="instruction-settreatmeent">
+                After you feel that shape of the polygon is good, you click "Set Treatment" on map. Set the land usage type, Treatment type and so on.
+                Then you click Finish Preparation
+            </p><img src="~/Content/InstructionImages/settreatment.jpg" alt="set Treatment" class="img-responsive" />
+            <div class="divide50"></div>
+            <p id="instruction-productresult"> Click "Save &amp; See Result". You will be prompted to page showing product results.</p><img src="~/Content/InstructionImages/productresult.jpg" alt="product result1" class="img-responsive" /><img src="~/Content/InstructionImages/productresult2.jpg" alt="product result2" class="img-responsive" />
+            <div class="divide50"></div>
+            <p id="instruction-dashboard">To retrieve the polygon you have saved, click your name on right top corner, click user dashboard. Then scroll down, you will see polygon just created.</p><img src="~/Content/InstructionImages/userdashboard.png" alt="where is dashboard" class="img-responsive" /><img src="~/Content/InstructionImages/polygonInDashboard.jpg" alt="polygon in dashboard" class="img-responsive" />
+            <div class="divide50"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var navbarHt = $("div.navbar.navbar-default").height();
+    console.log(navbarHt)
+  $('body').scrollspy({
+    offset: navbarHt + 5
+  });
+   
+  $(function() {
+    $('a[href*="#"]:not([href="#"])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+            $('html, body').animate({
+                scrollTop: target.offset().top - navbarHt - 50
+                 
+          }, 500);
+          return false;
+        }
+      }
+    });
+  });
+</script>
+

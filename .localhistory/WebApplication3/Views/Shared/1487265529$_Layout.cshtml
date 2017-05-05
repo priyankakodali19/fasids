@@ -1,0 +1,178 @@
+﻿@using WebApplication3.Helpers;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASIDS</title>
+    <script src="~/Scripts/jquery-1.11.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-table.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/parallax.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.10.2/validator.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7z3meKGq4cAqC5iziMLVXuHPtwrFdIcY&libraries=geometry"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+    <script src="~/scripts/jquery.simpleWeather.min.js"></script>
+   <script src="~/scripts/textboxio-client/textboxio/textboxio.js"></script>
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+    <link href="~/Content/mapcover.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/pace_loadingbar.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/index.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/SignIn.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AntDistribution/AntDistribution.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/QA/QA.css" rel="stylesheet" type="text/css" />
+    
+    
+</head>
+<script type="text/javascript">
+        $(function () {
+            $("body").on('click keypress', function () {
+                ResetThisSession();
+            });
+        });
+
+  var timeInSecondsAfterSessionOut = 10; // change this to change session time out (in seconds).
+        var secondTick = 0;
+
+        function ResetThisSession() {
+            secondTick = 0;
+        }
+
+        function StartThisSessionTimer() {
+            secondTick++;
+            var timeLeft = ((timeInSecondsAfterSessionOut - secondTick) / 60).toFixed(0); // in minutes
+        timeLeft = timeInSecondsAfterSessionOut - secondTick; // override, we have 30 secs only 
+
+            $("#spanTimeLeft").html(timeLeft);
+
+            if (secondTick > timeInSecondsAfterSessionOut) {
+                clearTimeout(tick);
+                location.href = "/User/Logout";
+                return;
+            }
+            tick = setTimeout("StartThisSessionTimer()", 1000);
+        }
+
+        StartThisSessionTimer();
+</script>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div id="header_container" class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("FASIDS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <img id="TAMUlogo" src="/Content/images/TAM-Logo-white.png" alt="TAMUlogo" />
+                <img id="KELlogo" src="/Content/images/KELlogo_sm.jpg" alt="KELlogo" />
+            </div>
+            <div id="index-navbar"class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><span id="spanTimeLeft"></span> seconds left</li>
+                    <li class="@Html.IsActive("Home", "Index")"><a href="/Home/Index">HOME</a></li>
+                    <li class="dropdown @Html.IsActive("InteractiveLandscape", "LandscapeManagement")"><a href="#" data-toggle="dropdown" class="dropdown-toggle">INTERACTIVE LANDSCAPE&nbsp;&#9660;</a>
+                        <ul id="index-dropdown-menu" role="menu"  class="dropdown-menu">
+                            <li><a href="/InteractiveLandscape/LandscapeManagement">Landscape Management Tool</a></li>
+                            <li><a href="/Home/AntDistribution">Texas Ant Distribution Map</a></li>
+                            <li><a href="/Product/ProductIndex">Fire Ant Products</a></li>                           
+                        </ul>
+                    </li>
+                    <li class="@Html.IsActive("Home", "OfficialBlog")"><a href="/Home/OfficialBlog">OFFICIAL BLOG</a></li>
+                    <li class="@Html.IsActive("Home", "AntActivity")"><a href="/Home/AntActivity">FIRE ANT ACTIVITY</a></li>
+                    <li class="@Html.IsActive("QA", "QAIndex")"><a href="/QA/QAIndex">Q&A</a></li>
+                    <!--<li><a href="/User/SignUp">SIGN UP</a></li>
+                    <li><a href="/User/SignIn">	<i class="fa fa-lock"></i> SIGN IN</a></li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"> @Context.User.Identity.Name&#9660;</a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li><a href="/User/UserDashboard">User Dashboard</a></li>
+                            <li><a href="/User/Account">Account</a></li>
+                            <li><a href="/User/Logout">Logout</a></li>
+                        </ul>
+                    </li>-->
+                    @Html.Partial("_LoginPartial")
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+       
+    </div>
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-6 margin30">
+                    <div class="footer-col">
+                        <h3>About FASIDS</h3>
+                        <p>
+                            FASIDS is one project of KEL lab of Department of Entomology of TAMU. The purpose of this project is to aim management of imported fire ant. The project is consisted of&nbsp;
+                            map or landscape tools, question and answer section, and reports and knowledge base.&nbsp;<a href="http://entomology.tamu.edu/people/coulson-robert/">Prof. Coulson&nbsp;</a>oversees and&nbsp;<a href="http://entomology.tamu.edu/people/tchakerian-dr-maria-d/">Dr. Maria Tchakerian&nbsp;</a>manages this project.&nbsp;<a href="https://www.linkedin.com/in/boweiliujs">Bowei Liu&nbsp;</a>is the software developer of this project.&nbsp;
+                        </p>
+                        <ul class="list-inline social-1">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- footer col-->
+                <div class="col-md-3 col-sm-6 margin30">
+                    <div class="footer-col">
+                        <h3>Contact</h3>
+                        <ul class="list-unstyled contact">
+                            <li>
+                                <p><strong><i class="fa fa-map-marker"></i> Address:</strong> KEL Texas A&amp;M University,</p>
+                            </li>
+                            <li>
+                                <p><strong><i class="fa fa-envelope"></i> Mail Us:</strong><a href="#">r-coulson@tamu.edu</a></p>
+                            </li>
+                            <li>
+                                <p><strong><i class="fa fa-phone"></i> Phone:</strong> +1 (979) 845-9725</p>
+                            </li>
+                            <li>
+                                <p><strong><i class="fa fa-print"></i> Fax</strong> +1 (979) 862-4820</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- footer col-->
+                <div class="col-md-4 col-sm-6 margin30">
+                    <div class="footer-col">
+                        <h3>Newsletter</h3>
+                        <p>Enter your email to subscribe progress of FASIDS( not implemented)</p>
+                        <form role="form" class="subscribe-form">
+                            <div class="input-group">
+                                <input type="text" placeholder="Enter email to subscribe" class="form-control" /><span class="input-group-btn">
+                                    <button type="submit" class="btn btn-theme-dark btn-lg">Ok</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- footer col-->
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="footer-btm"><span>©2015-2016. KEL@Texas A&amp;M</span></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+        
+</body>
+</html>

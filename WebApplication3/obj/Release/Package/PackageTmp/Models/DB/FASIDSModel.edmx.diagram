@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8f3e57d5e0a34e55b5a6724cb68b0ffd" Name="Diagram1">
+        <EntityTypeShape EntityType="FASIDSModel.NewPolygonGeoJson" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FASIDSModel.PolygonGeoJson" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="FASIDSModel.PostAnswer" Width="1.5" PointX="5.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="FASIDSModel.PostQuestion" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FASIDSModel.Product_list" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FASIDSModel.ProductData" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FASIDSModel.UserData" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FASIDSModel.UserImage" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
+        <AssociationConnector Association="FASIDSModel.FK__NewPolygo__UserI__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="FASIDSModel.FK__PolygonGe__UserI__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="FASIDSModel.FK__PostAnswe__Quest__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="FASIDSModel.FK__PostAnswe__UserI__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="FASIDSModel.FK__PostQuest__UserI__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="FASIDSModel.FK__UserImage__UserI__3A81B327" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

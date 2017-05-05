@@ -1,0 +1,572 @@
+﻿[
+	{
+		"genus" : "Acanthomyops",
+		"species_array" : [
+			"interjectus",
+			"latipes"
+		]
+	},
+	{
+		"genus" : "Acanthostichus",
+		"species_array" : [
+			"texanus"
+		]
+	},
+	{
+		"genus" : "Acromyrmex",
+		"species_array" : [
+			"versicolor chisosensis"
+		]
+	},
+	{
+		"genus" : "Amblyopone",
+		"species_array" : [
+			"pallipes"
+		]
+	},
+	{
+		"genus" : "Aphaenogaster",
+		"species_array" : [
+			"rudis",
+			"punctaticeps",
+			"lamellidens",
+			"tennesseensis",
+			"treatae pluteicornis",
+			"cockerelli",
+			"texana carolinensis",
+			"texana",
+			"mutica",
+			"fulva",
+			"boulderensis smithi",
+			"albisetosa"
+		]
+	},
+	{
+		"genus" : "Atta",
+		"species_array" : [
+			"texana"
+		]
+	},
+	{
+		"genus" : "Brachymyrmex",
+		"species_array" : [
+			"obscurior",
+			"depilis"
+		]
+	},
+	{
+		"genus" : "Camponotus",
+		"species_array" : [
+			"noveboracensis",
+			"sayi",
+			"planatus",
+			"vafer",
+			"ulcerosus",
+			"caryae",
+			"snellingi",
+			"festinatus",
+			"maccooki",
+			"semitestaceus",
+			"fallax",
+			"vicinus",
+			"sp1",
+			"impressus",
+			"nearcticus",
+			"pennsylvanicus",
+			"atriceps",
+			"ocreatus",
+			"pylartes",
+			"hunteri",
+			"americanus",
+			"cuauhtemoc",
+			"sansabeanus",
+			"etiolatus",
+			"castaneus",
+			"discolor",
+			"decipiens",
+			"texanus",
+			"acutirostris"
+		]
+	},
+	{
+		"genus" : "Cardiocondyla",
+		"species_array" : [
+			"ectopia",
+			"nuda",
+			"emeryi"
+		]
+	},
+	{
+		"genus" : "Cephalotes",
+		"species_array" : [
+			"angustus",
+			"texanus"
+		]
+	},
+	{
+		"genus" : "Cerapachys",
+		"species_array" : [
+			"davisi",
+			"augustae"
+		]
+	},
+	{
+		"genus" : "Crematogaster",
+		"species_array" : [
+			"rifelna",
+			"minutissima",
+			"lineolata",
+			"laeviuscula",
+			"mormonum",
+			"larrea",
+			"emeryana",
+			"minutissima missuriensis",
+			"isolata",
+			"browni",
+			"depilis",
+			"ashmeadi",
+			"hespera",
+			"vermicullata",
+			"cerasi",
+			"colei",
+			"punctulata",
+			"arizonensis"
+		]
+	},
+	{
+		"genus" : "Cryptopone",
+		"species_array" : [
+			"gilva"
+		]
+	},
+	{
+		"genus" : "Cyphomyrmex",
+		"species_array" : [
+			"flavidus",
+			"rimosus",
+			"wheeleri",
+			"minutus"
+		]
+	},
+	{
+		"genus" : "Dorymyrmex",
+		"species_array" : [
+			"pyramicus",
+			"flavus",
+			"bicolor",
+			"smithi",
+			"lipan",
+			"insanus"
+		]
+	},
+	{
+		"genus" : "Eciton",
+		"species_array" : [
+			"mexicanum"
+		]
+	},
+	{
+		"genus" : "Ectatomma",
+		"species_array" : [
+			"tuberculatum"
+		]
+	},
+	{
+		"genus" : "Forelius",
+		"species_array" : [
+			"pruinosus",
+			"mccooki"
+		]
+	},
+	{
+		"genus" : "Formica",
+		"species_array" : [
+			"subsericea",
+			"puberula",
+			"nititdiventris",
+			"gynocrates",
+			"bradleyi",
+			"neorufibardis",
+			"neoclara",
+			"pallidefulva",
+			"perpilosa",
+			"montana",
+			"neogagates",
+			"schaufussi dolosa",
+			"schaufussi",
+			"gnava"
+		]
+	},
+	{
+		"genus" : "Gnamptogenys",
+		"species_array" : [
+			"hartmanni"
+		]
+	},
+	{
+		"genus" : "Hypoponera",
+		"species_array" : [
+			"gleadowi",
+			"ergatandria",
+			"opacior",
+			"punctatissima",
+			"opaciceps",
+			"inexorata"
+		]
+	},
+	{
+		"genus" : "Labidus",
+		"species_array" : [
+			"coecus"
+		]
+	},
+	{
+		"genus" : "Lasius",
+		"species_array" : [
+			"neoniger",
+			"sitiens"
+		]
+	},
+	{
+		"genus" : "Leptogenys",
+		"species_array" : [
+			"elongata"
+		]
+	},
+	{
+		"genus" : "Leptothorax",
+		"species_array" : [
+			"tricarinatus neomexicanus",
+			"rugatulus brunnescens",
+			"curvispinosus",
+			"obliquicanthus",
+			"texanus",
+			"nevadensis",
+			"schaumii",
+			"obturator",
+			"rugulatus",
+			"hispidus",
+			"sp 2a",
+			"sp 5",
+			"pergandei",
+			"nitens",
+			"sp 4",
+			"wilda",
+			"subditivus",
+			"terrigena",
+			"carinatus",
+			"sp 2",
+			"sp 3",
+			"sp 1"
+		]
+	},
+	{
+		"genus" : "Linepithema",
+		"species_array" : [
+			"humile"
+		]
+	},
+	{
+		"genus" : "Liometopum",
+		"species_array" : [
+			"luctuosum",
+			"apiculatum"
+		]
+	},
+	{
+		"genus" : "Monomorium",
+		"species_array" : [
+			"carbonarium",
+			"viride",
+			"pharaonis",
+			"minimum",
+			"cyaneum"
+		]
+	},
+	{
+		"genus" : "Mycetosoritis",
+		"species_array" : [
+			"hartmanni"
+		]
+	},
+	{
+		"genus" : "Myrmecina",
+		"species_array" : [
+			"americana"
+		]
+	},
+	{
+		"genus" : "Myrmecocystus",
+		"species_array" : [
+			"navajo",
+			"placodops",
+			"mimicus",
+			"depilis",
+			"mexicanus",
+			"mendax",
+			"romainei",
+			"melliger"
+		]
+	},
+	{
+		"genus" : "Myrmica",
+		"species_array" : [
+			"striologaster",
+			"latifrons",
+			"colax",
+			"brevinodus",
+			"punctiventris"
+		]
+	},
+	{
+		"genus" : "Neivamyrmex",
+		"species_array" : [
+			"spoliator",
+			"moseri",
+			"fallax",
+			"baylori",
+			"texanus",
+			"spinolae",
+			"nigrescens",
+			"swainsonii",
+			"pauxillus",
+			"minor",
+			"opacithorax",
+			"isodentatus",
+			"melshaemeri",
+			"macropterus",
+			"fuscipennis",
+			"pilosus mexicanus",
+			"harrisii",
+			"leonardi"
+		]
+	},
+	{
+		"genus" : "Nomamyrmex",
+		"species_array" : [
+			"esenbecki wilsoni"
+		]
+	},
+	{
+		"genus" : "Odontomachus",
+		"species_array" : [
+			"clarus"
+		]
+	},
+	{
+		"genus" : "Oligomyrmex",
+		"species_array" : [
+			"longii"
+		]
+	},
+	{
+		"genus" : "Pachycondyla",
+		"species_array" : [
+			"villosa",
+			"harpax"
+		]
+	},
+	{
+		"genus" : "Paratrechina",
+		"species_array" : [
+			"guatemalensis",
+			"faisonensis",
+			"vividula",
+			"longicornis",
+			"bourbonica",
+			"parvula",
+			"austroccidua",
+			"terricola",
+			"bruesii",
+			"arenivaga"
+		]
+	},
+	{
+		"genus" : "Pheidole",
+		"species_array" : [
+			"xerophila",
+			"virago",
+			"tucsonica",
+			"titanis",
+			"sitarches",
+			"pinealis",
+			"pilifera coloradensis",
+			"militicida",
+			"hyatti",
+			"lamia",
+			"sciara",
+			"casta",
+			"vallicola",
+			"pilifera artemisia",
+			"morrisi impexa",
+			"tepicana",
+			"sitarches refuscens",
+			"crassicornis tetra",
+			"sitarches soritis",
+			"porcula",
+			"diversipilosa",
+			"longula",
+			"micula",
+			"floridana",
+			"metallescens",
+			"texana",
+			"humeralis",
+			"desertorum",
+			"metallescens splendidula",
+			"greggi",
+			"clydei",
+			"dentata",
+			"macclendoni",
+			"ridicula",
+			"rugulosa",
+			"crassicornis",
+			"marcidula",
+			"ceres",
+			"cockerelli",
+			"nucucliceps",
+			"bicarinata vinelandica",
+			"constipata",
+			"tysoni",
+			"senex",
+			"sciophila",
+			"anastasii"
+		]
+	},
+	{
+		"genus" : "Platythyrea",
+		"species_array" : [
+			"punctata"
+		]
+	},
+	{
+		"genus" : "Pogonomyrmex",
+		"species_array" : [
+			"texanus",
+			"bigbendensis",
+			"rugosus",
+			"maricopa",
+			"occidentalis",
+			"imberbiculus",
+			"desertorum",
+			"californicus",
+			"barbatus",
+			"comanche",
+			"apache"
+		]
+	},
+	{
+		"genus" : "Ponera",
+		"species_array" : [
+			"exotica",
+			"pennsylvanica"
+		]
+	},
+	{
+		"genus" : "Prenolepsis",
+		"species_array" : [
+			"imparis"
+		]
+	},
+	{
+		"genus" : "Proceratium",
+		"species_array" : [
+			"compitale",
+			"pergandei"
+		]
+	},
+	{
+		"genus" : "Pseudomyrmex",
+		"species_array" : [
+			"elongatus",
+			"apache",
+			"pallidus",
+			"gracilis",
+			"seminole",
+			"ejectus",
+			"brunneus"
+		]
+	},
+	{
+		"genus" : "Rogeria",
+		"species_array" : [
+			"creightoni"
+		]
+	},
+	{
+		"genus" : "Smithistruma",
+		"species_array" : [
+			"rostrata",
+			"ornata",
+			"margaritae",
+			"reflexa",
+			"ohioensis",
+			"laevinasis",
+			"clypeata"
+		]
+	},
+	{
+		"genus" : "Solenopsis",
+		"species_array" : [
+			"puncticeps",
+			"tennesseensis",
+			"texana",
+			"picta",
+			"pilosula",
+			"molesta",
+			"xyloni",
+			"krockowi",
+			"subterranea",
+			"invicta",
+			"geminata",
+			"aurea",
+			"salina",
+			"amblychila"
+		]
+	},
+	{
+		"genus" : "Stenamma",
+		"species_array" : [
+			"hauchucanum"
+		]
+	},
+	{
+		"genus" : "Strumigenys",
+		"species_array" : [
+			"silvestrii",
+			"louisianae"
+		]
+	},
+	{
+		"genus" : "Tapinoma",
+		"species_array" : [
+			"sessile",
+			"melanocephalum"
+		]
+	},
+	{
+		"genus" : "Tetramorium",
+		"species_array" : [
+			"hispidum",
+			"bicarinatum",
+			"spinosus",
+			"spinosum"
+		]
+	},
+	{
+		"genus" : "Trachymyrmex",
+		"species_array" : [
+			"smithi",
+			"arizonensis",
+			"turrifex caroli",
+			"desertorum",
+			"turrifex",
+			"septentrionalis"
+		]
+	},
+	{
+		"genus" : "Trichoscapa",
+		"species_array" : [
+			"membranifera"
+		]
+	}
+]

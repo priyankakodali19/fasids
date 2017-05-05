@@ -1,0 +1,69 @@
+﻿@model WebApplication3.Models.ViewModel.UserProfileView
+@{
+    ViewBag.Title = "GetUserBasicInfo";
+    
+}
+@Html.Action("GetUserBasicInfo", "UserController");
+<div class="panel panel-default">
+    <div class="panel-heading"><h4>BASIC INFO</h4></div>
+    <div class="panel-body">
+        <form action="undefined/users/account/basic_info" method="post">
+            <div class="row">
+                <div class="col-xs-3 text-right">
+                    <label for="email">Email address</label>
+                </div>
+                <div class="col-xs-5">
+                    @Html.DisplayFor(model => model.FirstName)
+                    <p>model.FirstName</p>
+                    <input id="Email" type="email" placeholder="Email" name="Email" required="required" class="form-control" value="model.Email" />
+                </div>
+            </div>
+            <div class="divide20"></div>
+            <div class="row">
+                <div class="col-xs-3 text-right">
+                    <label for="FirstName">First Name</label>
+                </div>
+                <div class="col-xs-5">
+                    <input id="FirstName" type="text" placeholder="Enter First Name" name="FirstName" required="required" class="form-control" />
+                </div>
+            </div>
+            <div class="divide20"></div>
+            <div class="row">
+                <div class="col-xs-3 text-right">
+                    <label for="LastName">Last Name </label>
+                </div>
+                <div class="col-xs-5">
+                    <input id="LastName" type="text" placeholder="Enter Last Name" name="LastName" required="required" class="form-control" />
+                </div>
+            </div>
+            <div class="divide20"></div>
+            <div class="row">
+                <div class="col-xs-3 text-right">
+                    <label for="UserName">User Name </label>
+                </div>
+                <div class="col-xs-5">
+                    <input id="UserName" type="text" placeholder="Enter User Name" name="UserName" required="required" class="form-control" />
+                </div>
+            </div>
+            <div class="divide20"></div>
+            <div class="row">
+                <div class="col-xs-3 text-right">
+                    <label for="usercat">User category</label>
+                </div>
+                <div class="col-xs-5">
+                    <select id="usercat" name="usercat" convert-to-number="convert-to-number" required="required" class="form-control">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-xs-2 col-xs-offset-9" style="float:right">
+                    <button type="submit" class="FasidsBtn btn btn-primary">Update Info</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

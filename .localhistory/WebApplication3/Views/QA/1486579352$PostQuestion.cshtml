@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "PostQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="divide20"></div>
+<div class="divide20"></div>
+
+<form id="question_form" data-toggle="validator" role="form" method="post" >
+    <div class="row" >
+       
+        <div class="col-sm-1"></div>
+        <div id="qsubj" class="form-group col-xs-10 ">
+             <h4>Post Question</h4>
+            <hr>
+            <input id="QuestionSubject" type="text" name="title" placeholder="Question subject" class="form-control" required/>
+            <div class="help-block with-errors"></div>
+        </div>
+    </div>
+    <div class="divide20"></div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div id="question-content" class="col-xs-10 form-group">
+            <div class="QuestionContent"  required ></div>
+            <div class="help-block with-errors"></div>
+        </div>
+    </div>
+    
+    <div class="divide20"></div>
+    <div class=" row final-buttons">
+        <div class="col-sm-1"></div>
+       <div class="col-xs-10">
+            <div class="form-group" id="SubmitQuestion" >
+                <btn input type="submit" class="btn btn-theme-bg" onclick="SubmitQuestion">Submit </btn>&nbsp;&nbsp; <a href="/QA/QAIndex" class="btn border-black">Cancel</a>
+            </div>
+           
+            
+        </div>
+    </div>
+</form>
+<div class="divide20"></div>
+
+<script type="text/javascript">
+    $('document').ready(function () {
+        $('#question_form').validator()
+        textboxio.replaceAll('.QuestionContent');
+
+        document.getElementById('SubmitQuestion').onclick = function () {
+            // Get the active editor
+            var editor = textboxio.getActiveEditor();
+            var subject = $('#QuestionSubject').val();
+           
+            // Retrieve the contents of the active editor
+            var content = editor.content.get();
+            var html = editor.content.get().html().replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            console.log(html);
+            alert("dfD");
+            if ( subject="") {
+                console.log("hello");
+                if (subject = "") {
+                    $("#qsubj").append('<div class="help-block with-errors" style="color:#b94a48">Please enter subject</div>');
+                    return;
+                }
+                $("#question-content").append('<div class="help-block with-errors" style="color:#b94a48">Please enter a question</div>');
+                return;
+            }
+                $.ajax({
+                    type: "POST",
+                    url: '@(Url.Action("PostQuestion", "QA"))',
+                    data: { 'qa_subject': subject, 'qa_content': content },
+                success: function (apiResult) {
+                    location.href = "/QA/QAIndex";
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("jhj" + textStatus);
+                }
+                });
+            
+            
+        };
+    });
+</script>

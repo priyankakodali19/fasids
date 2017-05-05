@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "PostQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+  toolbar:      "wysihtml5-toolbar", // id of toolbar element
+  parserRules:  wysihtml5ParserRules // defined in parser rules set 
+});
+</script>
+<h2>PostQuestion</h2>
+<!-- wysihtml5 parser rules -->
+<script src="/path-to-wysihtml5/parser_rules/advanced.js"></script>
+<!-- Library -->
+<script src="/path-to-wysihtml5/dist/wysihtml5-0.3.0.min.js"></script>
+
+<form method="post" id="wysihtml-form">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <input type="text" name="title" placeholder="Question subject" class="form-control"/>
+        </div>
+    </div>
+
+    <form><textarea id="wysihtml5-textarea" placeholder="Enter your text ..." autofocus></textarea></form>
+    <div id="wysihtml5-toolbar" style="display: none;">
+  <a data-wysihtml5-command="bold">bold</a>
+  <a data-wysihtml5-command="italic">italic</a>
+
+  <!-- Some wysihtml5 commands require extra parameters -->
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a>
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a>
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a>
+
+  <!-- Some wysihtml5 commands like 'createLink' require extra paramaters specified by the user (eg. href) -->
+  <a data-wysihtml5-command="createLink">insert link</a>
+  <div data-wysihtml5-dialog="createLink" style="display: none;">
+    <label>
+      Link:
+      <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+    </label>
+    <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+  </div>
+</div>
+
+
+<div class="divide30"></div>
+
+
+
+<div class="divide20"></div>
+<div class="divide20"></div>
+
+<div class="row final-buttons">
+    <div class="col-xs-11 col-xs-offset-1"><a href="#" class="btn border-black">Save draft</a><a href="#" class="btn border-black">preview</a>
+        <div id="wysihtml-submit" class="btn btn-theme-bg">Submit</div>
+    </div>
+</div>
+</form>
+<div class="divide20"></div>

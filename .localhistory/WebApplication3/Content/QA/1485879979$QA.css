@@ -1,0 +1,33 @@
+﻿#QA h4 {
+    margin: 0px;
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: "Open Sans", sans-serif;
+}
+
+#QA {
+    padding: 30px 0;
+    background-image: url(../img/shadow-bg.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #f6f6f6;
+    border-top: 1px solid #d2d3d4;
+    border-bottom: 1px solid #d2d3d4
+}
+
+.btn-theme-dark {
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+    font-weight: 600;
+    letter-spacing: 0px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+   
+}

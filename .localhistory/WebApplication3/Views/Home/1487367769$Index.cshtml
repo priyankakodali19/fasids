@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    #myCarousel .carousel-caption {
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+    #myCarousel {
+        /*height:300px;*/
+
+    }
+
+#myCarousel .item img {
+  height:400px;
+  margin: 0 auto;
+}
+</style>
+
+
+<div class="divide30"></div>
+<h2 class="title text-center">
+    Fire Ant Spatial Information and Decision Support (FASIDS) System
+</h2>
+<div class="divide30"></div>
+    @*<div data-parallax="scroll" data-image-src="/Content/images/fasids_bg1.jpg" class="parallax-window pic-below-title">
+    <div class="container">
+        <div class="row breadcrumb-text-row">
+            <div class="col-xs-12 text-center">
+                <h3>FASIDS: A product of the Knowledge Engineering Laboratory</h3>
+            </div>
+        </div>
+    </div>
+    </div>*@
+    <div id="myCarousel" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      <img src="~/Content/CarouselImages/landscape.jpg"  />
+      <div class="carousel-caption"><p>111111111</p></div>
+    </div>
+    <div class="item">
+      <img src="~/Content/CarouselImages/distb.jpg" />
+      <div class="carousel-caption"><p>222222222</p></div>
+    </div>
+    <div class="item">
+      <img src="~/Content/CarouselImages/activity.jpg" />
+      <div class="carousel-caption"><p>333333333</p></div>
+    </div>
+    <div class="item">
+      <img src="~/Content/CarouselImages/qa.jpg" />
+      <div class="carousel-caption"><p>333333333</p></div>
+    </div>
+  </div>
+  <!-- Carousel nav --> <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+
+  <a
+  class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+    <div class="container">
+        <div class="row">
+        <div class="col-sm-4">
+            <img style="float:left" src="~/Content/images/knowledge_base.jpg" />
+            <div class="col-sm-10">
+                <h4>KNOWLEDGE BASE</h4>
+                <p>FASIDS provides a synthesis of information for use in suppression of the Red Imported Fire Ant (RIFA).</p>
+            </div>
+        </div>
+          
+        <div class="col-sm-4">
+            <img style="float:left" src="~/Content/images/statewide_data.jpg"/>
+            <div class="col-sm-10">
+                <h4>STATEWIDE DATA</h4>
+                <p>FASIDS provides an archive of statewide data on the distribution and abundance of the Red Imported Fire and related invasive species.</p>
+            </div>
+        </div>
+            
+        <div class="col-sm-4">
+            <img style="float:left" src="~/Content/images/info_sharing.jpg"/>
+            <div class="col-sm-10">
+                <h4>INFORMATION SHARING</h4>
+                <p>FASIDS provides a means of sharing information on the Red Imported Fire Ant among stakeholders.</p>
+            </div>
+        </div>
+        </div>
+    </div>
+        
+   <div class="divide30"></div>
+    <section id="services-bg-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h3>Our Goal</h3>
+                </div>
+                <div class="col-xs-12 col-xs-offset-2">
+                    <hr />
+                </div>
+                <div class="col-xs-12 text-center">
+                    <p>The goal of FASIDS is to provide a synthesis of knowledge gained from research<br /> on the Red Imported Fire Ant for the purposes of planning, problem-solving, and decision making</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="divide30"></div>
+        <div class="row">
+            
+            <div class="col-sm-6"><img src="~/Content/images/draw_area.jpg" alt="edit polygon on map" class="img-responsive" /></div>
+            <div class="col-sm-6">
+                <div>
+                    <h2>Instructions for Red Imported Fire Ant Suppression on Public and Private Sites</h2>
+                    <p>
+                        Through the use of Google Maps API, this module provides a means of measuring the proposed area of treatment,
+                        suggests suitable products for use suppresssion, and calculates the amount of product required for treatment.
+                    </p>
+                </div>
+                <ul class="list-unstyled">
+                    <li>&#x2714;&nbsp; Define the boundary of the treatment area on a map</li>
+                    <li>&#x2714;&nbsp; Save the defined area to a profile</li>
+                    <li>&#x2714;&nbsp; Receive suggested ant treatment products and calculated amount of product needed for applications</li>
+                
+                </ul><a href="/InteractiveLandscape/LandscapeManagement" class="btn border-theme">Visit Landscape Management Tool</a>
+            </div>
+            
+        </div>
+        <div class="divide30"></div>
+    </div>
+    <div class="lightbluebg">
+        <div class="container">
+            <div class="divide30"></div>
+            <div class="row">
+                
+                <div class="col-sm-6 img-responsive">
+                    <div>
+                        <h2>Distribution of Ant Species in Texas</h2>
+                        <p>This module provides access by scientific name to spatially explicit distributions of ant species in Texas.</p>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li>&#x2714;&nbsp; Quick lookup of ant distributions in Texas.</li>
+                    </ul><a href="~/Home/AntDistribution" class="btn border-theme">Visit Ant Distribution</a>
+                </div>
+                <div class="col-sm-6"><img src="~/Content/images/ant_distribution.png" alt="fire ant distribution" class="img-responsive" /></div>
+               
+             </div>
+            <div class="divide30"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="divide30"></div>
+        <div class="row">
+            
+            <div class="col-md-6 img-responsive"><img src="~/Content/images/QAindex.png" alt="fire ant distribution" class="img-responsive" /></div>
+            <div class="col-md-6">
+                <div>
+                    <h2>Questions and Answers Exchange</h2>
+                    <p>This module facilitates interaction among stakeholders through posting questions and answers and rating responses.</p>
+                </div>
+                <ul class="list-unstyled">
+                    <li>&#x2714;&nbsp; Post questions and answers in Rich Text Format</li>
+                    <li>&#x2714;&nbsp; Post Editable Functionality</li>
+                    <li>&#x2714;&nbsp; Evaluate questions and answers</li>
+                </ul><a href="~/QA/QAIndex" class="btn border-theme">Visit Q &amp; A</a>
+            </div>
+        </div>
+        <div class="divide30"></div>
+    </div>
+
+
+<script type="text/javascript">
+    var $carousel = $('#myCarousel');
+    var $carouselCaptions = $carousel.find('.item .carousel-caption');
+    var $carouselImages = $carousel.find('.item img');
+    var carouselTimeout;
+    
+    $carousel.on('slid', function () {
+        var $item = $carousel.find('.item.active');
+        carouselTimeout = setTimeout(function() { // start the delay
+            carouselTimeout = false;
+            //$('.carousel-caption', $item).animate({'opacity': 1}, 500);
+            //$('img', $item).animate({'opacity': 0.2}, 500);
+        }, 1000);
+    }).on('slide', function () {
+        if(carouselTimeout) { // Carousel is sliding, stop pending animation if any
+            clearTimeout(carouselTimeout);
+            carouselTimeout = false;
+        }
+        // Reset styles
+        //$carouselCaptions.animate({'opacity': 0}, 500);
+        //$carouselImages.animate({'opacity': 1}, 500);
+    });;
+    
+    $('#myCarousel').carousel({
+        interval: 6000,
+        cycle: true,
+    }).trigger('slid'); // Make the carousel believe that it has just been slid so that the first item gets the 
+</script>

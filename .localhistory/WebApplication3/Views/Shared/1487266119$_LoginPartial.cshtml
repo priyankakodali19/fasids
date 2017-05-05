@@ -1,0 +1,57 @@
+﻿@using WebApplication3.Helpers;
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" rel="stylesheet" type="text/css" media="screen" />
+
+
+﻿@if (Request.IsAuthenticated)
+{
+@{int count=1;    }
+        <li>
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle"> @Context.User.Identity.Name.ToUpper() &#9660;</a>
+            <ul id="index-dropdown-menu" role="menu" class="dropdown-menu">
+                <li><a href="/User/UserDashboard">User Dashboard</a></li>
+                <li><a href="/User/UserAccount">Account</a></li>
+                <li><a href="/User/Logout">Logout</a></li>
+            </ul>
+        </li>
+      
+    
+}
+else
+{
+    
+       <li class="@Html.IsActive("User", "SignUp")"><a href="/User/SignUp">SIGN UP</a></li>
+       <li class="@Html.IsActive("User", "SignIn")"><a href="/User/SignIn">	<i class="fa fa-lock"></i> SIGN IN</a></li>
+} 
+<script type="text/javascript">
+        $(function () {
+            $("body").on('click keypress', function () {
+                if (count == 1) { alert(count); }
+                ResetThisSession();
+            });
+        });
+
+  var timeInSecondsAfterSessionOut = 10; // change this to change session time out (in seconds).
+        var secondTick = 0;
+
+        function ResetThisSession() {
+            secondTick = 0;
+        }
+
+        function StartThisSessionTimer() {
+            secondTick++;
+            var timeLeft = ((timeInSecondsAfterSessionOut - secondTick) / 60).toFixed(0); // in minutes
+        timeLeft = timeInSecondsAfterSessionOut - secondTick; // override, we have 30 secs only 
+
+            $("#spanTimeLeft").html(timeLeft);
+
+            if (secondTick > timeInSecondsAfterSessionOut) {
+                clearTimeout(tick);
+                location.href = "/Home/Index";
+                return;
+            }
+            tick = setTimeout("StartThisSessionTimer()", 1000);
+        }
+
+        StartThisSessionTimer();
+</script>

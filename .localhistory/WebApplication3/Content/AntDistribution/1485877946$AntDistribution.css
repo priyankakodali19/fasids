@@ -1,0 +1,68 @@
+﻿#genus-species-panel{
+
+    left:20px;
+    top: 10px;
+    box-shadow:0px 1px 1px #aaa;
+    border-radius:3px;
+    /*// overflow: auto;*/
+    height: 500px;
+}
+
+.genus-species-index.col-xs-2
+{
+    width: 72px;
+}
+
+.genus-species-index.col-xs-5{
+    width: 190px;
+    padding-right: 0px;
+    padding-left: 0px;
+    max-height: 490px;
+    overflow: auto;
+}
+
+.genus-species-index.col-xs-5.collapse-button
+{
+    padding-right: 30px;
+    cursor: pointer;
+    span {
+    padding-left: 10px;
+}
+
+.genus-species-index.col-xs-5.collapse-button.span 
+{
+    padding-left: 10px;
+}
+
+.genus-species-index ul
+{
+    padding: 0px;
+}
+
+.genus-species-index ul li
+{
+    cursor: pointer;
+    list-style: none;
+    line-height: 1.42857143;
+}
+.genus-species-index ul li:hover {
+   text-decoration: underline;
+}
+
+.genus-species-index ul li:active {
+   color:#3366ff;
+}
+
+
+ 
+  ul {
+    padding: 0px;
+    li{
+      cursor: pointer;
+      
+      list-style: none;
+      line-height: 1.42857143;
+     
+    }
+  }
+}

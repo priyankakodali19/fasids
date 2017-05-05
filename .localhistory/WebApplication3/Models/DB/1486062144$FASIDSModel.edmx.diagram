@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fec9760eb0cb43a3a1feda9c54680929" Name="Diagram1">
+        <EntityTypeShape EntityType="FASIDSModel.PolygonGeoJson" Width="1.5" PointX="6.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FASIDSModel.ProductData" Width="1.5" PointX="8.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FASIDSModel.UserData" Width="1.5" PointX="4.125" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="FASIDSModel.FK__PolygonGe__UserI__2A4B4B5E" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FASIDSModel.UserImage" Width="1.5" PointX="1.25" PointY="0.875" />
+        <AssociationConnector Association="FASIDSModel.FK__UserImage__UserI__3A81B327" />
+        <EntityTypeShape EntityType="FASIDSModel.PostQuestion" Width="1.5" PointX="1.125" PointY="3.25" />
+        <AssociationConnector Association="FASIDSModel.FK__PostQuest__UserI__3D5E1FD2" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

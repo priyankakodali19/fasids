@@ -1,0 +1,60 @@
+﻿@model WebApplication3.Models.ViewModel.ProductTreatmentInfo
+@{
+    ViewBag.Title = "Treatment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<meta id="target_polygon" name="target_polygon"  />
+<meta id="productsJson" name="products" content="#{JSON.stringify(products)}" />
+<h2>Treatment</h2>
+<script type="text/javascript">
+    var host = window.location.pathname;
+    var polygon_id = host.substring(host.lastIndexOf("/") + 1);
+    console.log(polygon_id);
+
+</script>
+
+    
+<div>
+    <table data-toggle="table" class="table table-striped table-bordered table-condensed table-hover">
+        <thead id="ProductsThead">
+            <tr>
+                <th data-field="ImageUrl" data-sortable="false">Product Page</th>
+                <th data-field="ProductName" data-sortable="true">Product Name</th>
+                <th data-field="ProductManufacturer" data-sortable="true">Brand</th>
+                <th data-field="ProductUsage" data-sortable="false">Usage</th>
+                <th data-field="ProductControlMethod" data-sortable="false">Control Method</th>
+                <th data-field="ProductCoverage" data-sortable="false">Coverage</th>
+                <th data-field="Amount" data-sortable="false">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model.Products)
+            {
+                <tr>
+                <td><a href=@Html.DisplayFor(m => i.ProductUrl) target="_blank"><img src=@Html.DisplayFor(m => i.ImageUrl) alt="product_img" class="img-thumbnail" /></a></td>
+                <td> @Html.DisplayFor(m => i.ProductName)</td>
+                <td> @Html.DisplayFor(m => i.ProductManufacturer)</td>
+                <td> @Html.DisplayFor(m => i.ProductUsage)</td>
+                <td> @Html.DisplayFor(m => i.ProductControlMethod)</td>
+                @if (i.ProductUsage.Equals("imt"))
+                {
+                    <td> @Html.DisplayFor(m => i.ProductCoverage) mnds</td>
+                }
+                else
+                {
+                    <td> @Html.DisplayFor(m => i.ProductCoverage) <span>m<sup>2</sup></span></td>
+                }
+                <td> @Html.DisplayFor(m => i.Amount)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+  
+
+<script type="text/javascript">
+ //   console.log(JSON.parse($("meta[name=target_polygon]").attr("content")))
+</script>
+
+

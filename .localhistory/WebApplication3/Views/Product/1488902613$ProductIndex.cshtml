@@ -1,0 +1,361 @@
+﻿@model WebApplication3.Models.ViewModel.ProductDataView2
+@{
+    ViewBag.Title = "ProductIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<style>
+    ul {
+        padding-left: 15%;
+    }
+</style>
+
+@*<div class="divide30"></div>*@
+<btn style="float:right" id="AddProduct" input type="submit" class="btn btn-theme-bg" onclick="AddProduct">Add Product </btn>
+<div>
+    <table data-toggle="table" class="table table-striped table-bordered table-condensed table-hover">
+        <thead id="ProductsThead">
+            <tr>
+                <th data-field="ProductName" data-sortable="true"><div>Product</div><div>Name</div> </th>
+                <th data-field="ActiveIngredient" data-sortable="true"><div>Active</div><div>Ingredient</div> </th>
+                <th data-field="ProductManufacturer" data-sortable="true"><div>Product</div><div>Manufacturer</div></th>
+                <th data-field="PhysicalForm" data-sortable="false"><div>Physical</div><div>Form</div> </th>
+                <th data-field="IsSynthetic" data-sortable="false"><div>Synthetic</div><div>or Natural</div> </th>
+                <th data-field="TypeOfControlUsage" data-sortable="false"><div>Control</div><div>Method</div> </th>
+                <th data-field="TypeOfTreatmentUsage" data-sortable="false"><div>Treatment</div><div> Method</div> </th>
+                <th data-field="TypeOfLand" data-sortable="false"><div>Type of Land</div></th>
+                <th data-field="TypeOfTreatmentSite" data-sortable="false"><div>Treatment Sites</div></th>
+                <th data-field="ProductCoverage" data-sortable="false"><div>Suggested Product</div><div>Use Rate</div></th>
+                <th data-field="ModifyProduct" data-sortable="false"><div>Modify</div><div>Product</div></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var i in Model.Products)
+            {
+   
+                <tr>
+                    <td><a href=@Html.DisplayFor(m => i.ProductUrl) target="_blank"> @Html.DisplayFor(m => i.ProductName)</a></td>
+                    <td> @Html.DisplayFor(m => i.ActiveIngredient)</td>
+                    <td> @Html.DisplayFor(m => i.ProductManufacturer)</td>
+                    <td> @Html.DisplayFor(m => i.PhysicalForm)</td>
+                    <td> @Html.DisplayFor(m => i.IsSynthetic)</td>
+                    <td> @Html.DisplayFor(m => i.ProductControlMethod)</td>
+                    <td>
+                        <ul>
+                            @for (int x = 0; x < i.ProductTreatmentMethod.Count; x++)
+                            {
+                                <li>@Html.DisplayFor(m => i.ProductTreatmentMethod[x])</li>
+                            }
+                        </ul>
+                    </td>
+                    <td> @Html.DisplayFor(m => i.TypeOfLand)</td>
+                    <td>
+                        <ul>
+                            @for (int x = 0; x < i.TreatmentSites.Count;x++  )
+                            {
+                                <li>@Html.DisplayFor(m => i.TreatmentSites[x])</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            @for (int x = 0; x < i.ProductMeasurementUnit2.Count; x++)
+                            {
+                                <li>@Html.DisplayFor(m => i.ProductMeasurementUnit2[x])</li>
+                            }
+                        </ul>   
+                    </td>
+                    <td><a href="#">Edit</a>&nbsp;&nbsp;<a href="#">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>  
+<div ng-app="productManagerApp" ng-controller="productDefaultCtrl">
+<div id="add-product-modal" tabindex="-1" role="dialog" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Add Product Details </h4>
+            </div>
+            <div class="modal-body">
+                <form novalidate="novalidate" name="productForm" class="form-horizontal productForm">
+                    @*<div ng-show="productForm.productName.$touched" class="row">
+                        <div ng-show="productForm.productName.$error.required" class="col-sm-9 col-sm-offset-3">Please enter product name</div>
+                    </div>
+                    <div ng-show="productForm.activeIngredient.$touched" class="row">
+                        <div ng-show="productForm.activeIngredient.$error.required" class="col-sm-9 col-sm-offset-3">Please enter product name</div>
+                    </div>
+                    <div ng-show="productForm.manufacturer.$touched" class="row">
+                        <div ng-show="productForm.manufacturer.$error.required" class="col-sm-9 col-sm-offset-3">Please enter product name</div>
+                    </div>
+                    <div ng-show="productForm.manu_url.$touched" class="row">
+                        <div ng-show="productForm.manu_url.$error.required" class="col-sm-9 col-sm-offset-3">Please enter product name</div>
+                    </div>
+                     <div ng-show="productForm.physicalform.$touched" class="row">
+                        <div ng-show="productForm.physicalform.$error.required" class="col-sm-9 col-sm-offset-3">Please enter product name</div>
+                    </div>*@
+
+                    <div class="form-group row">
+                        <label for="productName" class="col-sm-4 control-label text-right">
+                            Product Name<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input id="productName" type="text" placeholder="Enter product name" ng-model="treatment2.ProductName" name="productName" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="activeIngredient" class="col-sm-4 control-label text-right">
+                            Active Ingredient<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input id="activeIngredient" type="text" placeholder="Enter Active Ingredient" ng-model="treatment2.ActiveIngredient" name="activeIngredient" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="manufacturer" class="col-sm-4 control-label text-right">
+                            Product Manufacturer<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input id="manufacturer" type="text" placeholder="Enter Product Manufacturer" ng-model="treatment2.Manufacturer" name="manufacturer" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="manu_url" class="col-sm-4 control-label text-right">
+                            Manufacturer Url<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input id="manu_url" type="text" placeholder="Enter Manufacturer Url" ng-model="treatment2.ManufacturerUrl" name="manu_url" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="physicalform" class="col-sm-4 control-label text-right">
+                            Physical Form<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input id="physicalform" type="text" placeholder="Enter Physical Form" ng-model="treatment2.PhysicalForm" name="physicalform" required="required" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label text-right">
+                            Synthetic/Natural<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <select ng-model="product_details.IsSynthetic" ng-options="SyntheticOption.value as SyntheticOption.optionText for SyntheticOption in SyntheticNatural" required="required" name="synthetic" class="form-control">
+                                <option value="">(Pick One Type)</option>
+                            </select>
+                        </div><span ng-show="productForm.synthetic.$touched &amp;&amp; productForm.synthetic.$invalid">Please select type of use</span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label text-right">
+                           Pesticide Classification<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <select ng-model="product_details.PesticideClassification" ng-options="PestClassOption.value as PestClassOption.optionText for PestClassOption in TypeOfPestClass" required="required" name="typeOfPestClass" class="form-control">
+                                <option value="">(Pick One Type Of Classification)</option>
+                            </select>
+                        </div><span ng-show="productForm.typeOfPestClass.$touched &amp;&amp; productForm.typeOfPestClass.$invalid">Please select type of use</span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label text-right">
+                            Type of use of land<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <select ng-model="product_details.TypeOfLand" ng-options="typeOfUseOption.value as typeOfUseOption.optionText for typeOfUseOption in TypeOfLand" required="required" name="tyoeOfUse" class="form-control">
+                                <option value="">(Pick One Type of Land)</option>
+                            </select>
+                        </div><span ng-show="productForm.tyeOfUse.$touched &amp;&amp; productForm.tyoeOfUse.$invalid">Please select type of use</span>
+                    </div>
+                    <div ng-if="product_details.TypeOfLand === 'urban'" class="form-group row">
+                        <label class="col-sm-4 control-label text-right">
+                            Type of Urban Treatment Site<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <label style="display: block" ng-repeat="object in TypeOfUrbanTreatmentSite">
+                                <input type="checkbox" name="{{object.value}}" id="{{object.value}}" ng-model="object.checked" ng-change="selectedUrbanSites()">
+                                <label for="{{object.value}}">{{object.optionText}}</label>
+                            </label>
+                        </div>
+                        
+                    </div>
+                    <div ng-if="product_details.TypeOfLand === 'agricultural'" class="form-group row">
+                        <label class="col-sm-4 control-label text-right">
+                            Type of Agricultural Treatment Site<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <label style="display: block" ng-repeat="object in TypeOfAgricultureTreatmentSite">
+                                <input type="checkbox" name="{{object.value}}" id="{{object.value}}" ng-model="object.checked" ng-change="selectedAgriSites()">
+                                <label for="{{object.value}}">{{object.optionText}}</label>
+                            </label>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 control-label text-right">
+                                Type of Agricultre Land<span>*</span>
+                            </label>
+                            <div class="col-sm-8">
+                                <select ng-model="product_details.TypeOfAgri" ng-options="typeOfAgriOption.value as typeOfAgriOption.optionText for typeOfAgriOption in TypeOfAgriLand" required="required" name="typeOfAgri" class="form-control">
+                                    <option value="">(Pick One Type of Land)</option>
+                                </select>
+                            </div><span ng-show="productForm.typeOfAgri.$touched &amp;&amp; productForm.typeOfAgri.$invalid">Please select type of use</span>
+                        </div>
+                        <span ng-show="productForm.typeOfAgri.$touched &amp;&amp; productForm.typeOfAgri.$invalid">Please select type of use</span>
+                    </div>
+                            
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label text-right">Type of Control Method<span>*</span></label>
+                        <div class="col-sm-8">
+                            <select ng-model="product_details.ProductControlMethod" ng-options="optionOfControl.value as optionOfControl.optionText for optionOfControl in TypeOfControlMethod" required="required" name="controlMethod" class="form-control">
+                                <option value="">(Pick One Control Method)</option>
+                            </select>
+                        </div><span ng-show="productForm.controlMethod.$touched &amp;&amp; productForm.controlMethod.$invalid">Please select control Method</span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label text-right">
+                            Type of Treatment Method<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <label style="display: block" ng-repeat="object in TypeOfTreatmentMethod">
+                                <input type="checkbox" name="{{object.value}}" id="{{object.value}}" ng-model="object.checked" ng-change="selectedTreatmentMethod()">
+                                <label for="{{object.value}}">{{object.optionText}}</label>
+                            </label>
+                        </div>
+                        
+                        <span ng-show="productForm.treatmentStrategy.$touched &amp;&amp; productForm.treatmentStrategy.$invalid">Please select treatment method</span>
+                    </div>
+                    <div ng-show="productForm.moundNumber.$touched" class="row">
+                        <div ng-show="productForm.moundNumber.$error.required || productForm.moundNumber.$error.pattern" class="col-sm-9 col-sm-offset-3">Please Estimate Positive Mound Number</div>
+                    </div>
+                    <div ng-if="product_details.ProductTreatmentMethod === 'imt'" class="form-group row">
+                        <label for="moundNumber" class="col-sm-4 control-label text-right">
+                            Mound Number<span>*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input id="moundNumber" type="number" placeholder="Mound Number" ng-model="product_details.MoundNumber" required="product_details.type_of_treatment === 'imt'" name="moundNumber" ng-pattern="/^[0-9]{1,10}$/" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $('document').ready(function () {
+        document.getElementById("AddProduct").onclick = function () {
+           
+
+            $('#add-product-modal').modal("show");
+        }
+    });
+
+    var polygonManagerApp = angular.module("productManagerApp", []);
+    console.log("inside productmaanager")
+    polygonManagerApp.controller("productDefaultCtrl", function ($scope,$filter) {
+        var $productModal = $("#add-product-modal");
+
+        $scope.TypeOfLand = [
+     { value: "urban", optionText: "Urban Land" },
+     { value: "agricultural", optionText: "Agricultural Land" }
+        ];
+        $scope.TypeOfAgriLand = [
+     { value: "food", optionText: "Food Producing Land" },
+     { value: "nonfood", optionText: "Non Food Producing Land" }
+        ];
+        
+
+        $scope.TypeOfUrbanTreatmentSite = [
+        { value: "home_lawns", optionText: "Home Lawns / Ornamentals" },
+        { value: "perimeter", optionText: "Perimeter" },
+        { value: "rec", optionText: "Recreational Areas" },
+        { value: "right_of_way", optionText: "Right of Way" }
+        ];
+
+        $scope.TypeOfAgricultureTreatmentSite = [
+       { value: "pasture", optionText: "Pasture Land" },
+       { value: "poultry", optionText: "Poultry Houses" },
+       { value: "crop", optionText: "Crop Areas" },
+       { value: "sod", optionText: "Sod / Turf" },
+       { value: "nursery_container", optionText: "Nursery Container" },
+       { value: "nursery_bb", optionText: "Nursery B & B (Ball & Burlap)" },
+       { value: "other", optionText: "Other ( Fences / Rows / Ditches / Out Buildings)" }
+        ];
+
+        $scope.TypeOfControlMethod = [
+          { value: "bait", optionText: "Bait and Sterilize Queen", explaination: "worker ants send product to queen. Queen eats and then unable to give birth to new ants" },
+          { value: "contact", optionText: "Kill by Direct Contact", explaination: "When fire ants have been in contact with the ingredients of products, they are killed" },
+        ];
+
+        $scope.SyntheticNatural = [
+          { value: "synthetic", optionText: "Synthetic", explaination: "worker ants send product to queen. Queen eats and then unable to give birth to new ants" },
+          { value: "natural", optionText: "Natural", explaination: "When fire ants have been in contact with the ingredients of products, they are killed" },
+        ];
+
+        $scope.TypeOfPestClass = [
+          { value: "unrestricted", optionText: "Unrestricted", explaination: "worker ants send product to queen. Queen eats and then unable to give birth to new ants" },
+          { value: "restricted", optionText: "Restricted", explaination: "When fire ants have been in contact with the ingredients of products, they are killed" },
+        ];
+        $scope.TypeOfTreatmentMethod = [
+          { value: "broadcast", optionText: "Broadcast Treatment", explaination: "worker ants send product to queen. Queen eats and then unable to give birth to new ants" },
+          { value: "imt", optionText: "Individual Mound Treatment", explaination: "When fire ants have been in contact with the ingredients of products, they are killed" },
+        ];
+        $scope.product_details = {
+            ProductName: "",
+            ProductManufacturer: "",
+            PhysicalForm: "",
+            PesticideClassification: "",
+            ProductControlMethod: "",
+            ProductTreatmentMethod: [],
+            ActiveIngredient: "",
+            ProductMinUseRate: "",
+            ProductMaxUseRate: "",
+            ProductMeasurementUnit: "",
+            ProductUrl: "",
+            IsSynthetic: "",
+            UrbanTreatmentSites:[],
+            AgriTreatmentSites: [],
+            TypeOfLand: "",
+            MoundNumber: 0,
+            Notes: "",
+            TypeOfAgri:""
+        };
+        $scope.selectedUrbanSites = function () {
+            $scope.product_details.UrbanTreatmentSites = $filter('filter')($scope.TypeOfUrbanTreatmentSite, { checked: true });
+            console.log($scope.product_details.UrbanTreatmentSites);
+        }
+
+        $scope.selectedAgriSites = function () {
+            $scope.product_details.AgriTreatmentSites = $filter('filter')($scope.TypeOfAgricultureTreatmentSite, { checked: true });
+            console.log($scope.product_details.AgriTreatmentSites);
+        }
+
+        $scope.selectedTreatmentMethod = function () {
+            $scope.product_details.ProductTreatmentMethod = $filter('filter')($scope.TypeOfTreatmentMethod, { checked: true });
+            console.log($scope.product_details.ProductTreatmentMethod);
+            var i=0;
+            if($scope.product_details.ProductTreatmentMethod.length==2){
+                $scope.treatment2=1;
+            }
+            else
+            {
+                if ($scope.product_details.ProductTreatmentMethod[0].value == "broadcast")
+                {
+                    $scope.isbroadcast = 1;
+                }
+                else
+                {
+                    $scope.ismound = 1;
+                }
+            }
+            
+        }
+        
+    });
+</script>
+

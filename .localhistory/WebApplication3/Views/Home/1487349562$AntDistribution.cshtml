@@ -1,0 +1,346 @@
+﻿
+@{
+    ViewBag.Title = "AntDistribution";
+}
+<script src="~/scripts/underscore-min.js"></script>
+<script src="~/scripts/backbone-min.js"></script>
+
+<script src="~/scripts/mapcover.js"></script>
+<div class="divide30"></div>
+<div id="mapcover" class="mapcover">
+    <div id="mapcover-map" class="mapcover-map"></div>
+    <div id="genus-species-panel" class="mc-static2mapcontainer panel panel-default">
+        <div class="panel-body genus-species-index">
+            <div class="row">
+                <div id="index" class="col-xs-2">
+                    <b>Index</b>
+                </div>
+                <div id="genus-list" class="col-xs-5 genus-list">
+                    <b>Genus</b>
+                </div>
+                <div id="species-list" class="col-xs-5 species-list">
+                    <b>Species</b>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hidden">
+    <meta name="genus-species-index" content="undefined" />
+</div>
+
+<script id="info-window-template" type="text/template">
+    <div class="infowindow-content">
+        <% var county = county? county : "unspecified"; var genus = genus? genus : "unspecified";var specie = specie? specie : "unspecified"; var observations = observations? "Yes" : "No or no data";%>
+        County: <%=county%>
+        <br />
+        Genus: <%=genus%>
+        <br />
+        Specie: <%=specie%>
+        <br />
+        Is Observed: <%=observations%>
+    </div>
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        
+        var genus_species = function () {
+            var tmp = null;
+            $.ajax({
+                async:false,
+                'type': "GET",
+                'global': false,
+                'dataType': 'json',
+                'url': "/Content/genus_species.txt",
+
+                'success': function (data) {
+                    console.log(data)
+                    tmp = data;
+                }
+            });
+            return tmp;
+        }();
+
+        var ant_distribution = function () {
+            var tmp = null;
+            $.ajax({
+                async: false,
+                'type': "GET",
+                'global': false,
+                'dataType': 'json',
+                'url': "/Content/ant_distribution.txt",
+
+                'success': function (data) {
+                 //   console.log(data)
+                    tmp = data;
+
+                }
+            });
+            return tmp;
+        }();
+       
+        var init_char_list = [];
+        for (var obj = 0; obj < genus_species.length; obj++) {
+            console.log()
+            if (init_char_list.indexOf(genus_species[obj].genus[0]) === -1) {
+                init_char_list.push(genus_species[obj].genus[0])
+            }
+        }
+
+        //get list of alphabets
+        $("#index").append('<ul style="padding: 0;" id="initial-character">');
+        for (var i = 0; i < init_char_list.length; i++) {
+            $("#initial-character").append('<li class="initial-character character-' + init_char_list[i] + '">' + init_char_list[i] + '</li>');
+        }
+
+        //get list of genus
+        $("#genus-list").append('<ul class="genus-ul" id="genus-ul" style="cursor: pointer; width: 150px; padding-right: 0; padding-left: 0; max-height: 490px; overflow: auto;" >');
+        for (var i = 0; i < genus_species.length; i++) {
+            $("#genus-ul").append(' <li data-genus="' + genus_species[i].genus + '" class="hidden genus-inichar-' + genus_species[i].genus.charAt(0) + ' ' + genus_species[i].genus + '">' + genus_species[i].genus + ' (' + genus_species[i].species_array.length + ')</li>')
+        }
+        $("#genus-list").append('<div class="at-bottom-right collapse-button"><i class="fa fa-caret-left fa-lg"></i><span style="cursor: pointer;">&nbsp;&nbsp;collapse</span></div>');
+       
+        //get list of species
+        for (var i = 0; i < genus_species.length; i++) {
+            $("#species-list").append('<ul style="cursor: pointer; width: 190px; padding-right: 0; padding-left: 0; max-height: 490px; overflow: auto;" class="species-list-' + genus_species[i].genus + '" id="species-list-' + genus_species[i].genus + '">');
+            for (var j = 0; j < genus_species[i].species_array.length; j++) {
+                var x = "";
+                x = "#species-list-" + genus_species[i].genus;
+                $(x).append('<li class="' + genus_species[i].species_array[j] + '">' + genus_species[i].species_array[j] + '</li>')
+            }
+        }
+        $("#species-list").append('<div class="at-bottom-right collapse-button"><i class="fa fa-caret-left fa-lg"></i><span style="cursor: pointer;">&nbsp;&nbsp;collapse</span></div>');
+
+     /*  $.getJSON('/Content/genus_species.txt', function (data) {
+            console.log(data)
+            myItems = data.items;
+            console.log(myItems);
+        });*/
+      
+        (function settingMapContainerHeight() {
+            // The reason might because the nav bar gives padding 70,
+            var mapcontainer_height = $(window).height() - 1 * $(".navbar").height();
+            $("#mapcover").height(mapcontainer_height);
+        })();
+       
+        var mapcover = initMapCover('mapcover', 'mapcover-map', {
+            draggingCursor: "move",
+            draggableCursor: "auto",
+            center: { lat: 31.560112, lng: -98.551199 },
+            zoom: 6,
+            zoomControl: true,    //left side
+            panControl: false,     //left top corner: 
+           // mapTypeControl:true,  //right top corner: "map|satellite"
+            mapTypeId: google.maps.MapTypeId.TERRAIN,
+            mapTypeControlOptions: {
+                position: google.maps.ControlPosition.TOP_RIGHT
+            }
+        });
+        var gmap = mapcover.model.get("map");
+        var infowindow = new google.maps.InfoWindow({
+       // map:gmap
+        });
+
+        var counties_hash = {};
+        // var geojsons = [];
+        function featureOnClick(event) {
+            infowindow.setOptions({
+                position: event.latLng,
+                content: genus_species_core.get("compiled_infowindow_content")({
+                    county: event.feature.getProperty("COUNTY"),
+                    genus: genus_species_core.get("genus"),
+                    specie: genus_species_core.get("specie"),
+                    observations: genus_species_core.get("observation_map")[event.feature.getProperty("FIPS")]
+                })
+            });
+            infowindow.open(gmap);
+        }
+        gmap.data.loadGeoJson("/Content/tx_counties.txt", null, function processFeature(feature_array) {
+            feature_array.forEach(function iteratee(element, index) {
+                counties_hash[element.getProperty("COUNTY")] = element;
+                counties_hash[element.getProperty("FIPS")] = element;
+                // console.log(counties_hash[element.getProperty("COUNTY")].getGeometry().getType());
+                // counties_hash[element.getProperty("COUNTY")].toGeoJson( function (geojson){
+                //   geojsons.push(geojson.properties);
+                // }); 
+            });
+
+        });
+        console.log(counties_hash)
+        gmap.data.setStyle({
+            fillColor: "rgba(0,0,0,0)",
+            fillOpacity: 1,
+            strokeColor: "rgba(0, 153, 0,0.5)",
+            strokeWeight: 2
+        });
+
+        gmap.data.addListener('click', featureOnClick);
+
+
+        var GenusSpeciesPanel = Backbone.View.extend({
+
+            el: document.getElementById("genus-species-panel"),
+
+
+            expandTill: function (section) {
+                // console.log("expandTill");
+                var ClassRef = this;
+                switch (section) {
+                    case "genus":
+                        ClassRef.$el.find(".genus-ul li").addClass("hidden");
+                        ClassRef.$el.find(".col-xs-5.genus-list").show(100);
+                        ClassRef.$el.find(".col-xs-5.species-list").hide(100);
+                        break;
+                    case "species":
+                        ClassRef.$el.find(".species-list ul").addClass("hidden");
+
+                        ClassRef.$el.find(".col-xs-5.species-list").show(100);
+                        break;
+                    default:
+                }
+            },
+            test: function () {
+                var ClassRef = this;
+                this.$el.hide();
+                // console.log("asdf");
+            },
+            render: function () {
+                // console.log("render: " + this.model.get("genus") + " ," + this.model.get("specie"));
+                
+                
+                
+                var ClassRef = this;
+                var mapped = _.omit({ genus: genus_species_core.get("genus"), specie: genus_species_core.get("specie") }, function (val, key) {
+                     return !val;
+                });
+                console.log(ant_distribution)
+                console.log(mapped,typeof(mapped["specie"]));
+                ClassRef.$el.find("li").removeClass("active");
+                // console.log("/landscape/antdistribution_lookup?"+ $.param(mapped));
+                
+                var ant_distObj = [];
+                var final_ant_data = {};
+
+                if (typeof (mapped["specie"]) == "undefined") {
+
+                    for (var i = 0; i < ant_distribution.length; i++) {
+                        var flag = 0;
+                        if (ant_distribution[i].genus.trim() == mapped.genus.trim()) {
+
+                            console.log("same genus" + x)
+                            if (ant_distObj.length == 0) {
+                                ant_distObj.push([ant_distribution[i].fips, 1]);
+                            }
+                            else {
+                                for (var j = 0; j < ant_distObj.length; j++) {
+                                    if (ant_distObj[j][0] == ant_distribution[i].fips) {
+                                        ant_distObj[j][1] = ant_distObj[j][1] + 1;
+                                        flag = 1;
+                                    }
+                                }
+                                if (flag != 1) {
+
+                                    ant_distObj.push([ant_distribution[i].fips, 1]);
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    for (var i = 0; i < ant_distribution.length; i++) {
+                        var flag = 0;
+                        if (ant_distribution[i].species.trim() == mapped.specie.trim()) {
+
+                            console.log("same genus" + x)
+                            if (ant_distObj.length == 0) {
+                                ant_distObj.push([ant_distribution[i].fips, 1]);
+                            }
+                            else {
+                                for (var j = 0; j < ant_distObj.length; j++) {
+                                    if (ant_distObj[j][0] == ant_distribution[i].fips) {
+                                        ant_distObj[j][1] = ant_distObj[j][1] + 1;
+                                        flag = 1;
+                                    }
+                                }
+                                if (flag != 1) {
+
+                                    ant_distObj.push([ant_distribution[i].fips, 1]);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                console.log(ant_distObj)
+
+                for (var j = 0; j < ant_distObj.length; j++) {
+                    final_ant_data[ant_distObj[j][0]] = ant_distObj[j][1];
+                }
+                console.log(final_ant_data)
+                ClassRef.model.set("observation_map", final_ant_data);
+                _.each(ClassRef.model.get("revert_style_cache"), function (fips, array_index, ar) {
+                    gmap.data.overrideStyle(counties_hash[fips], {
+                        fillColor: "rgba(0, 0, 0,0)"
+                    });
+                });
+                ClassRef.model.get("revert_style_cache").length = 0;
+                _.each(final_ant_data, function (number_observation, fips, data) {
+                    ClassRef.model.get("revert_style_cache").push(fips);
+                    gmap.data.overrideStyle(counties_hash[fips], {
+                        fillColor: "rgba(255, 153, 51,0.7)"
+                    });
+                });
+               
+                 
+                // show active Init Character, Genus, and Species
+                //.character-A,  genus specie
+                if (!mapped.specie) {
+                    mapped.specie = "undefined";
+                }
+                // console.log(".character-" + mapped.genus[0] + ", ." + mapped.genus+ ", ." + mapped.specie.replace(" ", "SpacE") );
+                $(".character-" + mapped.genus[0] + ", ." + mapped.genus + ", ." + mapped.specie.replace(" ", "SpacE")).addClass("active");
+
+            },
+            initialize: function () {
+                var ClassRef = this;
+                ClassRef.$el.find(".col-xs-5.genus-list,.col-xs-5.species-list").hide();
+                ClassRef.listenTo(ClassRef.model, 'change', ClassRef.render);
+                $('.collapse-button').click(function (event) {
+                    $(this).parent().hide(100)
+                })
+            }
+        });
+
+        var genus_species_core = new Backbone.Model({
+            compiled_infowindow_content: _.template($('#info-window-template').html()),
+            observation_map: {},
+            genus: null,
+            specie: null,
+            revert_style_cache: []
+        })
+        var genus_species_panel = new GenusSpeciesPanel({ model: genus_species_core });
+        $("li.initial-character").click(function onClick() {
+            var $this = $(this);
+            genus_species_panel.expandTill("genus");
+            $(".genus-inichar-" + $this.text()).removeClass("hidden");
+        });
+
+        $(".col-xs-5.genus-list li").click(function onClick() {
+            var $this = $(this);
+            genus_species_panel.expandTill("species");
+            $("ul.species-list-" + $this.data("genus")).removeClass("hidden");
+            genus_species_core.set("genus", $this.data("genus"));
+            genus_species_core.set("specie", null);
+            
+        });
+
+        $(".col-xs-5.species-list ul li").click(function onClick() {
+            var $this = $(this);
+            genus_species_core.set("specie", $this.text());
+            console.log(genus_species_core)
+        });
+
+    });
+</script>

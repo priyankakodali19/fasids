@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "PostQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PostQuestion</h2>
+<!-- wysihtml5 parser rules -->
+<script src="/path-to-wysihtml5/parser_rules/advanced.js"></script>
+<!-- Library -->
+<script src="/path-to-wysihtml5/dist/wysihtml5-0.3.0.min.js"></script>
+
+<form method="post" id="wysihtml-form">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <input type="text" name="title" placeholder="Question subject" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="col-xs-11 col-xs-offset-1">Topic Icons &nbsp;&nbsp;&nbsp;
+        <label class="radio-inline">
+            <input id="inlineRadio1" type="radio" name="post_cat" value="1"/> None
+        </label>
+        <label class="radio-inline">
+            <input id="inlineRadio2" type="radio" name="post_cat" value="2"/> Icon1
+        </label>
+        <label class="radio-inline">
+            <input id="inlineRadio3" type="radio" name="post_cat" value="3"/> Icon2
+        </label>
+        <label class="radio-inline">
+            <input id="inlineRadio4" type="radio" name="post_cat" value="4"/> Icon3
+        </label>
+        <label class="radio-inline">
+            <input id="inlineRadio5" type="radio" name="post_cat" value="5"/> Icon4
+        </label>
+        <label class="radio-inline">
+            <input id="inlineRadio6" type="radio" name="post_cat" value="6"/> Icon5
+        </label>
+    </div>
+
+
+<div class="divide30"></div>
+
+
+
+<div class="divide20"></div>
+<div class="divide20"></div>
+
+<div class="row final-buttons">
+    <div class="col-xs-11 col-xs-offset-1"><a href="#" class="btn border-black">Save draft</a><a href="#" class="btn border-black">preview</a>
+        <div id="wysihtml-submit" class="btn btn-theme-bg">Submit</div>
+    </div>
+</div>
+</form>
+<div class="divide20"></div>

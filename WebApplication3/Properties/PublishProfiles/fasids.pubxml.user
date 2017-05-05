@@ -1,0 +1,793 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\etakow\Documents\priyanka\fasids</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>01/12/2017 12:07:57</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>01/12/2017 11:56:29</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>01/12/2017 11:56:29</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>01/12/2017 11:56:27</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Mvc.FixedDisplayModes.dll">
+      <publishTime>01/12/2017 11:56:25</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/12/2017 11:56:55</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/12/2017 11:56:25</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>01/12/2017 12:08:06</publishTime>
+    </File>
+    <File Include="bin/System.Web.Providers.dll">
+      <publishTime>01/12/2017 12:08:28</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/12/2017 11:56:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>01/12/2017 11:56:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>01/12/2017 11:56:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>01/12/2017 11:56:26</publishTime>
+    </File>
+    <File Include="bin/WebApplication3.dll">
+      <publishTime>03/28/2017 10:57:50</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/12/2017 12:07:57</publishTime>
+    </File>
+    <File Include="Content/AntActivity/antactivity.css">
+      <publishTime>01/12/2017 11:04:34</publishTime>
+    </File>
+    <File Include="Content/AntActivity/antactivity_iisnode_compatible.css">
+      <publishTime>01/12/2017 11:04:41</publishTime>
+    </File>
+    <File Include="Content/AntDistribution/AntDistribution.css">
+      <publishTime>01/31/2017 10:01:00</publishTime>
+    </File>
+    <File Include="Content/ant_distribution.txt">
+      <publishTime>01/12/2017 11:26:48</publishTime>
+    </File>
+    <File Include="Content/Blog/img-9.jpg">
+      <publishTime>01/12/2017 11:05:11</publishTime>
+    </File>
+    <File Include="Content/bootstrap-table.css">
+      <publishTime>01/12/2017 11:26:56</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>01/30/2017 12:17:45</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>01/12/2017 11:26:55</publishTime>
+    </File>
+    <File Include="Content/CarouselImages/activity.JPG">
+      <publishTime>02/17/2017 13:18:45</publishTime>
+    </File>
+    <File Include="Content/CarouselImages/blog.JPG">
+      <publishTime>02/21/2017 10:11:36</publishTime>
+    </File>
+    <File Include="Content/CarouselImages/distb.JPG">
+      <publishTime>02/17/2017 13:18:45</publishTime>
+    </File>
+    <File Include="Content/CarouselImages/landscape.JPG">
+      <publishTime>02/17/2017 13:18:45</publishTime>
+    </File>
+    <File Include="Content/CarouselImages/products.JPG">
+      <publishTime>02/21/2017 10:15:18</publishTime>
+    </File>
+    <File Include="Content/CarouselImages/qa.JPG">
+      <publishTime>02/17/2017 13:18:45</publishTime>
+    </File>
+    <File Include="Content/font-awesome.min.css">
+      <publishTime>01/27/2017 10:55:29</publishTime>
+    </File>
+    <File Include="Content/fullcalendar.min.css">
+      <publishTime>01/12/2017 11:26:56</publishTime>
+    </File>
+    <File Include="Content/genus_species.txt">
+      <publishTime>01/12/2017 11:26:56</publishTime>
+    </File>
+    <File Include="Content/images/ant_distribution.png">
+      <publishTime>01/12/2017 11:06:29</publishTime>
+    </File>
+    <File Include="Content/images/draw_area.jpg">
+      <publishTime>01/12/2017 11:06:47</publishTime>
+    </File>
+    <File Include="Content/images/fasids_bg1.jpg">
+      <publishTime>01/12/2017 11:07:29</publishTime>
+    </File>
+    <File Include="Content/images/highforaging.png">
+      <publishTime>01/12/2017 11:08:21</publishTime>
+    </File>
+    <File Include="Content/images/info_sharing.jpg">
+      <publishTime>01/12/2017 11:11:32</publishTime>
+    </File>
+    <File Include="Content/images/KELlogo_sm.jpg">
+      <publishTime>01/12/2017 11:09:07</publishTime>
+    </File>
+    <File Include="Content/images/knowledge_base.JPG">
+      <publishTime>01/12/2017 11:11:50</publishTime>
+    </File>
+    <File Include="Content/images/lowforaging.png">
+      <publishTime>01/12/2017 11:13:33</publishTime>
+    </File>
+    <File Include="Content/images/middleforaging.png">
+      <publishTime>01/12/2017 11:13:33</publishTime>
+    </File>
+    <File Include="Content/images/QAindex.png">
+      <publishTime>01/12/2017 11:14:01</publishTime>
+    </File>
+    <File Include="Content/images/statewide_data.JPG">
+      <publishTime>01/12/2017 11:11:50</publishTime>
+    </File>
+    <File Include="Content/images/TAM-Logo-white.png">
+      <publishTime>01/12/2017 11:14:22</publishTime>
+    </File>
+    <File Include="Content/index.css">
+      <publishTime>03/27/2017 13:21:37</publishTime>
+    </File>
+    <File Include="Content/InstructionImages/aftersettingtreatment.jpg">
+      <publishTime>01/12/2017 11:15:19</publishTime>
+    </File>
+    <File Include="Content/InstructionImages/drawpolygon.jpg">
+      <publishTime>01/12/2017 11:15:19</publishTime>
+    </File>
+    <File Include="Content/InstructionImages/editshape.jpg">
+      <publishTime>01/12/2017 11:15:19</publishTime>
+    </File>
+    <File Include="Content/InstructionImages/polygonInDashboard.jpg">
+      <publishTime>01/12/2017 11:15:19</publishTime>
+    </File>
+    <File Include="Content/InstructionImages/productresult.jpg">
+      <publishTime>01/12/2017 11:15:19</publishTime>
+    </File>
+    <File Include="Content/InstructionImages/productresult2.jpg">
+      <publishTime>01/12/2017 11:15:19</publishTime>
+    </File>
+    <File Include="Content/InstructionImages/removearea.jpg">
+      <publishTime>01/12/2017 11:15:19</publishTime>
+    </File>
+    <File Include="Content/InstructionImages/settreatment.jpg">
+      <publishTime>01/12/2017 11:15:19</publishTime>
+    </File>
+    <File Include="Content/InstructionImages/signin.jpg">
+      <publishTime>01/12/2017 11:15:19</publishTime>
+    </File>
+    <File Include="Content/InstructionImages/signup.jpg">
+      <publishTime>01/12/2017 11:15:19</publishTime>
+    </File>
+    <File Include="Content/InstructionImages/userdashboard.png">
+      <publishTime>01/12/2017 11:15:19</publishTime>
+    </File>
+    <File Include="Content/InteractiveLandscape.css">
+      <publishTime>01/12/2017 11:26:56</publishTime>
+    </File>
+    <File Include="Content/mapcover.css">
+      <publishTime>01/12/2017 11:26:56</publishTime>
+    </File>
+    <File Include="Content/pace_loadingbar.css">
+      <publishTime>01/12/2017 11:26:56</publishTime>
+    </File>
+    <File Include="Content/QA/QA.css">
+      <publishTime>02/07/2017 09:35:11</publishTime>
+    </File>
+    <File Include="Content/SignIn.css">
+      <publishTime>01/30/2017 12:10:17</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>01/12/2017 11:26:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/accordion.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/all.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/autocomplete.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/base.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/button.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/core.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/datepicker.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/dialog.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/draggable.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_222222_256x240.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_444444_256x240.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_454545_256x240.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_555555_256x240.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_777620_256x240.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_777777_256x240.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_888888_256x240.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_cc0000_256x240.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_ffffff_256x240.png">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery-ui.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery-ui.min.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/menu.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/progressbar.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/resizable.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/selectable.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/selectmenu.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/slider.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/sortable.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/spinner.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/tabs.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/theme.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/themes/base/tooltip.css">
+      <publishTime>01/12/2017 12:08:14</publishTime>
+    </File>
+    <File Include="Content/tx_counties.txt">
+      <publishTime>01/12/2017 11:26:56</publishTime>
+    </File>
+    <File Include="fonts/font-awesome.min.css">
+      <publishTime>01/12/2017 11:27:33</publishTime>
+    </File>
+    <File Include="fonts/fonts-awesome/fontawesome-webfont.eot">
+      <publishTime>01/27/2017 10:53:22</publishTime>
+    </File>
+    <File Include="fonts/fonts-awesome/fontawesome-webfont.svg">
+      <publishTime>01/27/2017 10:53:22</publishTime>
+    </File>
+    <File Include="fonts/fonts-awesome/fontawesome-webfont.ttf">
+      <publishTime>01/27/2017 10:53:22</publishTime>
+    </File>
+    <File Include="fonts/fonts-awesome/fontawesome-webfont.woff">
+      <publishTime>01/27/2017 10:53:22</publishTime>
+    </File>
+    <File Include="fonts/fonts-awesome/fontawesome-webfont.woff2">
+      <publishTime>01/27/2017 10:53:22</publishTime>
+    </File>
+    <File Include="fonts/fonts-awesome/FontAwesome.otf">
+      <publishTime>01/27/2017 10:53:22</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>01/12/2017 11:27:33</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/12/2017 11:27:33</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>01/12/2017 11:27:33</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>01/12/2017 11:27:33</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>01/12/2017 10:09:47</publishTime>
+    </File>
+    <File Include="JavaScript/DeleteMenu.js">
+      <publishTime>01/19/2017 12:01:23</publishTime>
+    </File>
+    <File Include="JavaScript/pmaService.js">
+      <publishTime>01/19/2017 12:00:28</publishTime>
+    </File>
+    <File Include="JavaScript/polygonManagerApp.js">
+      <publishTime>02/27/2017 10:29:18</publishTime>
+    </File>
+    <File Include="Models/DB/FASIDSModel.edmx.diagram">
+      <publishTime>03/22/2017 11:12:40</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/12/2017 12:08:31</publishTime>
+    </File>
+    <File Include="Scripts/ai.0.22.9-build00167.js">
+      <publishTime>01/12/2017 12:13:26</publishTime>
+    </File>
+    <File Include="Scripts/ai.0.22.9-build00167.min.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/AntActivity/fullcalendar.min.js">
+      <publishTime>01/12/2017 12:13:14</publishTime>
+    </File>
+    <File Include="Scripts/AntActivity/moment.min.js">
+      <publishTime>01/12/2017 12:13:14</publishTime>
+    </File>
+    <File Include="Scripts/backbone-min.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-table.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.11.3.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.11.3.min.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.11.3.min.map">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.8.11.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.8.11.min.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/jquery.simpleWeather.min.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/mapcover.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/moment-with-locales.js">
+      <publishTime>01/12/2017 12:13:28</publishTime>
+    </File>
+    <File Include="Scripts/moment-with-locales.min.js">
+      <publishTime>01/12/2017 12:13:28</publishTime>
+    </File>
+    <File Include="Scripts/moment.js">
+      <publishTime>01/12/2017 12:13:27</publishTime>
+    </File>
+    <File Include="Scripts/moment.min.js">
+      <publishTime>01/12/2017 12:13:28</publishTime>
+    </File>
+    <File Include="Scripts/pace.min.js">
+      <publishTime>01/12/2017 12:13:28</publishTime>
+    </File>
+    <File Include="Scripts/parallax.min.js">
+      <publishTime>01/12/2017 12:13:28</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/css/codemirror.css">
+      <publishTime>01/31/2017 11:31:57</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/css/content.css">
+      <publishTime>01/31/2017 11:31:57</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/css/textboxio.css">
+      <publishTime>01/31/2017 11:31:57</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/flash/textboxpaste.swf">
+      <publishTime>01/31/2017 11:32:06</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_ar.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_ca.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_cs.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_da.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_de.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_el.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_en.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_es.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_fa.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_fi.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_fr.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_he.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_hr.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_hu.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_it.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_ja.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_kk.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_ko.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_nb.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_nl.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_pl.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_pt.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_pt_pt.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_ro.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_ru.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_sk.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_sl.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_sv.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_th.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_tr.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_uk.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_zh.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/help_zh_tw.js">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/html/textbox-licenses.html">
+      <publishTime>01/31/2017 11:32:12</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_ar.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_ca.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_cs.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_da.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_de.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_el.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_en.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_es.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_fa.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_fi.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_fr.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_he.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_hr.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_hu.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_it.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_ja.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_kk.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_ko.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_nb.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_nl.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_pl.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_pt.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_pt_pt.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_ro.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_ru.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_sk.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_sl.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_sv.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_th.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_tr.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_uk.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_zh.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/i18n/tbio_zh_tw.js">
+      <publishTime>01/31/2017 11:32:26</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/js/codeview.js">
+      <publishTime>01/31/2017 11:32:34</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/resources/js/wordimport.js">
+      <publishTime>01/31/2017 11:32:34</publishTime>
+    </File>
+    <File Include="Scripts/textboxio-client/textboxio/textboxio.js">
+      <publishTime>01/31/2017 11:32:43</publishTime>
+    </File>
+    <File Include="Scripts/textboxio.js">
+      <publishTime>01/31/2017 11:25:17</publishTime>
+    </File>
+    <File Include="Scripts/underscore-min.js">
+      <publishTime>01/12/2017 12:13:28</publishTime>
+    </File>
+    <File Include="UserImages/atm.jpg">
+      <publishTime>02/22/2017 11:45:44</publishTime>
+    </File>
+    <File Include="UserImages/bg_home.jpg">
+      <publishTime>02/23/2017 12:14:59</publishTime>
+    </File>
+    <File Include="UserImages/crop_wide %282%29.jpg">
+      <publishTime>02/23/2017 10:27:28</publishTime>
+    </File>
+    <File Include="UserImages/growing-flower.jpg">
+      <publishTime>02/27/2017 09:39:18</publishTime>
+    </File>
+    <File Include="UserImages/homepage.jpg">
+      <publishTime>02/22/2017 11:38:46</publishTime>
+    </File>
+    <File Include="UserImages/profile_image.png">
+      <publishTime>02/23/2017 10:48:11</publishTime>
+    </File>
+    <File Include="Views/Home/AntActivity.cshtml">
+      <publishTime>03/23/2017 12:59:32</publishTime>
+    </File>
+    <File Include="Views/Home/AntDistribution.cshtml">
+      <publishTime>03/23/2017 12:57:49</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>02/21/2017 10:53:45</publishTime>
+    </File>
+    <File Include="Views/Home/OfficialBlog.cshtml">
+      <publishTime>03/23/2017 12:58:58</publishTime>
+    </File>
+    <File Include="Views/InteractiveLandscape/Instructions.cshtml">
+      <publishTime>02/22/2017 09:38:38</publishTime>
+    </File>
+    <File Include="Views/InteractiveLandscape/LandscapeManagement.cshtml">
+      <publishTime>03/27/2017 13:20:46</publishTime>
+    </File>
+    <File Include="Views/InteractiveLandscape/PolygonDisplayPartial.cshtml">
+      <publishTime>03/01/2017 11:57:35</publishTime>
+    </File>
+    <File Include="Views/InteractiveLandscape/Treatment.cshtml">
+      <publishTime>03/27/2017 13:23:32</publishTime>
+    </File>
+    <File Include="Views/InteractiveLandscape/UnAuthorized.cshtml">
+      <publishTime>01/23/2017 11:51:08</publishTime>
+    </File>
+    <File Include="Views/Product/ProductAdminView.cshtml">
+      <publishTime>03/27/2017 13:14:11</publishTime>
+    </File>
+    <File Include="Views/Product/ProductIndex.cshtml">
+      <publishTime>03/23/2017 12:45:50</publishTime>
+    </File>
+    <File Include="Views/Product/ProductIndexAdmin.cshtml">
+      <publishTime>03/22/2017 10:24:45</publishTime>
+    </File>
+    <File Include="Views/Product/ProductUserView.cshtml">
+      <publishTime>03/27/2017 12:52:05</publishTime>
+    </File>
+    <File Include="Views/QA/PostAnswer.cshtml">
+      <publishTime>03/27/2017 13:54:33</publishTime>
+    </File>
+    <File Include="Views/QA/PostQuestion.cshtml">
+      <publishTime>03/27/2017 13:50:24</publishTime>
+    </File>
+    <File Include="Views/QA/QAIndex.cshtml">
+      <publishTime>03/27/2017 13:54:06</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>01/12/2017 10:09:47</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>03/20/2017 12:25:40</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginPartial.cshtml">
+      <publishTime>03/20/2017 12:19:18</publishTime>
+    </File>
+    <File Include="Views/Shared/_PolygonDisplayPartial.cshtml">
+      <publishTime>01/18/2017 11:21:52</publishTime>
+    </File>
+    <File Include="Views/User/AdminOnly.cshtml">
+      <publishTime>01/23/2017 09:59:09</publishTime>
+    </File>
+    <File Include="Views/User/ForgotPassword.cshtml">
+      <publishTime>01/27/2017 12:58:39</publishTime>
+    </File>
+    <File Include="Views/User/GetUserBasicInfo.cshtml">
+      <publishTime>01/12/2017 15:03:04</publishTime>
+    </File>
+    <File Include="Views/User/ProcessRequest.cshtml">
+      <publishTime>01/27/2017 11:09:57</publishTime>
+    </File>
+    <File Include="Views/User/ResetForgotPassword.cshtml">
+      <publishTime>01/27/2017 11:48:39</publishTime>
+    </File>
+    <File Include="Views/User/SignIn.cshtml">
+      <publishTime>02/16/2017 13:46:22</publishTime>
+    </File>
+    <File Include="Views/User/SignUp.cshtml">
+      <publishTime>01/31/2017 09:34:19</publishTime>
+    </File>
+    <File Include="Views/User/UnAuthorized.cshtml">
+      <publishTime>01/23/2017 09:59:32</publishTime>
+    </File>
+    <File Include="Views/User/UserAccount.cshtml">
+      <publishTime>02/24/2017 12:09:05</publishTime>
+    </File>
+    <File Include="Views/User/UserDashboard.cshtml">
+      <publishTime>03/23/2017 13:01:12</publishTime>
+    </File>
+    <File Include="Views/User/UserImage.cshtml">
+      <publishTime>02/23/2017 12:55:40</publishTime>
+    </File>
+    <File Include="Views/User/View.cshtml">
+      <publishTime>01/12/2017 15:03:04</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>01/18/2017 10:42:49</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>01/12/2017 10:09:47</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>03/28/2017 10:58:02</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
